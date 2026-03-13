@@ -170,24 +170,64 @@ header::before {
     border-radius: 5px;
 }
 
-/* Filtros con colores vivos */
+/* Filtros con diseño de cristal y colores vivos */
 .filter-btn {
-    padding: 8px 20px;
-    border: 2px solid var(--primary-color);
-    background: rgba(255, 255, 255, 0.4); /* Botones semi-transparentes */
-    color: var(--primary-color);
-    font-weight: 600;
-    border-radius: 25px;
+    padding: 10px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.25);
+    color: var(--text-dark);
+    font-weight: 700;
+    border-radius: 50px;
     cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: all 0.6s;
+}
+
+.filter-btn:hover::before {
+    left: 100%;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.45);
+    color: var(--primary-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+}
+
+.filter-btn.active {
     background: var(--primary-color);
     color: var(--white);
-    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
     transform: scale(1.05);
+}
+
+.filter-btn.active:hover {
+    background: #27ae60;
+    transform: scale(1.08) translateY(-2px);
 }
 
 /* Info Seleccionada - Muy transparente para ver las flores */
@@ -327,17 +367,30 @@ footer {
 }
 
 #menu-toggle {
-    background: var(--white);
-    border: none;
-    color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--white);
     font-size: 1.5rem;
-    padding: 8px 12px;
-    border-radius: 10px;
+    padding: 10px 15px;
+    border-radius: 12px;
     cursor: pointer;
-    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     z-index: 1200;
     position: absolute;
     left: 20px;
+    transition: all 0.3s ease;
+}
+
+#menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+#menu-toggle:active {
+    transform: scale(0.95);
 }
 
 @media (max-width: 768px) {
