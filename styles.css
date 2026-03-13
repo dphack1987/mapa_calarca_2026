@@ -25,60 +25,54 @@ body {
     overflow: hidden;
 }
 
-/* Header Rediseñado con colores más vivos */
+/* Header Estilizado */
 header {
-    background: linear-gradient(135deg, #27ae60, #2980b9); /* Degradado Verde a Azul vibrante */
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: var(--white);
-    padding: 10px 40px; /* Reducir padding vertical para dejar que el logo sobresalga */
+    padding: 15px 40px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    justify-content: center; /* Centramos el título */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     z-index: 1000;
-    height: 120px; /* Altura fija para el header */
-}
-
-.logo-container {
-    background: var(--white);
-    padding: 15px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 90px;
     position: relative;
-    top: 20px; /* Sobresale hacia abajo */
-    z-index: 1100;
-}
-
-.logo-container:hover {
-    transform: scale(1.1) translateY(5px);
-}
-
-#logo {
-    height: 160px; /* LOGO MUCHO MÁS GRANDE */
-    width: auto;
-    object-fit: contain;
 }
 
 .title-container {
-    flex-grow: 1;
-    margin-left: 50px;
+    text-align: center;
 }
 
 .title-container h1 {
-    font-size: 2.8rem; /* Título más grande */
+    font-size: 2rem;
     font-weight: 800;
     letter-spacing: 2px;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .title-container p {
-    font-size: 1.2rem; /* Subtítulo más grande */
+    font-size: 0.9rem;
     font-weight: 400;
-    opacity: 1;
+    opacity: 0.9;
     letter-spacing: 1px;
+}
+
+/* Logo en Sidebar */
+.sidebar-logo {
+    text-align: center;
+    padding: 20px;
+    background: var(--white);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.sidebar-logo img {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
 }
 
 /* Layout Principal */
@@ -259,35 +253,90 @@ footer {
     }
 }
 
+/* Mobile Only Elements */
+.mobile-only {
+    display: none;
+}
+
+#menu-toggle {
+    background: var(--white);
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    z-index: 1200;
+    position: absolute;
+    left: 20px;
+}
+
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-        height: auto;
+    .mobile-only {
+        display: block;
     }
-    .logo-container {
-        margin-bottom: 15px;
+    
+    #ads-sidebar {
+        position: fixed;
+        left: -100%; /* Hidden by default */
         top: 0;
+        height: 100vh;
+        width: 85%;
+        max-width: 320px;
+        transition: left 0.3s ease;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+        z-index: 2000;
+        padding-top: 80px;
     }
+
+    #ads-sidebar.open {
+        left: 0;
+    }
+
+    /* Overlay when sidebar is open */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.5);
+        z-index: 1500;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+    header {
+        flex-direction: row;
+        padding: 10px 15px;
+        height: 100px;
+        justify-content: space-between;
+    }
+
+    .logo-container {
+        padding: 8px;
+        top: 0;
+        margin-right: 10px;
+    }
+
     #logo {
-        height: 100px; /* Logo un poco más pequeño en móviles */
+        height: 70px; /* Tamaño reducido para móviles para que no estorbe */
     }
+
     .title-container {
         margin-left: 0;
+        text-align: left;
     }
+
     .title-container h1 {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
-    #main-content {
-        flex-direction: column;
-    }
-    #ads-sidebar {
-        width: 100%;
-        height: auto;
-        max-height: 300px;
-        border-right: none;
-        border-bottom: 1px solid #ddd;
-        padding: 20px;
+
+    .title-container p {
+        font-size: 0.8rem;
     }
 }

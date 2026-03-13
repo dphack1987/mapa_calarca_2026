@@ -3,22 +3,37 @@ const imgWidth = 2000;
 const imgHeight = 1500;
 const bounds = [[0, 0], [imgHeight, imgWidth]];
 
-// CRS.Simple allows using an image as a coordinate system
+// Device Detection
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+// Map Initialization
 const map = L.map('map', {
     crs: L.CRS.Simple,
-    minZoom: -1,
+    minZoom: isMobile ? -1.5 : -1,
     maxZoom: 2,
     zoomSnap: 0.1,
     attributionControl: false,
-    maxBounds: bounds, // Restringe el movimiento al área de la imagen
-    maxBoundsViscosity: 1.0 // Hace que el rebote sea rígido
+    maxBounds: bounds,
+    maxBoundsViscosity: 1.0,
+    tap: !isMobile, // Disable tap for better mobile handling
+    dragging: !isMobile || (isMobile && !isTouchDevice) // Initial dragging state
 });
+
+// Adjust dragging for mobile (double finger pan vs single finger)
+if (isMobile && isTouchDevice) {
+    map.dragging.disable();
+    // Enable dragging only with two fingers to allow page scroll if needed, 
+    // but here we have overflow hidden, so we can enable it normally or use a specific gesture.
+    // For this full-screen app, let's enable it but with caution.
+    map.dragging.enable();
+}
 
 // Add the image overlay
 L.imageOverlay('imagenes/mapa calarca.jpg', bounds).addTo(map);
 map.fitBounds(bounds);
 
-// Tourist points of interest with Categories
+// Tourist points of interest
 const pointsOfInterest = [
     {
         name: "Plaza de Bolívar",
@@ -51,18 +66,40 @@ const pointsOfInterest = [
 ];
 
 const selectedInfo = document.getElementById('selected-info');
+const adsSidebar = document.getElementById('ads-sidebar');
+const menuToggle = document.getElementById('menu-toggle');
+const sidebarOverlay = document.getElementById('sidebar-overlay');
 let markers = [];
+
+// Sidebar Toggle Logic
+function toggleSidebar() {
+    adsSidebar.classList.toggle('open');
+    sidebarOverlay.classList.toggle('active');
+}
+
+if (menuToggle) {
+    menuToggle.addEventListener('click', toggleSidebar);
+}
+
+if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', toggleSidebar);
+}
 
 // Function to add markers to map
 function displayMarkers(category = 'todos') {
-    // Clear existing markers
     markers.forEach(m => map.removeLayer(m));
     markers = [];
 
     pointsOfInterest.forEach(point => {
         if (category === 'todos' || point.category === category) {
             const marker = L.marker(point.coords).addTo(map);
-            marker.bindPopup(`<b>${point.name}</b><br><small>${point.category}</small>`);
+            
+            // Adjust popup for mobile
+            const popupContent = `<b>${point.name}</b><br><small>${point.category}</small>`;
+            marker.bindPopup(popupContent, {
+                closeButton: !isMobile,
+                autoPanPadding: [50, 50]
+            });
 
             marker.on('click', () => {
                 selectedInfo.innerHTML = `
@@ -75,6 +112,11 @@ function displayMarkers(category = 'todos') {
                         <img src="${point.photo}" alt="${point.name}" style="width: 100%; border-radius: 12px; margin-top: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid white;">
                     </div>
                 `;
+                
+                // On mobile, open the sidebar automatically to show info when a marker is clicked
+                if (isMobile && !adsSidebar.classList.contains('open')) {
+                    toggleSidebar();
+                }
             });
             markers.push(marker);
         }
@@ -87,12 +129,14 @@ displayMarkers();
 // Filter Logic
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
-        // UI Update
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
-        
-        // Map Update
         displayMarkers(e.target.dataset.category);
+        
+        // On mobile, close sidebar after selecting a category to see the map
+        if (isMobile) {
+            // Optional: toggleSidebar(); 
+        }
     });
 });
 
@@ -104,3 +148,6 @@ map.on('click', (e) => {
     const lng = coord.lng.toFixed(1);
     coordsDiv.innerText = `[${lat}, ${lng}]`;
 });
+
+// Initial Device Info in Console
+console.log(`Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isTouchDevice}`);
