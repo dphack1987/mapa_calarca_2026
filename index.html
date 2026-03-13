@@ -4,32 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa Turístico - Calarcá 2026</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <img src="imagenes/LOGO CALARCA 2026.jpg" alt="Logo Calarcá 2026" id="logo">
-        <h1>Mapa Turístico Calarcá 2026</h1>
+        <div class="logo-container">
+            <img src="imagenes/LOGO CALARCA 2026.jpg" alt="Logo Calarcá 2026" id="logo">
+        </div>
+        <div class="title-container">
+            <h1>Calarcá 2026</h1>
+            <p>Corazón del Paisaje Cultural Cafetero</p>
+        </div>
+        <div class="nav-placeholder">
+            <!-- Espacio para botones sociales o menú si se requiere -->
+        </div>
     </header>
     
     <div id="main-content">
         <aside id="ads-sidebar">
-            <h3>Pautas Publicitarias</h3>
-            <div class="ad-slot">
-                <p>Publicidad 1</p>
-                <!-- <img src="ruta/a/publicidad1.jpg" alt="Publicidad 1"> -->
+            <div class="sidebar-section">
+                <h3>Categorías</h3>
+                <div class="filter-group">
+                    <button class="filter-btn active" data-category="todos">Todos</button>
+                    <button class="filter-btn" data-category="Cultura">Cultura</button>
+                    <button class="filter-btn" data-category="Naturaleza">Naturaleza</button>
+                    <button class="filter-btn" data-category="Aventura">Aventura</button>
+                </div>
             </div>
-            <div class="ad-slot">
-                <p>Publicidad 2</p>
-                <!-- <img src="ruta/a/publicidad2.jpg" alt="Publicidad 2"> -->
-            </div>
-            <div class="info-section">
-                <h3>Información Turística</h3>
-                <p>Descubre los encantos de Calarcá 2026.</p>
+
+            <div class="sidebar-section">
+                <h3>Información Destacada</h3>
                 <div id="selected-info">
-                    <p>Selecciona un punto en el mapa para ver más detalles.</p>
+                    <div class="welcome-msg">
+                        <p>Explora los tesoros de la Villa del Cacique.</p>
+                        <small>Haz clic en un marcador para conocer más.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section ads-container">
+                <h3>Pautas Publicitarias</h3>
+                <div class="ad-slot">
+                    <div class="ad-placeholder">Tu Negocio Aquí</div>
                 </div>
             </div>
         </aside>

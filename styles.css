@@ -1,3 +1,14 @@
+:root {
+    --primary-color: #2d5a27; /* Verde Bosque Cafetero */
+    --secondary-color: #d4a373; /* Tono Café/Arena */
+    --accent-color: #6f4e37; /* Café Tostado */
+    --bg-light: #fefae0; /* Crema Suave */
+    --text-dark: #333d29;
+    --white: #ffffff;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,143 +16,248 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
     display: flex;
     flex-direction: column;
     height: 100vh;
+    overflow: hidden;
 }
 
+/* Header Rediseñado */
 header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--white);
+    padding: 15px 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     z-index: 1000;
 }
 
+.logo-container {
+    background: var(--white);
+    padding: 5px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+    transform: scale(1.05);
+}
+
 #logo {
-    height: 60px;
-    margin-right: 20px;
+    height: 80px;
+    width: auto;
+    object-fit: contain;
 }
 
-h1 {
-    font-size: 1.5rem;
+.title-container {
     flex-grow: 1;
+    margin-left: 30px;
 }
 
+.title-container h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.title-container p {
+    font-size: 1rem;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* Layout Principal */
 #main-content {
     display: flex;
     flex: 1;
     overflow: hidden;
+    position: relative;
 }
 
+/* Sidebar Estilo Glassmorphism */
 #ads-sidebar {
-    width: 300px;
-    background-color: #fff;
-    border-right: 1px solid #ddd;
-    padding: 20px;
+    width: 350px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255,255,255,0.3);
+    padding: 25px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
+    z-index: 500;
 }
 
-.ad-slot {
-    background-color: #eee;
-    border: 1px dashed #999;
-    padding: 15px;
+.sidebar-section h3 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+/* Filtros */
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-btn {
+    padding: 6px 15px;
+    border: 1px solid var(--secondary-color);
+    background: transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--secondary-color);
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(212, 163, 115, 0.4);
+}
+
+/* Info Seleccionada */
+#selected-info {
+    min-height: 150px;
+}
+
+.welcome-msg {
     text-align: center;
-    border-radius: 4px;
-    min-height: 100px;
+    padding: 20px;
+    background: rgba(45, 90, 39, 0.05);
+    border-radius: 12px;
+    border: 1px dashed var(--primary-color);
 }
 
-.info-section {
-    margin-top: 10px;
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 4px;
-    border-left: 4px solid #007bff;
+.selected-point h4 {
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
 }
 
+.selected-point img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 15px;
+    box-shadow: var(--shadow);
+    border: 3px solid var(--white);
+}
+
+/* Publicidad */
+.ad-slot {
+    background: linear-gradient(45deg, #f1f1f1, #ffffff);
+    border-radius: 12px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.ad-slot:hover {
+    transform: translateY(-5px);
+}
+
+.ad-placeholder {
+    color: #999;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+/* Mapa */
 #map-container {
     flex: 1;
     position: relative;
-    height: 100%;
+    background-color: #e5e5f7;
+    background-image: radial-gradient(#2d5a27 0.5px, transparent 0.5px);
+    background-size: 10px 10px;
 }
 
 #map {
     width: 100%;
     height: 100%;
-    background-color: #f0f0f0;
-}
-
-.selected-point h4 {
-    color: #007bff;
-    margin-bottom: 10px;
-}
-
-.selected-point p {
-    font-size: 0.95rem;
-    margin-bottom: 8px;
-}
-
-.selected-point img {
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .coordinate-helper {
     position: absolute;
     bottom: 20px;
-    left: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.8rem;
+    right: 20px;
+    background: var(--glass-bg);
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    box-shadow: var(--shadow);
     z-index: 1000;
     pointer-events: none;
 }
 
 footer {
-    background-color: #333;
-    color: white;
+    background-color: var(--accent-color);
+    color: var(--white);
     text-align: center;
-    padding: 10px;
-    font-size: 0.9rem;
+    padding: 8px;
+    font-size: 0.8rem;
+    font-weight: 300;
     z-index: 1000;
 }
 
-/* Custom Marker Styling if needed */
+/* Leaflet Overrides */
 .leaflet-popup-content-wrapper {
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 5px;
 }
 
-.leaflet-popup-content {
+.leaflet-popup-content b {
+    color: var(--primary-color);
     font-size: 1rem;
-    line-height: 1.5;
 }
 
-.leaflet-popup-tip-container {
-    margin-top: -1px;
+/* Responsive */
+@media (max-width: 900px) {
+    #ads-sidebar {
+        width: 280px;
+    }
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     header {
         flex-direction: column;
         text-align: center;
+        padding: 20px;
     }
-    #logo {
-        margin-right: 0;
-        margin-bottom: 10px;
+    .logo-container {
+        margin-bottom: 15px;
     }
-    h1 {
-        font-size: 1.2rem;
+    .title-container {
+        margin-left: 0;
+    }
+    #main-content {
+        flex-direction: column;
+    }
+    #ads-sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
     }
 }
