@@ -76,25 +76,13 @@ header::before {
 .sidebar-logo {
     text-align: center;
     padding: 25px 15px;
-    background: url('imagenes/flores1.jpg') no-repeat center center;
-    background-size: cover;
-    border-radius: 20px;
+    background: transparent;
     margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.05);
     position: relative;
 }
 
 .sidebar-logo::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(232, 245, 233, 0.7); /* Capa verde semi-transparente */
-    z-index: 1;
-    border-radius: 20px;
+    display: none;
 }
 
 .sidebar-logo img {
@@ -118,17 +106,36 @@ header::before {
 }
 
 /* Sidebar Estilo Glassmorphism más limpio */
+/* Sidebar con fondo floral temático */
 #ads-sidebar {
     width: 350px;
-    background: var(--bg-light); /* Ahora usa el tono crema */
+    background: url('imagenes/flores1.jpg') no-repeat center center;
+    background-size: cover;
     border-right: 1px solid rgba(45, 90, 39, 0.1);
-    padding: 60px 30px 30px 30px; /* Aumentar padding superior para dejar espacio al logo */
+    padding: 60px 30px 30px 30px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 30px;
     z-index: 500;
     box-shadow: 5px 0 15px rgba(0,0,0,0.02);
+    position: relative;
+}
+
+#ads-sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(232, 245, 233, 0.85); /* Overlay verde muy suave para legibilidad */
+    z-index: 1;
+}
+
+#ads-sidebar > * {
+    position: relative;
+    z-index: 2;
 }
 
 .sidebar-section h3 {
@@ -175,25 +182,16 @@ header::before {
 /* Info Seleccionada */
 #selected-info {
     min-height: 150px;
-    background: url('imagenes/flores1.jpg') no-repeat center center;
-    background-size: cover;
+    background: transparent;
     border-radius: 20px;
     position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(45, 90, 39, 0.1);
     overflow: hidden;
-    padding: 5px; /* Pequeño margen interno para que el contenido no toque los bordes del contenedor con imagen */
+    padding: 5px; 
 }
 
 #selected-info::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(232, 245, 233, 0.8); /* Overlay verde suave */
-    z-index: 1;
+    display: none;
 }
 
 #selected-info > div {
