@@ -72,13 +72,14 @@ header::before {
     letter-spacing: 1px;
 }
 
-/* Logo en Sidebar */
+/* Logo en Sidebar - Fondo sólido para que no se vean las flores detrás */
 .sidebar-logo {
     text-align: center;
-    padding: 25px 15px;
-    background: transparent;
-    margin-bottom: 20px;
-    position: relative;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    z-index: 5;
 }
 
 .sidebar-logo::before {
@@ -106,34 +107,45 @@ header::before {
 }
 
 /* Sidebar Estilo Glassmorphism más limpio */
-/* Sidebar con fondo floral temático */
 #ads-sidebar {
     width: 350px;
-    background: url('imagenes/flores1.jpg') no-repeat center center;
-    background-size: cover;
+    background: var(--bg-light); /* Fondo verde suave sólido */
     border-right: 1px solid rgba(45, 90, 39, 0.1);
-    padding: 60px 30px 30px 30px;
+    padding: 30px; /* Padding reducido para el contenedor principal */
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     z-index: 500;
     box-shadow: 5px 0 15px rgba(0,0,0,0.02);
-    position: relative;
 }
 
-#ads-sidebar::before {
+/* Contenedor con fondo floral (sin incluir el logo) */
+.sidebar-floral-bg {
+    background: url('imagenes/flores1.jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.sidebar-floral-bg::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(232, 245, 233, 0.85); /* Overlay verde muy suave para legibilidad */
+    background: rgba(232, 245, 233, 0.8); /* Overlay para legibilidad */
     z-index: 1;
 }
 
-#ads-sidebar > * {
+.sidebar-floral-bg > * {
     position: relative;
     z-index: 2;
 }
