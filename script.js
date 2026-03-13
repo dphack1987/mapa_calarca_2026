@@ -92,32 +92,69 @@ function displayMarkers(category = 'todos') {
 
     pointsOfInterest.forEach(point => {
         if (category === 'todos' || point.category === category) {
-            const marker = L.marker(point.coords).addTo(map);
+            // Custom icon or colored circle marker for a more modern look
+            const marker = L.circleMarker(point.coords, {
+                radius: 10,
+                fillColor: "#27ae60",
+                color: "#fff",
+                weight: 3,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map);
             
             // Adjust popup for mobile
-            const popupContent = `<b>${point.name}</b><br><small>${point.category}</small>`;
+            const popupContent = `
+                <div style="text-align: center; font-family: 'Poppins', sans-serif;">
+                    <b style="display: block; margin-bottom: 5px; color: #27ae60; font-size: 1.1rem;">${point.name}</b>
+                    <span style="background: #f1c40f; color: #1e272e; padding: 2px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;">${point.category}</span>
+                </div>
+            `;
             marker.bindPopup(popupContent, {
-                closeButton: !isMobile,
-                autoPanPadding: [50, 50]
+                closeButton: false,
+                autoPanPadding: [50, 50],
+                className: 'modern-popup'
             });
 
             marker.on('click', () => {
-                selectedInfo.innerHTML = `
-                    <div class="selected-point animated fadeIn">
-                        <h4>${point.name}</h4>
-                        <div style="margin-bottom: 15px;">
-                            <span class="category-badge">${point.category}</span>
-                        </div>
-                        <p>${point.description}</p>
-                        <img src="${point.photo}" alt="${point.name}" style="width: 100%; border-radius: 12px; margin-top: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid white;">
-                    </div>
-                `;
+                // Add a small pulse effect or animation via CSS if needed
+                selectedInfo.style.opacity = '0';
                 
-                // On mobile, open the sidebar automatically to show info when a marker is clicked
-                if (isMobile && !adsSidebar.classList.contains('open')) {
+                setTimeout(() => {
+                    selectedInfo.innerHTML = `
+                        <div class="selected-point">
+                            <h4>${point.name}</h4>
+                            <div style="margin-bottom: 20px;">
+                                <span class="category-badge">${point.category}</span>
+                            </div>
+                            <p>${point.description}</p>
+                            <img src="${point.photo}" alt="${point.name}">
+                        </div>
+                    `;
+                    selectedInfo.style.opacity = '1';
+                }, 300);
+                
+                // On mobile, open the sidebar automatically
+                if (window.innerWidth <= 900 && !adsSidebar.classList.contains('open')) {
                     toggleSidebar();
                 }
             });
+
+            // Hover effects
+            marker.on('mouseover', function() {
+                this.setStyle({
+                    radius: 13,
+                    fillOpacity: 1,
+                    fillColor: "#f1c40f"
+                });
+            });
+            marker.on('mouseout', function() {
+                this.setStyle({
+                    radius: 10,
+                    fillOpacity: 0.8,
+                    fillColor: "#27ae60"
+                });
+            });
+
             markers.push(marker);
         }
     });

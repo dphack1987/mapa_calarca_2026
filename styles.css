@@ -1,18 +1,38 @@
 :root {
-    --primary-color: #2ecc71; /* Verde Esmeralda Vibrante */
+    --primary-color: #27ae60; /* Verde Esmeralda más profundo */
     --secondary-color: #f1c40f; /* Amarillo Girasol */
     --accent-color: #e67e22; /* Naranja Atardecer */
-    --bg-light: #e8f5e9; /* Un verde suave que elimina el fondo blanco */
-    --text-dark: #1b2631; /* Azul medianoche para el texto */
+    --bg-light: #f4f9f4; /* Fondo verde muy pálido, casi blanco, para frescura */
+    --text-dark: #1e272e; /* Color de texto más moderno */
     --white: #ffffff;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    --glass-bg: rgba(255, 255, 255, 0.7);
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    --glass-bg: rgba(255, 255, 255, 0.25);
+}
+
+/* Scrollbar Personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(39, 174, 96, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -25,79 +45,55 @@ body {
     overflow: hidden;
 }
 
+/* Animaciones Globales */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-30px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
 /* Header Estilizado con Franja */
 header {
-    background: url('imagenes/franja1.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('imagenes/franja1.jpg') no-repeat center center;
     background-size: cover;
     color: var(--white);
     padding: 15px 40px;
     display: flex;
     align-items: center;
-    justify-content: center; /* Centramos el título */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     z-index: 1000;
-    height: 100px;
+    height: 110px;
     position: relative;
-    overflow: hidden;
-}
-
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(45, 90, 39, 0.4); /* Un tinte verde transparente para mejorar legibilidad */
-    z-index: 1;
+    border-bottom: 4px solid var(--primary-color);
 }
 
 .title-container {
     position: relative;
     z-index: 2;
     text-align: center;
+    animation: fadeIn 0.8s ease-out;
 }
 
 .title-container h1 {
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: 800;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 3px;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    text-transform: uppercase;
 }
 
 .title-container p {
-    font-size: 0.9rem;
-    font-weight: 400;
-    opacity: 0.9;
-    letter-spacing: 1px;
-}
-
-/* El logo se queda fijo arriba o al menos con su propio fondo */
-.sidebar-logo {
-    text-align: center;
-    padding: 25px 30px;
-    background: #ffffff;
-    margin-bottom: 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    z-index: 10;
-    position: sticky;
-    top: 0;
-}
-
-.sidebar-logo::before {
-    display: none;
-}
-
-.sidebar-logo img {
-    position: relative;
-    z-index: 2;
-    max-width: 100%;
-    height: auto;
-    max-height: 180px; /* Aumentado para evitar cortes */
-    object-fit: contain;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
-    display: block;
-    margin: 0 auto;
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 1;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    color: var(--secondary-color);
 }
 
 /* Layout Principal */
@@ -108,29 +104,51 @@ header::before {
     position: relative;
 }
 
+/* El logo se queda fijo arriba con un diseño tipo tarjeta */
+.sidebar-logo {
+    text-align: center;
+    padding: 20px;
+    background: var(--white);
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    z-index: 10;
+    position: sticky;
+    top: 20px;
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.sidebar-logo img {
+    max-width: 100%;
+    height: auto;
+    max-height: 120px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+
 /* Sidebar Estilo Glassmorphism más limpio */
 #ads-sidebar {
-    width: 350px;
+    width: 380px;
     background: var(--bg-light);
-    border-right: 1px solid rgba(45, 90, 39, 0.1);
-    padding: 0; /* Quitamos el padding para que el fondo floral llegue a los bordes si es necesario */
+    border-right: 1px solid rgba(0,0,0,0.05);
+    padding: 0;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     z-index: 500;
-    box-shadow: 5px 0 15px rgba(0,0,0,0.02);
+    box-shadow: 10px 0 30px rgba(0,0,0,0.03);
 }
 
 /* Contenedor con fondo floral (debajo del logo) */
 .sidebar-floral-bg {
     background: url('imagenes/flores1.jpg') no-repeat center center;
     background-size: cover;
-    padding: 30px;
+    padding: 20px 30px 40px 30px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 35px;
     position: relative;
-    flex: 1; /* Para que ocupe el resto del espacio */
+    flex: 1;
 }
 
 .sidebar-floral-bg::before {
@@ -140,80 +158,67 @@ header::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(232, 245, 233, 0.4); /* Reducida la opacidad para que las flores sean más visibles */
+    background: rgba(244, 249, 244, 0.5); /* Overlay más claro para ver mejor las flores */
     z-index: 1;
 }
 
-.sidebar-floral-bg > * {
+.sidebar-section {
     position: relative;
     z-index: 2;
+    animation: fadeIn 0.8s ease-out backwards;
 }
+
+.sidebar-section:nth-child(1) { animation-delay: 0.2s; }
+.sidebar-section:nth-child(2) { animation-delay: 0.4s; }
+.sidebar-section:nth-child(3) { animation-delay: 0.6s; }
 
 .sidebar-section h3 {
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-size: 1.1rem;
+    font-weight: 800;
     color: var(--text-dark);
     margin-bottom: 20px;
-    position: relative;
-    padding-left: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.sidebar-section h3::before {
+.sidebar-section h3::after {
     content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 5px;
-    height: 100%;
-    background: var(--primary-color);
-    border-radius: 5px;
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary-color), transparent);
+    opacity: 0.3;
 }
 
 /* Filtros con diseño de cristal y colores vivos */
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
 .filter-btn {
-    padding: 10px 22px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.25);
+    padding: 12px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.4);
     color: var(--text-dark);
-    font-weight: 700;
-    border-radius: 50px;
+    font-weight: 600;
+    border-radius: 12px;
     cursor: pointer;
     font-size: 0.85rem;
-    letter-spacing: 0.5px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.filter-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-    );
-    transition: all 0.6s;
-}
-
-.filter-btn:hover::before {
-    left: 100%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-btn:hover {
-    background: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.7);
     color: var(--primary-color);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     border-color: var(--primary-color);
 }
 
@@ -221,201 +226,213 @@ header::before {
     background: var(--primary-color);
     color: var(--white);
     border-color: var(--primary-color);
-    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.3);
     transform: scale(1.05);
 }
 
-.filter-btn.active:hover {
-    background: #27ae60;
-    transform: scale(1.08) translateY(-2px);
-}
-
-/* Info Seleccionada - Muy transparente para ver las flores */
+/* Info Seleccionada - Mejorada para ser una tarjeta premium */
 #selected-info {
-    min-height: 150px;
-    background: rgba(255, 255, 255, 0.2); /* Fondo casi invisible */
-    border-radius: 15px;
-    position: relative;
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    min-height: 200px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     overflow: hidden;
-    padding: 10px;
-}
-
-#selected-info > div {
-    position: relative;
-    z-index: 2;
+    padding: 20px;
+    transition: all 0.5s ease;
 }
 
 .welcome-msg {
     text-align: center;
-    padding: 20px;
-    background: transparent; /* Sin fondo para ver las flores */
-    border-radius: 12px;
-    border: 1px dashed var(--primary-color);
+    padding: 10px;
+}
+
+.welcome-msg p:first-child {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
 }
 
 .selected-point {
-    padding: 20px;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .selected-point h4 {
     color: var(--primary-color);
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.6rem;
+    font-weight: 800;
     margin-bottom: 15px;
+    line-height: 1.2;
 }
 
 .selected-point p {
-    line-height: 1.6;
-    color: var(--text-dark);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.selected-point img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border: 4px solid var(--white);
+    transition: transform 0.3s ease;
+}
+
+.selected-point img:hover {
+    transform: scale(1.02);
 }
 
 /* Categoría Badge */
 .category-badge {
     background: var(--secondary-color);
     color: var(--text-dark);
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 5px;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 8px;
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 10px rgba(241, 196, 15, 0.3);
 }
 
 /* Publicidad con Colores Vivos */
 .ad-slot {
-    background: linear-gradient(135deg, rgba(255, 154, 158, 0.7) 0%, rgba(254, 207, 239, 0.7) 100%); /* Gradiente con transparencia */
-    border-radius: 15px;
-    height: 140px;
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.1) 0%, rgba(241, 196, 15, 0.1) 100%);
+    border: 2px dashed rgba(39, 174, 96, 0.3);
+    border-radius: 20px;
+    height: 160px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: none;
-    box-shadow: 0 5px 15px rgba(255, 154, 158, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ad-slot:hover {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.15) 0%, rgba(241, 196, 15, 0.15) 100%);
+    border-color: var(--primary-color);
+    transform: scale(1.02);
 }
 
 .ad-placeholder {
-    color: white;
-    font-weight: 800;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.1rem;
 }
 
 /* Mapa con Marco Vibrante */
 #map-container {
     flex: 1;
     position: relative;
-    background-color: #2c3e50; /* Fondo azul oscuro elegante */
-    padding: 20px;
+    background-color: #f0f2f1;
+    padding: 25px;
 }
 
 #map {
     width: 100%;
     height: 100%;
-    border-radius: 8px; /* Bordes redondeados para el mapa */
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    border-radius: 25px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
     background: #fff;
+    border: 8px solid var(--white);
 }
 
 .coordinate-helper {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background: var(--glass-bg);
-    padding: 8px 15px;
-    border-radius: 30px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    bottom: 40px;
+    right: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
     color: var(--primary-color);
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     z-index: 1000;
-    pointer-events: none;
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
 footer {
-    background-color: var(--text-dark);
-    color: var(--white);
+    background-color: var(--white);
+    color: var(--text-dark);
     text-align: center;
-    padding: 15px;
-    font-size: 0.9rem;
-    font-weight: 400;
+    padding: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
     z-index: 1000;
-    border-top: 3px solid var(--primary-color);
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.03);
 }
 
-/* Leaflet Overrides */
+/* Leaflet Overrides con diseño moderno */
 .leaflet-popup-content-wrapper {
-    border-radius: 15px;
-    padding: 5px;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.leaflet-popup-tip {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .leaflet-popup-content b {
     color: var(--primary-color);
-    font-size: 1rem;
+    font-size: 1.2rem;
+    font-weight: 800;
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     #ads-sidebar {
-        width: 280px;
+        width: 340px;
     }
 }
 
 /* Mobile Only Elements */
-.mobile-only {
-    display: none;
-}
-
 #menu-toggle {
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.4);
     color: var(--white);
-    font-size: 1.5rem;
-    padding: 10px 15px;
-    border-radius: 12px;
+    font-size: 1.6rem;
+    padding: 12px 18px;
+    border-radius: 15px;
     cursor: pointer;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     z-index: 1200;
     position: absolute;
     left: 20px;
     transition: all 0.3s ease;
+    display: none;
 }
 
-#menu-toggle:hover {
-    background: rgba(255, 255, 255, 0.35);
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-
-#menu-toggle:active {
-    transform: scale(0.95);
-}
-
-@media (max-width: 768px) {
-    .mobile-only {
+@media (max-width: 900px) {
+    #menu-toggle {
         display: block;
     }
     
     #ads-sidebar {
         position: fixed;
-        left: -100%; /* Hidden by default */
+        left: -100%;
         top: 0;
         height: 100vh;
         width: 85%;
-        max-width: 320px;
-        transition: left 0.3s ease;
-        box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+        max-width: 360px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 2000;
-        padding-top: 80px;
+        background: var(--white);
     }
 
     #ads-sidebar.open {
         left: 0;
     }
 
-    /* Overlay when sidebar is open */
     .sidebar-overlay {
         display: none;
         position: fixed;
@@ -423,8 +440,9 @@ footer {
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.6);
         z-index: 1500;
+        backdrop-filter: blur(4px);
     }
 
     .sidebar-overlay.active {
@@ -432,32 +450,25 @@ footer {
     }
 
     header {
-        flex-direction: row;
-        padding: 10px 15px;
-        height: 100px;
-        justify-content: space-between;
-    }
-
-    .logo-container {
-        padding: 8px;
-        top: 0;
-        margin-right: 10px;
-    }
-
-    #logo {
-        height: 70px; /* Tamaño reducido para móviles para que no estorbe */
-    }
-
-    .title-container {
-        margin-left: 0;
-        text-align: left;
+        height: 90px;
+        padding: 0 15px;
     }
 
     .title-container h1 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
     }
 
     .title-container p {
         font-size: 0.8rem;
+    }
+
+    #map-container {
+        padding: 15px;
+    }
+
+    #map {
+        border-radius: 15px;
+        border-width: 4px;
     }
 }
