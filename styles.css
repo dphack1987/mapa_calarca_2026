@@ -175,14 +175,42 @@ header::before {
 /* Info Seleccionada */
 #selected-info {
     min-height: 150px;
+    background: url('imagenes/flores1.jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    overflow: hidden;
+    padding: 5px; /* Pequeño margen interno para que el contenido no toque los bordes del contenedor con imagen */
+}
+
+#selected-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.82); /* Capa blanca semi-transparente para legibilidad */
+    z-index: 1;
+}
+
+#selected-info > div {
+    position: relative;
+    z-index: 2;
 }
 
 .welcome-msg {
     text-align: center;
     padding: 20px;
-    background: rgba(45, 90, 39, 0.05);
+    background: rgba(255, 255, 255, 0.4); /* Fondo más ligero para dejar ver las flores */
     border-radius: 12px;
     border: 1px dashed var(--primary-color);
+}
+
+.selected-point {
+    padding: 20px;
 }
 
 .selected-point h4 {
