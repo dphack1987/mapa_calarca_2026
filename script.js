@@ -1,16 +1,18 @@
-// CRS.Simple allows using an image as a coordinate system
-const map = L.map('map', {
-    crs: L.CRS.Simple,
-    minZoom: -2,
-    maxZoom: 2,
-    zoomSnap: 0.1,
-    attributionControl: false
-});
-
 // Dimensions of the image
 const imgWidth = 2000;
 const imgHeight = 1500;
 const bounds = [[0, 0], [imgHeight, imgWidth]];
+
+// CRS.Simple allows using an image as a coordinate system
+const map = L.map('map', {
+    crs: L.CRS.Simple,
+    minZoom: -1,
+    maxZoom: 2,
+    zoomSnap: 0.1,
+    attributionControl: false,
+    maxBounds: bounds, // Restringe el movimiento al área de la imagen
+    maxBoundsViscosity: 1.0 // Hace que el rebote sea rígido
+});
 
 // Add the image overlay
 L.imageOverlay('imagenes/mapa calarca.jpg', bounds).addTo(map);

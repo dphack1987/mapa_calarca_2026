@@ -185,14 +185,17 @@ header {
 #map-container {
     flex: 1;
     position: relative;
-    background-color: #e5e5f7;
-    background-image: radial-gradient(#2d5a27 0.5px, transparent 0.5px);
-    background-size: 10px 10px;
+    background-color: #2d5a27; /* Fondo oscuro para el marco */
+    padding: 15px; /* Crea un marco alrededor del mapa */
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
 }
 
 #map {
     width: 100%;
     height: 100%;
+    border-radius: 8px; /* Bordes redondeados para el mapa */
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    background: #fff;
 }
 
 .coordinate-helper {
