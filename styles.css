@@ -72,14 +72,16 @@ header::before {
     letter-spacing: 1px;
 }
 
-/* Logo en Sidebar - Fondo sólido para que no se vean las flores detrás */
+/* El logo se queda fijo arriba o al menos con su propio fondo */
 .sidebar-logo {
     text-align: center;
-    padding: 20px;
+    padding: 25px 30px;
     background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    z-index: 5;
+    margin-bottom: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 10;
+    position: sticky;
+    top: 0;
 }
 
 .sidebar-logo::before {
@@ -109,29 +111,26 @@ header::before {
 /* Sidebar Estilo Glassmorphism más limpio */
 #ads-sidebar {
     width: 350px;
-    background: var(--bg-light); /* Fondo verde suave sólido */
+    background: var(--bg-light);
     border-right: 1px solid rgba(45, 90, 39, 0.1);
-    padding: 30px; /* Padding reducido para el contenedor principal */
+    padding: 0; /* Quitamos el padding para que el fondo floral llegue a los bordes si es necesario */
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
     z-index: 500;
     box-shadow: 5px 0 15px rgba(0,0,0,0.02);
 }
 
-/* Contenedor con fondo floral (sin incluir el logo) */
+/* Contenedor con fondo floral (debajo del logo) */
 .sidebar-floral-bg {
     background: url('imagenes/flores1.jpg') no-repeat center center;
     background-size: cover;
-    border-radius: 20px;
-    padding: 25px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 30px;
     position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    overflow: hidden;
+    flex: 1; /* Para que ocupe el resto del espacio */
 }
 
 .sidebar-floral-bg::before {
@@ -141,7 +140,7 @@ header::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(232, 245, 233, 0.8); /* Overlay para legibilidad */
+    background: rgba(232, 245, 233, 0.85); /* Overlay para legibilidad */
     z-index: 1;
 }
 
@@ -191,19 +190,16 @@ header::before {
     transform: scale(1.05);
 }
 
-/* Info Seleccionada */
+/* Info Seleccionada - Mejorada para ser visible */
 #selected-info {
     min-height: 150px;
-    background: transparent;
-    border-radius: 20px;
+    background: var(--glass-bg); /* Fondo semi-transparente para resaltar sobre las flores */
+    border-radius: 15px;
     position: relative;
-    border: 1px solid rgba(45, 90, 39, 0.1);
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     overflow: hidden;
-    padding: 5px; 
-}
-
-#selected-info::before {
-    display: none;
+    padding: 10px;
 }
 
 #selected-info > div {
