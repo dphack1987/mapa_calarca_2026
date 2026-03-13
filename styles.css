@@ -2,11 +2,11 @@
     --primary-color: #2ecc71; /* Verde Esmeralda Vibrante */
     --secondary-color: #f1c40f; /* Amarillo Girasol */
     --accent-color: #e67e22; /* Naranja Atardecer */
-    --bg-light: #f4f7f6; /* Gris muy claro y limpio */
-    --text-dark: #2c3e50; /* Azul Medianoche para texto */
+    --bg-light: #e8f5e9; /* Un verde suave que elimina el fondo blanco */
+    --text-dark: #1b2631; /* Azul medianoche para el texto */
     --white: #ffffff;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    --glass-bg: rgba(255, 255, 255, 0.9);
+    --glass-bg: rgba(255, 255, 255, 0.7);
 }
 
 * {
@@ -92,7 +92,7 @@ header::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.75); /* Capa blanca semi-transparente para que el logo resalte */
+    background: rgba(232, 245, 233, 0.7); /* Capa verde semi-transparente */
     z-index: 1;
     border-radius: 20px;
 }
@@ -120,8 +120,8 @@ header::before {
 /* Sidebar Estilo Glassmorphism más limpio */
 #ads-sidebar {
     width: 350px;
-    background: var(--white);
-    border-right: 1px solid rgba(0,0,0,0.05);
+    background: var(--bg-light); /* Ahora usa el tono crema */
+    border-right: 1px solid rgba(45, 90, 39, 0.1);
     padding: 60px 30px 30px 30px; /* Aumentar padding superior para dejar espacio al logo */
     overflow-y: auto;
     display: flex;
@@ -156,7 +156,7 @@ header::before {
 .filter-btn {
     padding: 8px 20px;
     border: 2px solid var(--primary-color);
-    background: var(--white);
+    background: var(--bg-light); /* Usa el tono crema */
     color: var(--primary-color);
     font-weight: 600;
     border-radius: 25px;
@@ -192,7 +192,7 @@ header::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.82); /* Capa blanca semi-transparente para legibilidad */
+    background: rgba(232, 245, 233, 0.8); /* Overlay verde suave */
     z-index: 1;
 }
 
@@ -204,7 +204,7 @@ header::before {
 .welcome-msg {
     text-align: center;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.4); /* Fondo más ligero para dejar ver las flores */
+    background: var(--glass-bg); /* Fondo semi-transparente */
     border-radius: 12px;
     border: 1px dashed var(--primary-color);
 }
