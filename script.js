@@ -68,11 +68,11 @@ function displayMarkers(category = 'todos') {
                 selectedInfo.innerHTML = `
                     <div class="selected-point animated fadeIn">
                         <h4>${point.name}</h4>
-                        <p style="font-size: 0.8rem; color: #666; margin-bottom: 5px;">
-                            <span style="background: #d4a373; color: white; padding: 2px 8px; border-radius: 10px;">${point.category}</span>
-                        </p>
+                        <div style="margin-bottom: 15px;">
+                            <span class="category-badge">${point.category}</span>
+                        </div>
                         <p>${point.description}</p>
-                        <img src="${point.photo}" alt="${point.name}">
+                        <img src="${point.photo}" alt="${point.name}" style="width: 100%; border-radius: 12px; margin-top: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid white;">
                     </div>
                 `;
             });
