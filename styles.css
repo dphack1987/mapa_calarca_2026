@@ -75,27 +75,26 @@ header::before {
 /* Logo en Sidebar */
 .sidebar-logo {
     text-align: center;
-    padding: 20px;
-    background: var(--white);
+    padding: 25px 15px;
+    background: url('imagenes/flores1.jpg') no-repeat center center;
+    background-size: cover;
     border-radius: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border: 1px solid rgba(0,0,0,0.05);
     position: relative;
-    overflow: hidden;
 }
 
 .sidebar-logo::before {
     content: '';
     position: absolute;
-    bottom: -10px;
-    right: -10px;
-    width: 60px;
-    height: 60px;
-    background: url('imagenes/flores1.jpg') no-repeat center center;
-    background-size: contain;
-    opacity: 0.4;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.75); /* Capa blanca semi-transparente para que el logo resalte */
     z-index: 1;
+    border-radius: 20px;
 }
 
 .sidebar-logo img {
@@ -103,34 +102,11 @@ header::before {
     z-index: 2;
     max-width: 100%;
     height: auto;
-    max-height: 150px;
+    max-height: 180px; /* Aumentado para evitar cortes */
     object-fit: contain;
-}
-
-/* Decorative Flowers */
-.flower-deco {
-    position: fixed;
-    z-index: 10001;
-    pointer-events: none;
-    opacity: 0.9;
-}
-
-.flower-deco img {
-    height: 100px;
-    width: auto;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
-}
-
-.deco-tl {
-    top: -10px;
-    left: -10px;
-    transform: rotate(-15deg);
-}
-
-.deco-tr {
-    top: -10px;
-    right: -10px;
-    transform: rotate(15deg) scaleX(-1);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    display: block;
+    margin: 0 auto;
 }
 
 /* Layout Principal */
