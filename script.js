@@ -134,20 +134,25 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
         displayMarkers(e.target.dataset.category);
         
         // On mobile, close sidebar after selecting a category to see the map
-        if (isMobile) {
-            // Optional: toggleSidebar(); 
+        if (isMobile && adsSidebar.classList.contains('open')) {
+            toggleSidebar(); 
         }
     });
 });
 
 // Coordinate Helper
 const coordsDiv = document.getElementById('coords');
-map.on('click', (e) => {
+const updateCoords = (e) => {
     const coord = e.latlng;
     const lat = coord.lat.toFixed(1);
     const lng = coord.lng.toFixed(1);
     coordsDiv.innerText = `[${lat}, ${lng}]`;
-});
+};
+
+map.on('click', updateCoords);
+if (!isMobile) {
+    map.on('mousemove', updateCoords);
+}
 
 // Initial Device Info in Console
 console.log(`Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isTouchDevice}`);
