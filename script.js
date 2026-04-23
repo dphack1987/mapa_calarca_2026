@@ -112,17 +112,17 @@ const pointsOfInterest = [
             en: "The heart of the 'Villa del Cacique'. A vibrant space surrounded by traditional coffee architecture, where locals and tourists gather to enjoy good coffee, the afternoon breeze, and cultural events. It is the ideal starting point to explore the city."
         },
         category: "Cultura",
-        photo: "imagenes/LOGO CALARCA 2026.jpg", // Idealmente aquí iría una foto real del parque
-        openHours: [0, 24] // Abierto siempre por ser espacio público
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
     },
     {
         id: 2,
         name: { es: "Jardín Botánico del Quindío", en: "Quindio Botanical Garden" },
-        coords: [800, 1200],
+        coords: [650, 880],
         realCoords: "4.5422,-75.6567",
         description: {
-            es: "Hogar del famoso mariposario y una colección increíble de palmas y flora regional.",
-            en: "Home to the famous butterfly garden and an incredible collection of palms and regional flora."
+            es: "Hogar del famoso mariposario y una colección increíble de palmas y flora regional. Un lugar imperdible para los amantes de la naturaleza y la fotografía.",
+            en: "Home to the famous butterfly garden and an incredible collection of palms and regional flora. A must-see for nature and photography lovers."
         },
         category: "Naturaleza",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
@@ -131,11 +131,11 @@ const pointsOfInterest = [
     {
         id: 3,
         name: { es: "Peñas Blancas", en: "White Rocks" },
-        coords: [400, 1600],
+        coords: [820, 1600],
         realCoords: "4.5150,-75.6000",
         description: {
-            es: "Majestuosa formación rocosa para los amantes del senderismo y la escalada.",
-            en: "Majestic rock formation for hiking and climbing lovers."
+            es: "Majestuosa formación rocosa para los amantes del senderismo y la escalada. Ofrece una de las mejores vistas panorámicas de Calarcá y el Quindío.",
+            en: "Majestic rock formation for hiking and climbing lovers. It offers one of the best panoramic views of Calarcá and Quindio."
         },
         category: "Aventura",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
@@ -143,68 +143,68 @@ const pointsOfInterest = [
     },
     {
         id: 4,
-        name: { es: "Finca Cafetera El Mirador", en: "El Mirador Coffee Farm" },
-        coords: [300, 1400],
-        realCoords: "4.5200,-75.6100",
+        name: { es: "Corregimiento La Virginia", en: "La Virginia Village" },
+        coords: [750, 1420],
+        realCoords: "4.5100,-75.6100",
         description: {
-            es: "Hospedaje rural con la mejor vista de la región y experiencia cafetera.",
-            en: "Rural accommodation with the best view of the region and coffee experience."
+            es: "Pintoresco corregimiento que sirve de entrada a la zona de Peñas Blancas. Conocido por su tranquilidad y belleza rural.",
+            en: "Picturesque village that serves as an entrance to the Peñas Blancas area. Known for its tranquility and rural beauty."
         },
-        category: "Hospedaje Rural",
+        category: "Naturaleza",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
         openHours: [0, 24]
     },
     {
         id: 5,
-        name: { es: "Casa de la Cultura", en: "House of Culture" },
-        coords: [780, 950],
-        realCoords: "4.5320,-75.6425",
+        name: { es: "Recuca (Cultura Cafetera)", en: "Recuca (Coffee Culture)" },
+        coords: [380, 820],
+        realCoords: "4.4850,-75.6800",
         description: {
-            es: "Epicentro de las artes y la memoria histórica de la 'Villa del Cacique'.",
-            en: "Epicenter of arts and historical memory of the 'Villa del Cacique'."
+            es: "Recorrido de la Cultura Cafetera. Vive la experiencia de ser caficultor por un día en una de las fincas más tradicionales de la región.",
+            en: "Coffee Culture Tour. Live the experience of being a coffee farmer for a day in one of the most traditional farms in the region."
         },
         category: "Cultura",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
-        openHours: [8, 18]
+        openHours: [9, 17]
     },
     {
         id: 6,
-        name: { es: "Parque de la Vida", en: "Park of Life" },
-        coords: [700, 1100],
-        realCoords: "4.5250,-75.6350",
+        name: { es: "Hospital La Misericordia", en: "La Misericordia Hospital" },
+        coords: [980, 1080],
+        realCoords: "4.5320,-75.6380",
         description: {
-            es: "Espacio recreativo para la familia con senderos y zonas verdes.",
-            en: "Recreational space for the family with trails and green areas."
+            es: "Principal centro hospitalario del municipio, brindando servicios de salud a la comunidad de Calarcá.",
+            en: "Main hospital center of the municipality, providing health services to the community of Calarcá."
         },
-        category: "Recreación",
+        category: "Transporte", // Usando Transporte como categoría de servicios por ahora
         photo: "imagenes/LOGO CALARCA 2026.jpg",
         openHours: [0, 24]
     },
     {
         id: 7,
-        name: { es: "Restaurante Sabor Criollo", en: "Sabor Criollo Restaurant" },
-        coords: [760, 1050],
-        realCoords: "4.5310,-75.6410",
+        name: { es: "Galería Calarcá", en: "Calarca Gallery" },
+        coords: [1080, 1030],
+        realCoords: "4.5350,-75.6420",
         description: {
-            es: "Lo mejor de la comida típica quindiana en el centro de Calarcá.",
-            en: "The best of typical Quindio food in the center of Calarcá."
+            es: "Centro de comercio local donde se encuentran productos frescos, artesanías y la esencia del mercado calarqueño.",
+            en: "Local commerce center where you can find fresh products, crafts and the essence of the Calarcá market."
         },
-        category: "Gastronomía Local",
+        category: "Comercio",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
-        openHours: [11, 21]
+        openHours: [6, 18]
     },
     {
         id: 8,
-        name: { es: "Terminal de Transportes", en: "Transport Terminal" },
-        coords: [850, 900],
-        realCoords: "4.5350,-75.6450",
+        name: { es: "Bomberos Calarcá", en: "Calarca Firefighters" },
+        coords: [930, 950],
+        realCoords: "4.5290,-75.6440",
         description: {
-            es: "Punto de conexión para viajes locales e intermunicipales.",
-            en: "Connection point for local and intercity trips."
+            es: "Cuerpo de bomberos voluntarios de Calarcá, siempre listos para servir a la comunidad.",
+            en: "Volunteer fire department of Calarcá, always ready to serve the community."
         },
         category: "Transporte",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
-        openHours: [4, 23]
+        openHours: [0, 24]
     }
 ];
 
