@@ -223,6 +223,20 @@ const pointsOfInterest = [
 
 const selectedInfo = document.getElementById('selected-info');
 const favoritesContainer = document.getElementById('favorites-container');
+const adsSidebar = document.getElementById('ads-sidebar');
+const sidebarOverlay = document.getElementById('sidebar-overlay');
+const menuToggle = document.getElementById('menu-toggle');
+
+let markers = [];
+
+// Sidebar Toggle Logic
+const toggleSidebar = () => {
+    adsSidebar.classList.toggle('open');
+    sidebarOverlay.classList.toggle('active');
+};
+
+if (menuToggle) menuToggle.addEventListener('click', toggleSidebar);
+if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
 
 // Favorites Logic
 function toggleFavorite(id) {
@@ -557,6 +571,27 @@ function getCategoryColor(category) {
 
 // Initial display
 displayMarkers();
+
+// Search Logic
+function setupSearch() {
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            markers.forEach(m => map.removeLayer(m));
+            markers = [];
+
+            pointsOfInterest.forEach(point => {
+                const name = point.name[currentLang].toLowerCase();
+                const desc = point.description[currentLang].toLowerCase();
+                if (name.includes(term) || desc.includes(term)) {
+                    addMarker(point);
+                }
+            });
+        });
+    }
+}
+
 setupSearch();
 
 // Filter Logic
