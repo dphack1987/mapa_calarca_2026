@@ -429,6 +429,13 @@ header {
     border: 8px solid var(--white);
 }
 
+/* Mejora de renderizado de imagen para evitar pixelado excesivo */
+.leaflet-image-layer {
+    image-rendering: -webkit-optimize-contrast; /* Para Chrome/Safari */
+    image-rendering: crisp-edges; /* Para Firefox */
+    image-rendering: auto; /* Valor por defecto si los anteriores no aplican bien */
+}
+
 .coordinate-helper {
     position: absolute;
     bottom: 40px;

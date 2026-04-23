@@ -1,37 +1,46 @@
-// Dimensions of the image
-const imgWidth = 2000;
-const imgHeight = 1500;
-const bounds = [[0, 0], [imgHeight, imgWidth]];
+// Dimensions of the image (Initial placeholders)
+let imgWidth = 2000;
+let imgHeight = 1500;
+let bounds = [[0, 0], [imgHeight, imgWidth]];
 
 // Device Detection
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-// Map Initialization
+// Map Initialization with refined zoom
 const map = L.map('map', {
     crs: L.CRS.Simple,
     minZoom: isMobile ? -1.5 : -1,
-    maxZoom: 2,
-    zoomSnap: 0.1,
+    maxZoom: 1, // Reducimos el zoom máximo para evitar pixelado excesivo
+    zoomSnap: 0, // Permite un zoom más fluido
+    wheelDebounceTime: 40, // Mejora la respuesta del scroll
     attributionControl: false,
-    maxBounds: bounds,
     maxBoundsViscosity: 1.0,
-    tap: !isMobile, // Disable tap for better mobile handling
-    dragging: !isMobile || (isMobile && !isTouchDevice) // Initial dragging state
+    tap: !isMobile,
+    dragging: !isMobile || (isMobile && !isTouchDevice)
 });
 
-// Adjust dragging for mobile (double finger pan vs single finger)
-if (isMobile && isTouchDevice) {
-    map.dragging.disable();
-    // Enable dragging only with two fingers to allow page scroll if needed, 
-    // but here we have overflow hidden, so we can enable it normally or use a specific gesture.
-    // For this full-screen app, let's enable it but with caution.
-    map.dragging.enable();
-}
-
-// Add the image overlay
-L.imageOverlay('imagenes/calarca 2026 mapa cara 2.png', bounds).addTo(map);
-map.fitBounds(bounds);
+// Load the image to get its actual dimensions
+const mapImage = new Image();
+mapImage.src = 'imagenes/calarca 2026 mapa cara 2.png';
+mapImage.onload = function() {
+    imgWidth = this.width;
+    imgHeight = this.height;
+    bounds = [[0, 0], [imgHeight, imgWidth]];
+    
+    // Add the image overlay with actual dimensions
+    L.imageOverlay(this.src, bounds).addTo(map);
+    map.setMaxBounds(bounds);
+    map.fitBounds(bounds);
+    
+    console.log(`Mapa cargado: ${imgWidth}x${imgHeight}px`);
+     
+     // Adjust dragging for mobile (double finger pan vs single finger)
+     if (isMobile && isTouchDevice) {
+         map.dragging.disable();
+         map.dragging.enable();
+     }
+ };
 
 // Tourist points of interest
 const pointsOfInterest = [
