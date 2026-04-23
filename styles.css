@@ -104,18 +104,47 @@ header {
     position: relative;
 }
 
+/* Sidebar Estilo con fondo floral completo */
+#ads-sidebar {
+    width: 380px;
+    background: url('imagenes/flores1.jpg') no-repeat center center;
+    background-size: cover;
+    border-right: 1px solid rgba(0,0,0,0.05);
+    padding: 20px 30px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 500;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+#ads-sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6); /* Capa blanca semi-transparente para suavizar las flores */
+    z-index: 1;
+}
+
 /* El logo se queda fijo arriba con un diseño tipo tarjeta */
 .sidebar-logo {
     text-align: center;
     padding: 20px;
-    background: var(--white);
-    margin: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     z-index: 10;
     position: sticky;
-    top: 20px;
+    top: 0;
     animation: slideInLeft 0.6s ease-out;
+    border: 1px solid rgba(255,255,255,0.5);
 }
 
 .sidebar-logo img {
@@ -124,42 +153,6 @@ header {
     max-height: 120px;
     object-fit: contain;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-}
-
-/* Sidebar Estilo Glassmorphism más limpio */
-#ads-sidebar {
-    width: 380px;
-    background: var(--bg-light);
-    border-right: 1px solid rgba(0,0,0,0.05);
-    padding: 0;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    z-index: 500;
-    box-shadow: 10px 0 30px rgba(0,0,0,0.03);
-}
-
-/* Contenedor con fondo floral (debajo del logo) */
-.sidebar-floral-bg {
-    background: url('imagenes/flores1.jpg') no-repeat center center;
-    background-size: cover;
-    padding: 20px 30px 40px 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
-    position: relative;
-    flex: 1;
-}
-
-.sidebar-floral-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(244, 249, 244, 0.5); /* Overlay más claro para ver mejor las flores */
-    z-index: 1;
 }
 
 .sidebar-section {
