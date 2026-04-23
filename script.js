@@ -93,6 +93,33 @@ const pointsOfInterest = [
         category: "Recreación",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
         openHours: [0, 24] // Abierto 24 horas
+    },
+    {
+        name: "Finca Cafetera El Mirador",
+        coords: [300, 1400],
+        realCoords: "4.5200,-75.6100",
+        description: "Hospedaje rural con la mejor vista de la región y experiencia cafetera.",
+        category: "Hospedaje Rural",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        name: "Restaurante Sabor Criollo",
+        coords: [760, 1050],
+        realCoords: "4.5310,-75.6410",
+        description: "Lo mejor de la comida típica quindiana en el centro de Calarcá.",
+        category: "Gastronomía Local",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [11, 21]
+    },
+    {
+        name: "Terminal de Transportes",
+        coords: [850, 900],
+        realCoords: "4.5350,-75.6450",
+        description: "Punto de conexión para viajes locales e intermunicipales.",
+        category: "Transporte",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [4, 23]
     }
 ];
 
@@ -149,27 +176,48 @@ function getCategoryIcon(category) {
     
     switch(category) {
         case 'Cultura':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2921/2921471.png'; // Icono de Plaza/Monumento
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2921/2921471.png';
             break;
         case 'Naturaleza':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3222/3222800.png'; // Icono de Jardín/Flores
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3222/3222800.png';
             break;
         case 'Aventura':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3050/3050511.png'; // Icono de Montaña/Senderismo
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3050/3050511.png';
             break;
-        case 'Arquitectura':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2885/2885446.png'; // Icono de Iglesia específica
+        case 'Hospedaje Rural':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2163/2163350.png'; // Icono de cabaña/casa rural
+            break;
+        case 'Hospedaje Urbano':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2329/2329895.png'; // Icono de hotel/edificio
+            break;
+        case 'Gastronomía Local':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2737/2737034.png'; // Icono de comida tradicional
+            break;
+        case 'Gastronomía Internacional':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png'; // Icono de hamburguesa/pasta
+            break;
+        case 'Gastronomía de Mar':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2927/2927347.png'; // Icono de pescado
+            break;
+        case 'Comercio':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2331/2331970.png'; // Icono de tienda/bolsa
+            break;
+        case 'Transporte':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2898/2898588.png'; // Icono de bus/transporte
+            break;
+        case 'Centros Comerciales':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2331/2331966.png'; // Icono de mall
             break;
         case 'Recreación':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/1802/1802956.png'; // Icono de Parque/Árboles
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/1802/1802956.png';
             break;
         default:
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/684/684908.png'; // Pin genérico
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/684/684908.png';
     }
 
     return L.icon({
         iconUrl: iconUrl,
-        iconSize: [40, 40], // Un poco más grandes para mejor visibilidad
+        iconSize: [40, 40],
         iconAnchor: [20, 40],
         popupAnchor: [0, -40],
         className: 'custom-marker-icon'
@@ -263,7 +311,14 @@ function getCategoryColor(category) {
         case 'Cultura': return '#e67e22';
         case 'Naturaleza': return '#27ae60';
         case 'Aventura': return '#d35400';
-        case 'Arquitectura': return '#2980b9';
+        case 'Hospedaje Rural': return '#8e44ad';
+        case 'Hospedaje Urbano': return '#2c3e50';
+        case 'Gastronomía Local': return '#c0392b';
+        case 'Gastronomía Internacional': return '#e74c3c';
+        case 'Gastronomía de Mar': return '#3498db';
+        case 'Comercio': return '#f39c12';
+        case 'Transporte': return '#7f8c8d';
+        case 'Centros Comerciales': return '#16a085';
         case 'Recreación': return '#f1c40f';
         default: return '#27ae60';
     }
