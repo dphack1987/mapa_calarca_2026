@@ -30,7 +30,7 @@ if (isMobile && isTouchDevice) {
 }
 
 // Add the image overlay
-L.imageOverlay('imagenes/mapa calarca.jpg', bounds).addTo(map);
+L.imageOverlay('imagenes/calarca 2026 mapa cara 2.png', bounds).addTo(map);
 map.fitBounds(bounds);
 
 // Tourist points of interest
