@@ -131,7 +131,7 @@ const pointsOfInterest = [
     {
         id: 3,
         name: { es: "Peñas Blancas", en: "White Rocks" },
-        coords: [820, 1600],
+        coords: [3863.8, 4474.2],
         realCoords: "4.5150,-75.6000",
         description: {
             es: "Majestuosa formación rocosa para los amantes del senderismo y la escalada. Ofrece una de las mejores vistas panorámicas de Calarcá y el Quindío.",
