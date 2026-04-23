@@ -12,10 +12,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <link rel="stylesheet" href="styles.css?v=7">
+    <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
     <header>
+        <div class="language-picker">
+            <button class="lang-btn active" data-lang="es">ES</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
         <button id="menu-toggle">☰</button>
         <div class="title-container">
             <h1>Calarcá 2026</h1>
@@ -29,7 +33,15 @@
             <div class="sidebar-logo">
                 <img src="imagenes/LOGO CALARCA 2026.jpg" alt="Logo Calarcá 2026">
             </div>
-            
+
+            <div class="sidebar-section">
+                <h3 id="label-favorites">Mi Pasaporte (Favoritos)</h3>
+                <div id="favorites-container" class="favorites-bar">
+                    <!-- Aquí se cargarán los favoritos -->
+                    <p style="font-size: 0.8rem; color: #888;">No has guardado lugares aún.</p>
+                </div>
+            </div>
+
             <div class="sidebar-section weather-widget">
                 <div id="weather-info">
                     <span class="weather-temp">--°C</span>
@@ -38,14 +50,14 @@
             </div>
 
             <div class="sidebar-section">
-                <h3>Buscar Lugares</h3>
+                <h3 id="label-search">Buscar Lugares</h3>
                 <div class="search-container">
                     <input type="text" id="search-input" placeholder="¿Qué buscas en Calarcá?">
                 </div>
             </div>
 
             <div class="sidebar-section">
-                <h3>Categorías</h3>
+                <h3 id="label-categories">Categorías</h3>
                 <div class="filter-group">
                     <button class="filter-btn active" data-category="todos">Todos</button>
                     <button class="filter-btn" data-category="Cultura">Cultura</button>
@@ -63,18 +75,14 @@
             </div>
 
             <div class="sidebar-section">
-                <h3>Información Destacada</h3>
+                <h3 id="label-highlighted">Información Destacada</h3>
                 <div id="selected-info">
-                    <div class="welcome-msg">
-                        <p style="font-weight: 600; color: var(--primary-color);">¡Bienvenido!</p>
-                        <p>Explora los tesoros de la Villa del Cacique.</p>
-                        <small style="display: block; margin-top: 10px; color: #777;">Haz clic en un marcador del mapa para conocer más detalles.</small>
-                    </div>
+                    <!-- Contenido dinámico -->
                 </div>
             </div>
 
             <div class="sidebar-section" id="install-section" style="display: none;">
-                <h3>Lleva el Mapa Contigo</h3>
+                <h3 id="label-install">Lleva el Mapa Contigo</h3>
                 <div class="install-container">
                     <p class="install-text">Instala esta App en tu móvil para usarla sin conexión</p>
                     <button id="install-button" class="share-btn install-btn">📲 Descargar App Mapa Calarcá 2026</button>
@@ -82,7 +90,7 @@
             </div>
 
             <div class="sidebar-section">
-                <h3>Compartir Mapa</h3>
+                <h3 id="label-share">Compartir Mapa</h3>
                 <div class="share-container">
                     <div id="qrcode">
                         <img src="imagenes/pautaQR.jpg" alt="QR Calarcá 2026" id="qr-img">
@@ -109,6 +117,6 @@
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="script.js?v=7"></script>
+    <script src="script.js?v=8"></script>
 </body>
 </html>

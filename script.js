@@ -47,76 +47,161 @@ mapImage.onload = function() {
      }
  };
 
-// Tourist points of interest with REAL GPS coordinates for navigation
+// Language and Favorites State
+let currentLang = 'es';
+let favorites = JSON.parse(localStorage.getItem('calarca_favs')) || [];
+
+const translations = {
+    es: {
+        welcome: "¡Bienvenido!",
+        explore: "Explora los tesoros de la Villa del Cacique.",
+        clickMarker: "Haz clic en un marcador del mapa para conocer más detalles.",
+        favorites: "Mi Pasaporte (Favoritos)",
+        noFavs: "No has guardado lugares aún.",
+        howToGet: "🚗 Cómo llegar",
+        weatherLoading: "Cargando clima...",
+        searchPlaceholder: "¿Qué buscas en Calarcá?",
+        openNow: "🟢 Abierto Ahora",
+        closed: "🔴 Cerrado",
+        labelSearch: "Buscar Lugares",
+        labelCategories: "Categorías",
+        labelHighlighted: "Información Destacada",
+        labelInstall: "Lleva el Mapa Contigo",
+        labelShare: "Compartir Mapa",
+        scanMe: "Escanea para abrir el mapa en tu móvil",
+        copyLink: "Copiar Enlace",
+        downloadQR: "Descargar QR (JPG)",
+        installText: "Instala esta App en tu móvil para usarla sin conexión",
+        installBtn: "📲 Descargar App Mapa Calarcá 2026",
+        copied: "¡Copiado!"
+    },
+    en: {
+        welcome: "Welcome!",
+        explore: "Explore the treasures of the Villa del Cacique.",
+        clickMarker: "Click on a map marker to see more details.",
+        favorites: "My Passport (Favorites)",
+        noFavs: "No places saved yet.",
+        howToGet: "🚗 How to get there",
+        weatherLoading: "Loading weather...",
+        searchPlaceholder: "Search in Calarcá...",
+        openNow: "🟢 Open Now",
+        closed: "🔴 Closed",
+        labelSearch: "Search Places",
+        labelCategories: "Categories",
+        labelHighlighted: "Featured Information",
+        labelInstall: "Take the Map with You",
+        labelShare: "Share Map",
+        scanMe: "Scan to open the map on your mobile",
+        copyLink: "Copy Link",
+        downloadQR: "Download QR (JPG)",
+        installText: "Install this App on your mobile for offline use",
+        installBtn: "📲 Download Calarcá 2026 Map App",
+        copied: "Copied!"
+    }
+};
+
+// Points of interest with multi-language support
 const pointsOfInterest = [
     {
-        name: "Plaza de Bolívar",
+        id: 1,
+        name: { es: "Plaza de Bolívar", en: "Bolivar Square" },
         coords: [750, 1000],
         realCoords: "4.5302,-75.6418",
-        description: "El corazón de Calarcá, un lugar lleno de historia y arquitectura tradicional cafetera.",
+        description: { 
+            es: "El corazón de Calarcá, un lugar lleno de historia y arquitectura tradicional cafetera.",
+            en: "The heart of Calarcá, a place full of history and traditional coffee architecture."
+        },
         category: "Cultura",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
-        openHours: [8, 22] // 8 AM a 10 PM
+        openHours: [8, 22]
     },
     {
-        name: "Jardín Botánico del Quindío",
+        id: 2,
+        name: { es: "Jardín Botánico del Quindío", en: "Quindio Botanical Garden" },
         coords: [800, 1200],
         realCoords: "4.5422,-75.6567",
-        description: "Hogar del famoso mariposario y una colección increíble de palmas y flora regional.",
+        description: {
+            es: "Hogar del famoso mariposario y una colección increíble de palmas y flora regional.",
+            en: "Home to the famous butterfly garden and an incredible collection of palms and regional flora."
+        },
         category: "Naturaleza",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
-        openHours: [9, 16] // 9 AM a 4 PM
+        openHours: [9, 16]
     },
     {
-        name: "Peñas Blancas",
+        id: 3,
+        name: { es: "Peñas Blancas", en: "White Rocks" },
         coords: [400, 1600],
         realCoords: "4.5150,-75.6000",
-        description: "Majestuosa formación rocosa para los amantes del senderismo y la escalada.",
+        description: {
+            es: "Majestuosa formación rocosa para los amantes del senderismo y la escalada.",
+            en: "Majestic rock formation for hiking and climbing lovers."
+        },
         category: "Aventura",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
-        openHours: [6, 17] // 6 AM a 5 PM
+        openHours: [6, 17]
     },
     {
-        name: "Casa de la Cultura",
-        coords: [780, 950],
-        realCoords: "4.5320,-75.6425",
-        description: "Epicentro de las artes y la memoria histórica de la 'Villa del Cacique'.",
-        category: "Cultura",
-        photo: "imagenes/LOGO CALARCA 2026.jpg",
-        openHours: [8, 18] // 8 AM a 6 PM
-    },
-    {
-        name: "Parque de la Vida",
-        coords: [700, 1100],
-        realCoords: "4.5250,-75.6350",
-        description: "Espacio recreativo para la familia con senderos y zonas verdes.",
-        category: "Recreación",
-        photo: "imagenes/LOGO CALARCA 2026.jpg",
-        openHours: [0, 24] // Abierto 24 horas
-    },
-    {
-        name: "Finca Cafetera El Mirador",
+        id: 4,
+        name: { es: "Finca Cafetera El Mirador", en: "El Mirador Coffee Farm" },
         coords: [300, 1400],
         realCoords: "4.5200,-75.6100",
-        description: "Hospedaje rural con la mejor vista de la región y experiencia cafetera.",
+        description: {
+            es: "Hospedaje rural con la mejor vista de la región y experiencia cafetera.",
+            en: "Rural accommodation with the best view of the region and coffee experience."
+        },
         category: "Hospedaje Rural",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
         openHours: [0, 24]
     },
     {
-        name: "Restaurante Sabor Criollo",
+        id: 5,
+        name: { es: "Casa de la Cultura", en: "House of Culture" },
+        coords: [780, 950],
+        realCoords: "4.5320,-75.6425",
+        description: {
+            es: "Epicentro de las artes y la memoria histórica de la 'Villa del Cacique'.",
+            en: "Epicenter of arts and historical memory of the 'Villa del Cacique'."
+        },
+        category: "Cultura",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [8, 18]
+    },
+    {
+        id: 6,
+        name: { es: "Parque de la Vida", en: "Park of Life" },
+        coords: [700, 1100],
+        realCoords: "4.5250,-75.6350",
+        description: {
+            es: "Espacio recreativo para la familia con senderos y zonas verdes.",
+            en: "Recreational space for the family with trails and green areas."
+        },
+        category: "Recreación",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 7,
+        name: { es: "Restaurante Sabor Criollo", en: "Sabor Criollo Restaurant" },
         coords: [760, 1050],
         realCoords: "4.5310,-75.6410",
-        description: "Lo mejor de la comida típica quindiana en el centro de Calarcá.",
+        description: {
+            es: "Lo mejor de la comida típica quindiana en el centro de Calarcá.",
+            en: "The best of typical Quindio food in the center of Calarcá."
+        },
         category: "Gastronomía Local",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
         openHours: [11, 21]
     },
     {
-        name: "Terminal de Transportes",
+        id: 8,
+        name: { es: "Terminal de Transportes", en: "Transport Terminal" },
         coords: [850, 900],
         realCoords: "4.5350,-75.6450",
-        description: "Punto de conexión para viajes locales e intermunicipales.",
+        description: {
+            es: "Punto de conexión para viajes locales e intermunicipales.",
+            en: "Connection point for local and intercity trips."
+        },
         category: "Transporte",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
         openHours: [4, 23]
@@ -124,6 +209,149 @@ const pointsOfInterest = [
 ];
 
 const selectedInfo = document.getElementById('selected-info');
+const favoritesContainer = document.getElementById('favorites-container');
+
+// Favorites Logic
+function toggleFavorite(id) {
+    const index = favorites.indexOf(id);
+    if (index === -1) {
+        favorites.push(id);
+    } else {
+        favorites.splice(index, 1);
+    }
+    localStorage.setItem('calarca_favs', JSON.stringify(favorites));
+    updateFavoritesUI();
+    // Re-render current point if visible
+    const currentPointId = document.querySelector('.selected-point')?.dataset.id;
+    if (currentPointId == id) {
+        const point = pointsOfInterest.find(p => p.id == id);
+        renderPointDetails(point);
+    }
+}
+
+function updateFavoritesUI() {
+    if (!favoritesContainer) return;
+    
+    if (favorites.length === 0) {
+        favoritesContainer.innerHTML = `<p style="font-size: 0.8rem; color: #888;">${translations[currentLang].noFavs}</p>`;
+        return;
+    }
+
+    favoritesContainer.innerHTML = '';
+    favorites.forEach(id => {
+        const point = pointsOfInterest.find(p => p.id == id);
+        if (point) {
+            const div = document.createElement('div');
+            div.className = 'fav-item animated fadeIn';
+            div.innerHTML = `
+                <img src="${point.photo}" alt="${point.name[currentLang]}">
+                <p>${point.name[currentLang]}</p>
+            `;
+            div.onclick = () => {
+                map.flyTo(point.coords, 1);
+                renderPointDetails(point);
+            };
+            favoritesContainer.appendChild(div);
+        }
+    });
+}
+
+function renderPointDetails(point) {
+    selectedInfo.style.opacity = '0';
+    setTimeout(() => {
+        const currentUrl = window.location.href;
+        const shareText = encodeURIComponent(`¡Mira este lugar en Calarcá! 📍 ${point.name[currentLang]}: ${currentUrl}`);
+        const whatsappUrl = `https://wa.me/?text=${shareText}`;
+        
+        const openStatus = isOpen(point.openHours);
+        const statusLabel = openStatus ? 
+            `<span class="status-badge open">${translations[currentLang].openNow}</span>` : 
+            `<span class="status-badge closed">${translations[currentLang].closed}</span>`;
+
+        const isFav = favorites.includes(point.id);
+
+        selectedInfo.innerHTML = `
+            <div class="selected-point" data-id="${point.id}">
+                <img src="${point.photo}" class="point-header-img" alt="${point.name[currentLang]}">
+                <div class="point-content">
+                    <div class="point-title-row">
+                        <h4>${point.name[currentLang]}</h4>
+                        <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite(${point.id})">
+                            ${isFav ? '❤️' : '🤍'}
+                        </button>
+                    </div>
+                    <div style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <span class="category-badge">${point.category}</span>
+                        ${statusLabel}
+                    </div>
+                    <p>${point.description[currentLang]}</p>
+                    <div class="point-actions">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=${point.realCoords}" target="_blank" class="action-btn nav-btn">
+                            ${translations[currentLang].howToGet}
+                        </a>
+                        <a href="${whatsappUrl}" target="_blank" class="action-btn whatsapp-btn">
+                            💬 WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+        selectedInfo.style.opacity = '1';
+    }, 300);
+}
+
+// Language Switcher
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        currentLang = e.target.dataset.lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        
+        // Update all labels
+        document.getElementById('label-favorites').innerText = translations[currentLang].favorites;
+        document.getElementById('label-search').innerText = translations[currentLang].labelSearch;
+        document.getElementById('label-categories').innerText = translations[currentLang].labelCategories;
+        document.getElementById('label-highlighted').innerText = translations[currentLang].labelHighlighted;
+        document.getElementById('label-install').innerText = translations[currentLang].labelInstall;
+        document.getElementById('label-share').innerText = translations[currentLang].labelShare;
+        
+        document.getElementById('search-input').placeholder = translations[currentLang].searchPlaceholder;
+        document.querySelector('.share-text').innerText = translations[currentLang].scanMe;
+        document.getElementById('copy-link').innerText = translations[currentLang].copyLink;
+        document.getElementById('download-qr').innerText = translations[currentLang].downloadQR;
+        document.querySelector('.install-text').innerText = translations[currentLang].installText;
+        document.getElementById('install-button').innerText = translations[currentLang].installBtn;
+        
+        updateFavoritesUI();
+        displayMarkers();
+        
+        // If there's a welcome message or point details, update them
+        const isWelcome = selectedInfo.querySelector('.welcome-msg');
+        if (isWelcome) {
+            renderWelcome();
+        } else {
+            const currentPointId = document.querySelector('.selected-point')?.dataset.id;
+            if (currentPointId) {
+                const point = pointsOfInterest.find(p => p.id == currentPointId);
+                renderPointDetails(point);
+            }
+        }
+    });
+});
+
+function renderWelcome() {
+    selectedInfo.innerHTML = `
+        <div class="welcome-msg" style="padding: 20px; text-align: center;">
+            <p style="font-weight: 600; color: var(--primary-color); font-size: 1.4rem;">${translations[currentLang].welcome}</p>
+            <p>${translations[currentLang].explore}</p>
+            <small style="display: block; margin-top: 10px; color: #777;">${translations[currentLang].clickMarker}</small>
+        </div>
+    `;
+}
+
+// Initialize
+updateFavoritesUI();
+renderWelcome();
 const adsSidebar = document.getElementById('ads-sidebar');
 const menuToggle = document.getElementById('menu-toggle');
 const sidebarOverlay = document.getElementById('sidebar-overlay');
@@ -162,7 +390,9 @@ const setupSearch = () => {
             markers = [];
 
             pointsOfInterest.forEach(point => {
-                if (point.name.toLowerCase().includes(term) || point.description.toLowerCase().includes(term)) {
+                const name = point.name[currentLang].toLowerCase();
+                const desc = point.description[currentLang].toLowerCase();
+                if (name.includes(term) || desc.includes(term)) {
                     addMarker(point);
                 }
             });
@@ -241,7 +471,7 @@ function addMarker(point) {
     // Popup personalizado más elegante
     const popupContent = `
         <div class="modern-popup">
-            <b style="color: var(--primary-color); font-size: 1.1rem;">${point.name}</b>
+            <b style="color: var(--primary-color); font-size: 1.1rem;">${point.name[currentLang]}</b>
             <p style="margin: 5px 0; font-size: 0.8rem; font-weight: 700; color: var(--accent-color); text-transform: uppercase;">${point.category}</p>
         </div>
     `;
@@ -253,38 +483,7 @@ function addMarker(point) {
     });
 
     marker.on('click', () => {
-        selectedInfo.style.opacity = '0';
-        setTimeout(() => {
-            const currentUrl = window.location.href;
-            const shareText = encodeURIComponent(`¡Mira este lugar en Calarcá! 📍 ${point.name}: ${currentUrl}`);
-            const whatsappUrl = `https://wa.me/?text=${shareText}`;
-            
-            const openStatus = isOpen(point.openHours);
-            const statusLabel = openStatus ? 
-                '<span class="status-badge open">🟢 Abierto Ahora</span>' : 
-                '<span class="status-badge closed">🔴 Cerrado</span>';
-
-            selectedInfo.innerHTML = `
-                <div class="selected-point animated fadeIn">
-                    <h4>${point.name}</h4>
-                    <div style="margin-bottom: 10px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                        <span class="category-badge">${point.category}</span>
-                        ${statusLabel}
-                    </div>
-                    <p>${point.description}</p>
-                    <div class="point-actions">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=${point.realCoords}" target="_blank" class="action-btn nav-btn">
-                            🚗 Cómo llegar
-                        </a>
-                        <a href="${whatsappUrl}" target="_blank" class="action-btn whatsapp-btn">
-                            💬 WhatsApp
-                        </a>
-                    </div>
-                    <img src="${point.photo}" alt="${point.name}" style="width: 100%; border-radius: 12px; margin-top: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid white;">
-                </div>
-            `;
-            selectedInfo.style.opacity = '1';
-        }, 300);
+        renderPointDetails(point);
 
         if (isMobile && !adsSidebar.classList.contains('open')) {
             toggleSidebar();
@@ -385,7 +584,7 @@ const setupCopyLink = () => {
             const currentUrl = window.location.href;
             navigator.clipboard.writeText(currentUrl).then(() => {
                 const originalText = copyBtn.innerText;
-                copyBtn.innerText = '¡Copiado!';
+                copyBtn.innerText = translations[currentLang].copied;
                 copyBtn.style.background = '#2ecc71';
                 
                 setTimeout(() => {
