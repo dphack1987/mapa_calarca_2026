@@ -198,8 +198,8 @@ const generateQR = () => {
     const currentUrl = window.location.href;
     const qrContainer = document.getElementById('qrcode');
     if (qrContainer) {
-        // QR en NEGRO para máxima compatibilidad
-        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl)}&color=000000&format=jpg`;
+        // QR en NEGRO y más grande para la web
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(currentUrl)}&color=000000&format=jpg`;
         qrContainer.innerHTML = `<img src="${qrUrl}" alt="Código QR del Mapa" id="qr-img">`;
     }
 };
