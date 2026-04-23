@@ -24,7 +24,7 @@ const map = L.map('map', {
 
 // Load the image to get its actual dimensions
 const mapImage = new Image();
-mapImage.src = 'imagenes/calarca 2026 mapa cara 2.png';
+mapImage.src = 'imagenes/calarca 2026 mapa cara 2.jpg';
 mapImage.onload = function() {
     imgWidth = this.width;
     imgHeight = this.height;
