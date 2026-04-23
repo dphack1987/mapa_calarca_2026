@@ -118,7 +118,7 @@ const pointsOfInterest = [
     {
         id: 2,
         name: { es: "Jardín Botánico del Quindío", en: "Quindio Botanical Garden" },
-        coords: [650, 880],
+        coords: [3923.6, 4684.7],
         realCoords: "4.5422,-75.6567",
         description: {
             es: "Hogar del famoso mariposario y una colección increíble de palmas y flora regional. Un lugar imperdible para los amantes de la naturaleza y la fotografía.",
