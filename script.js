@@ -303,18 +303,7 @@ if (!isMobile) {
     map.on('mousemove', updateCoords);
 }
 
-// Generar QR Code dinámicamente
-const generateQR = () => {
-    const currentUrl = window.location.href;
-    const qrContainer = document.getElementById('qrcode');
-    if (qrContainer) {
-        // QR en NEGRO y más grande para la web
-        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(currentUrl)}&color=000000&format=jpg`;
-        qrContainer.innerHTML = `<img src="${qrUrl}" alt="Código QR del Mapa" id="qr-img">`;
-    }
-};
-
-// Funcionalidad de descarga de QR
+// Funcionalidad de descarga de QR (ahora descarga la imagen estática pautaQR.jpg)
 const setupQRDownload = () => {
     const downloadBtn = document.getElementById('download-qr');
     if (downloadBtn) {
@@ -324,7 +313,7 @@ const setupQRDownload = () => {
                 // Creamos un link temporal para la descarga
                 const link = document.createElement('a');
                 link.href = qrImg.src;
-                link.download = 'QR-Mapa-Calarca-2026.jpg';
+                link.download = 'QR-Calarca-2026.jpg';
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -355,8 +344,7 @@ const setupCopyLink = () => {
     }
 };
 
-// Inicializar funciones de compartir
-generateQR();
+// Inicializar funciones de compartir (generateQR removida)
 setupQRDownload();
 setupCopyLink();
 
@@ -437,7 +425,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
     if (installSection) installSection.style.display = 'block';
-    if (installButton) installButton.innerText = "📲 Descargar App";
+    if (installButton) installButton.innerText = "📲 Descargar App Mapa Calarcá 2026";
 });
 
 if (installButton) {
