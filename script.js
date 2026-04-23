@@ -194,6 +194,32 @@ const pointsOfInterest = [
         openHours: [6, 18]
     },
     {
+        id: 10,
+        name: { es: "Restaurante Fercho", en: "Fercho Restaurant" },
+        coords: [920, 1050],
+        realCoords: "4.5315,-75.6410",
+        description: {
+            es: "Deliciosa gastronomía local con el sabor auténtico de Calarcá. Un lugar tradicional para disfrutar en familia.",
+            en: "Delicious local gastronomy with the authentic flavor of Calarcá. A traditional place to enjoy with family."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_fercho.jpg",
+        openHours: [11, 22]
+    },
+    {
+        id: 11,
+        name: { es: "San Miguel Café", en: "San Miguel Coffee" },
+        coords: [960, 1030],
+        realCoords: "4.5308,-75.6425",
+        description: {
+            es: "Experiencia cafetera premium en el corazón de Calarcá. El mejor café de origen con un ambiente acogedor.",
+            en: "Premium coffee experience in the heart of Calarcá. The best single-origin coffee with a cozy atmosphere."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_san_miguel.jpeg",
+        openHours: [8, 21]
+    },
+    {
         id: 8,
         name: { es: "Bomberos Calarcá", en: "Calarca Firefighters" },
         coords: [930, 950],
@@ -375,57 +401,6 @@ function renderWelcome() {
         </div>
     `;
 }
-
-// Initialize
-updateFavoritesUI();
-renderWelcome();
-const adsSidebar = document.getElementById('ads-sidebar');
-const menuToggle = document.getElementById('menu-toggle');
-const sidebarOverlay = document.getElementById('sidebar-overlay');
-let markers = [];
-
-// Sidebar Toggle Logic
-function toggleSidebar() {
-    adsSidebar.classList.toggle('open');
-    sidebarOverlay.classList.toggle('active');
-}
-
-if (menuToggle) {
-    menuToggle.addEventListener('click', toggleSidebar);
-}
-
-if (sidebarOverlay) {
-    sidebarOverlay.addEventListener('click', toggleSidebar);
-}
-
-// Search Logic
-const setupSearch = () => {
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            
-            // Si el término es corto, mostramos todos según la categoría activa
-            if (term.length < 2) {
-                const activeCat = document.querySelector('.filter-btn.active') ? document.querySelector('.filter-btn.active').dataset.category : 'todos';
-                displayMarkers(activeCat);
-                return;
-            }
-
-            // Filtrar puntos por nombre o descripción
-            markers.forEach(m => map.removeLayer(m));
-            markers = [];
-
-            pointsOfInterest.forEach(point => {
-                const name = point.name[currentLang].toLowerCase();
-                const desc = point.description[currentLang].toLowerCase();
-                if (name.includes(term) || desc.includes(term)) {
-                    addMarker(point);
-                }
-            });
-        });
-    }
-};
 
 // Function to get icon based on category
 function getCategoryIcon(category) {
