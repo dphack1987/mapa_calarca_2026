@@ -449,7 +449,7 @@ window.addEventListener('appinstalled', () => {
 });
 
 // Initial Device Info in Console
-console.log(`Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isTouchDevice}`);
+console.log(`Versión: 2.0 - Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isTouchDevice}`);
 
 // Register Service Worker for PWA
 if ('serviceWorker' in navigator) {
