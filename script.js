@@ -180,16 +180,54 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 // Coordinate Helper
 const coordsDiv = document.getElementById('coords');
 const updateCoords = (e) => {
-    const coord = e.latlng;
-    const lat = coord.lat.toFixed(1);
-    const lng = coord.lng.toFixed(1);
-    coordsDiv.innerText = `[${lat}, ${lng}]`;
+    const coord = isMobile ? (e.target.getLatLng ? e.target.getLatLng() : e.latlng) : e.latlng;
+    if (coord) {
+        const lat = coord.lat.toFixed(1);
+        const lng = coord.lng.toFixed(1);
+        coordsDiv.innerText = `[${lat}, ${lng}]`;
+    }
 };
 
 map.on('click', updateCoords);
 if (!isMobile) {
     map.on('mousemove', updateCoords);
 }
+
+// Generar QR Code dinámicamente
+const generateQR = () => {
+    const currentUrl = window.location.href;
+    const qrContainer = document.getElementById('qrcode');
+    if (qrContainer) {
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentUrl)}&color=27ae60`;
+        qrContainer.innerHTML = `<img src="${qrUrl}" alt="Código QR del Mapa">`;
+    }
+};
+
+// Funcionalidad de copiar enlace
+const setupCopyLink = () => {
+    const copyBtn = document.getElementById('copy-link');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            const currentUrl = window.location.href;
+            navigator.clipboard.writeText(currentUrl).then(() => {
+                const originalText = copyBtn.innerText;
+                copyBtn.innerText = '¡Copiado!';
+                copyBtn.style.background = '#2ecc71';
+                
+                setTimeout(() => {
+                    copyBtn.innerText = originalText;
+                    copyBtn.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+            });
+        });
+    }
+};
+
+// Inicializar funciones de compartir
+generateQR();
+setupCopyLink();
 
 // Initial Device Info in Console
 console.log(`Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isTouchDevice}`);
