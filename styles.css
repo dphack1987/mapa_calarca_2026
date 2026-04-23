@@ -127,7 +127,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.6); /* Capa blanca semi-transparente para suavizar las flores */
+    background: rgba(255, 255, 255, 0.75); /* Aumentada la opacidad para mejor lectura */
     z-index: 1;
 }
 
@@ -183,6 +183,30 @@ header {
     height: 2px;
     background: linear-gradient(to right, var(--primary-color), transparent);
     opacity: 0.3;
+}
+
+/* Buscador */
+.search-container {
+    position: relative;
+    z-index: 2;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid rgba(39, 174, 96, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: white;
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.1);
 }
 
 /* Filtros con diseño de cristal y colores vivos */

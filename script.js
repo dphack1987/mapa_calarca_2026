@@ -62,6 +62,27 @@ const pointsOfInterest = [
         description: "Epicentro de las artes y la memoria histórica de la 'Villa del Cacique'.",
         category: "Cultura",
         photo: "imagenes/LOGO CALARCA 2026.jpg"
+    },
+    {
+        name: "Parque de la Vida",
+        coords: [700, 1100],
+        description: "Espacio recreativo para la familia con senderos y zonas verdes.",
+        category: "Recreación",
+        photo: "imagenes/LOGO CALARCA 2026.jpg"
+    },
+    {
+        name: "Iglesia San José",
+        coords: [760, 1020],
+        description: "Arquitectura religiosa emblemática frente a la Plaza de Bolívar.",
+        category: "Arquitectura",
+        photo: "imagenes/LOGO CALARCA 2026.jpg"
+    },
+    {
+        name: "Mirador de Calarcá",
+        coords: [300, 1500],
+        description: "Punto panorámico para observar todo el Valle del Quindío.",
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg"
     }
 ];
 
@@ -85,83 +106,99 @@ if (sidebarOverlay) {
     sidebarOverlay.addEventListener('click', toggleSidebar);
 }
 
-// Function to add markers to map
+// Search Logic
+const setupSearch = () => {
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            
+            // Si el término es corto, mostramos todos según la categoría activa
+            if (term.length < 2) {
+                const activeCat = document.querySelector('.filter-btn.active') ? document.querySelector('.filter-btn.active').dataset.category : 'todos';
+                displayMarkers(activeCat);
+                return;
+            }
+
+            // Filtrar puntos por nombre o descripción
+            markers.forEach(m => map.removeLayer(m));
+            markers = [];
+
+            pointsOfInterest.forEach(point => {
+                if (point.name.toLowerCase().includes(term) || point.description.toLowerCase().includes(term)) {
+                    addMarker(point);
+                }
+            });
+        });
+    }
+};
+
+// Helper function to add a single marker
+function addMarker(point) {
+    const marker = L.circleMarker(point.coords, {
+        radius: isMobile ? 12 : 10,
+        fillColor: getCategoryColor(point.category),
+        color: "#fff",
+        weight: 3,
+        opacity: 1,
+        fillOpacity: 0.9
+    }).addTo(map);
+    
+    marker.bindPopup(`<b>${point.name}</b><br><small>${point.category}</small>`, {
+        closeButton: !isMobile,
+        autoPanPadding: [50, 50]
+    });
+
+    marker.on('click', () => {
+        selectedInfo.style.opacity = '0';
+        setTimeout(() => {
+            selectedInfo.innerHTML = `
+                <div class="selected-point animated fadeIn">
+                    <h4>${point.name}</h4>
+                    <div style="margin-bottom: 15px;">
+                        <span class="category-badge">${point.category}</span>
+                    </div>
+                    <p>${point.description}</p>
+                    <img src="${point.photo}" alt="${point.name}" style="width: 100%; border-radius: 12px; margin-top: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid white;">
+                </div>
+            `;
+            selectedInfo.style.opacity = '1';
+        }, 300);
+
+        if (isMobile && !adsSidebar.classList.contains('open')) {
+            toggleSidebar();
+        }
+    });
+    markers.push(marker);
+}
+
+// Update displayMarkers to use addMarker
 function displayMarkers(category = 'todos') {
     markers.forEach(m => map.removeLayer(m));
     markers = [];
 
     pointsOfInterest.forEach(point => {
         if (category === 'todos' || point.category === category) {
-            // Custom icon or colored circle marker for a more modern look
-            const marker = L.circleMarker(point.coords, {
-                radius: 10,
-                fillColor: "#27ae60",
-                color: "#fff",
-                weight: 3,
-                opacity: 1,
-                fillOpacity: 0.8
-            }).addTo(map);
-            
-            // Adjust popup for mobile
-            const popupContent = `
-                <div style="text-align: center; font-family: 'Poppins', sans-serif;">
-                    <b style="display: block; margin-bottom: 5px; color: #27ae60; font-size: 1.1rem;">${point.name}</b>
-                    <span style="background: #f1c40f; color: #1e272e; padding: 2px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;">${point.category}</span>
-                </div>
-            `;
-            marker.bindPopup(popupContent, {
-                closeButton: false,
-                autoPanPadding: [50, 50],
-                className: 'modern-popup'
-            });
-
-            marker.on('click', () => {
-                // Add a small pulse effect or animation via CSS if needed
-                selectedInfo.style.opacity = '0';
-                
-                setTimeout(() => {
-                    selectedInfo.innerHTML = `
-                        <div class="selected-point">
-                            <h4>${point.name}</h4>
-                            <div style="margin-bottom: 20px;">
-                                <span class="category-badge">${point.category}</span>
-                            </div>
-                            <p>${point.description}</p>
-                            <img src="${point.photo}" alt="${point.name}">
-                        </div>
-                    `;
-                    selectedInfo.style.opacity = '1';
-                }, 300);
-                
-                // On mobile, open the sidebar automatically
-                if (window.innerWidth <= 900 && !adsSidebar.classList.contains('open')) {
-                    toggleSidebar();
-                }
-            });
-
-            // Hover effects
-            marker.on('mouseover', function() {
-                this.setStyle({
-                    radius: 13,
-                    fillOpacity: 1,
-                    fillColor: "#f1c40f"
-                });
-            });
-            marker.on('mouseout', function() {
-                this.setStyle({
-                    radius: 10,
-                    fillOpacity: 0.8,
-                    fillColor: "#27ae60"
-                });
-            });
-
-            markers.push(marker);
+            addMarker(point);
         }
     });
 }
 
+// Function to get color based on category
+function getCategoryColor(category) {
+    switch(category) {
+        case 'Cultura': return '#e67e22';
+        case 'Naturaleza': return '#27ae60';
+        case 'Aventura': return '#d35400';
+        case 'Arquitectura': return '#2980b9';
+        case 'Recreación': return '#f1c40f';
+        default: return '#27ae60';
+    }
+}
+
 // Initial display
 displayMarkers();
+setupSearch();
 
 // Filter Logic
 document.querySelectorAll('.filter-btn').forEach(btn => {
