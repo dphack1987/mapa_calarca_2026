@@ -431,9 +431,15 @@ header {
 
 /* Mejora de renderizado de imagen para evitar pixelado excesivo */
 .leaflet-image-layer {
-    image-rendering: -webkit-optimize-contrast; /* Para Chrome/Safari */
-    image-rendering: crisp-edges; /* Para Firefox */
-    image-rendering: auto; /* Valor por defecto si los anteriores no aplican bien */
+    image-rendering: -webkit-optimize-contrast; /* Optimiza contraste en Chrome/Safari */
+    image-rendering: high-quality; /* Sugerencia para navegadores modernos */
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    -ms-interpolation-mode: bicubic; /* Internet Explorer antiguo */
+}
+
+/* Forzar suavizado en el contenedor del mapa */
+.leaflet-container {
+    image-rendering: auto;
 }
 
 .coordinate-helper {

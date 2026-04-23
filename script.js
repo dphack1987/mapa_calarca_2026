@@ -10,14 +10,15 @@ const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 // Map Initialization with refined zoom
 const map = L.map('map', {
     crs: L.CRS.Simple,
-    minZoom: isMobile ? -1.5 : -1,
-    maxZoom: 1, // Reducimos el zoom máximo para evitar pixelado excesivo
-    zoomSnap: 0, // Permite un zoom más fluido
-    wheelDebounceTime: 40, // Mejora la respuesta del scroll
+    minZoom: isMobile ? -2 : -1.5,
+    maxZoom: 3, // Aumentamos el zoom para permitir ver el detalle de alta calidad
+    zoomSnap: 0,
+    wheelDebounceTime: 40,
     attributionControl: false,
     maxBoundsViscosity: 1.0,
     tap: !isMobile,
-    dragging: !isMobile || (isMobile && !isTouchDevice)
+    dragging: !isMobile || (isMobile && !isTouchDevice),
+    bounceAtZoomLimits: false
 });
 
 // Load the image to get its actual dimensions
