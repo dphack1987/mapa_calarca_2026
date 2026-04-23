@@ -104,16 +104,16 @@ const translations = {
 const pointsOfInterest = [
     {
         id: 1,
-        name: { es: "Plaza de Bolívar", en: "Bolivar Square" },
+        name: { es: "Plaza de Bolívar (Parque Principal)", en: "Bolivar Square (Main Park)" },
         coords: [750, 1000],
         realCoords: "4.5302,-75.6418",
         description: { 
-            es: "El corazón de Calarcá, un lugar lleno de historia y arquitectura tradicional cafetera.",
-            en: "The heart of Calarcá, a place full of history and traditional coffee architecture."
+            es: "El corazón de la 'Villa del Cacique'. Un espacio vibrante rodeado de arquitectura cafetera tradicional, donde locales y turistas se reúnen para disfrutar de un buen café, la brisa de la tarde y eventos culturales. Es el punto de partida ideal para explorar la ciudad.",
+            en: "The heart of the 'Villa del Cacique'. A vibrant space surrounded by traditional coffee architecture, where locals and tourists gather to enjoy good coffee, the afternoon breeze, and cultural events. It is the ideal starting point to explore the city."
         },
         category: "Cultura",
-        photo: "imagenes/LOGO CALARCA 2026.jpg",
-        openHours: [8, 22]
+        photo: "imagenes/LOGO CALARCA 2026.jpg", // Idealmente aquí iría una foto real del parque
+        openHours: [0, 24] // Abierto siempre por ser espacio público
     },
     {
         id: 2,
