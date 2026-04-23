@@ -383,6 +383,10 @@ const fetchWeather = async () => {
         `;
     } catch (error) {
         console.log("Error al cargar clima", error);
+        document.getElementById('weather-info').innerHTML = `
+            <span class="weather-temp">--°C</span>
+            <span class="weather-desc">Sin conexión al clima</span>
+        `;
     }
 };
 
@@ -418,27 +422,39 @@ let deferredPrompt;
 const installSection = document.getElementById('install-section');
 const installButton = document.getElementById('install-button');
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    // Prevenir que el navegador muestre el prompt automático
-    e.preventDefault();
-    // Guardar el evento para dispararlo luego
-    deferredPrompt = e;
-    // Mostrar la sección de instalación
+// Detectar si es iOS
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+// Mostrar sección si es móvil o si se dispara el prompt
+if (isMobile || isIOS) {
     if (installSection) installSection.style.display = 'block';
+    if (isIOS && installButton) {
+        installButton.innerText = "📲 ¿Cómo instalar?";
+    }
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (installSection) installSection.style.display = 'block';
+    if (installButton) installButton.innerText = "📲 Descargar App";
 });
 
 if (installButton) {
     installButton.addEventListener('click', async () => {
+        if (isIOS) {
+            alert("Para instalar en iPhone/iPad:\n1. Toca el botón 'Compartir' (el cuadro con flecha arriba).\n2. Desliza hacia abajo y toca 'Añadir a la pantalla de inicio'.");
+            return;
+        }
+
         if (deferredPrompt) {
-            // Mostrar el prompt de instalación
             deferredPrompt.prompt();
-            // Esperar la respuesta del usuario
             const { outcome } = await deferredPrompt.userChoice;
             console.log(`Usuario eligió instalar: ${outcome}`);
-            // Limpiar el prompt guardado
             deferredPrompt = null;
-            // Ocultar la sección después de la elección
             if (installSection) installSection.style.display = 'none';
+        } else {
+            alert("Tu navegador ya tiene la App instalada o no soporta descarga directa. Busca la opción 'Instalar' en el menú de tu navegador.");
         }
     });
 }
