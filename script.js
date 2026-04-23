@@ -205,6 +205,19 @@ const pointsOfInterest = [
         category: "Servicios",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
         openHours: [0, 24]
+    },
+    {
+        id: 9,
+        name: { es: "Parador Gastronómico Balboa", en: "Balboa Gastronomic Stop" },
+        coords: [300, 280],
+        realCoords: "4.4750,-75.7100",
+        description: {
+            es: "Punto de parada obligatorio para disfrutar de la mejor gastronomía local en la vía principal.",
+            en: "A mandatory stop to enjoy the best local gastronomy on the main road."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [7, 20]
     }
 ];
 
