@@ -326,6 +326,12 @@ header {
     font-weight: 500;
 }
 
+.share-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .share-btn {
     width: 100%;
     padding: 12px;
@@ -339,10 +345,14 @@ header {
     box-shadow: 0 4px 15px rgba(39, 174, 96, 0.2);
 }
 
+.share-btn.secondary {
+    background: var(--accent-color);
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.2);
+}
+
 .share-btn:hover {
-    background: #219150;
+    filter: brightness(1.1);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3);
 }
 
 .share-btn:active {

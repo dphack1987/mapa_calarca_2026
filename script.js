@@ -198,8 +198,28 @@ const generateQR = () => {
     const currentUrl = window.location.href;
     const qrContainer = document.getElementById('qrcode');
     if (qrContainer) {
-        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentUrl)}&color=27ae60`;
-        qrContainer.innerHTML = `<img src="${qrUrl}" alt="Código QR del Mapa">`;
+        // QR en NEGRO para máxima compatibilidad
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl)}&color=000000&format=jpg`;
+        qrContainer.innerHTML = `<img src="${qrUrl}" alt="Código QR del Mapa" id="qr-img">`;
+    }
+};
+
+// Funcionalidad de descarga de QR
+const setupQRDownload = () => {
+    const downloadBtn = document.getElementById('download-qr');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+            const qrImg = document.getElementById('qr-img');
+            if (qrImg) {
+                // Creamos un link temporal para la descarga
+                const link = document.createElement('a');
+                link.href = qrImg.src;
+                link.download = 'QR-Mapa-Calarca-2026.jpg';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        });
     }
 };
 
@@ -227,6 +247,7 @@ const setupCopyLink = () => {
 
 // Inicializar funciones de compartir
 generateQR();
+setupQRDownload();
 setupCopyLink();
 
 // Initial Device Info in Console
