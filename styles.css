@@ -45,6 +45,26 @@ body {
     overflow: hidden;
 }
 
+/* Botón de Navegación "Cómo llegar" */
+.nav-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #4285F4; /* Azul Google Maps */
+    color: white !important;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(66, 133, 244, 0.3);
+}
+
+.nav-btn:hover {
+    background: #357ae8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(66, 133, 244, 0.4);
+}
+
 /* Animaciones Globales */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }

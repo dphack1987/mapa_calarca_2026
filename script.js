@@ -47,11 +47,12 @@ mapImage.onload = function() {
      }
  };
 
-// Tourist points of interest
+// Tourist points of interest with REAL GPS coordinates for navigation
 const pointsOfInterest = [
     {
         name: "Plaza de Bolívar",
         coords: [750, 1000],
+        realCoords: "4.5302,-75.6418",
         description: "El corazón de Calarcá, un lugar lleno de historia y arquitectura tradicional cafetera.",
         category: "Cultura",
         photo: "imagenes/LOGO CALARCA 2026.jpg"
@@ -59,6 +60,7 @@ const pointsOfInterest = [
     {
         name: "Jardín Botánico del Quindío",
         coords: [800, 1200],
+        realCoords: "4.5422,-75.6567",
         description: "Hogar del famoso mariposario y una colección increíble de palmas y flora regional.",
         category: "Naturaleza",
         photo: "imagenes/LOGO CALARCA 2026.jpg"
@@ -66,6 +68,7 @@ const pointsOfInterest = [
     {
         name: "Peñas Blancas",
         coords: [400, 1600],
+        realCoords: "4.5150,-75.6000",
         description: "Majestuosa formación rocosa para los amantes del senderismo y la escalada.",
         category: "Aventura",
         photo: "imagenes/LOGO CALARCA 2026.jpg"
@@ -73,6 +76,7 @@ const pointsOfInterest = [
     {
         name: "Casa de la Cultura",
         coords: [780, 950],
+        realCoords: "4.5320,-75.6425",
         description: "Epicentro de las artes y la memoria histórica de la 'Villa del Cacique'.",
         category: "Cultura",
         photo: "imagenes/LOGO CALARCA 2026.jpg"
@@ -80,22 +84,9 @@ const pointsOfInterest = [
     {
         name: "Parque de la Vida",
         coords: [700, 1100],
+        realCoords: "4.5250,-75.6350",
         description: "Espacio recreativo para la familia con senderos y zonas verdes.",
         category: "Recreación",
-        photo: "imagenes/LOGO CALARCA 2026.jpg"
-    },
-    {
-        name: "Iglesia San José",
-        coords: [760, 1020],
-        description: "Arquitectura religiosa emblemática frente a la Plaza de Bolívar.",
-        category: "Arquitectura",
-        photo: "imagenes/LOGO CALARCA 2026.jpg"
-    },
-    {
-        name: "Mirador de Calarcá",
-        coords: [300, 1500],
-        description: "Punto panorámico para observar todo el Valle del Quindío.",
-        category: "Naturaleza",
         photo: "imagenes/LOGO CALARCA 2026.jpg"
     }
 ];
@@ -206,8 +197,11 @@ function addMarker(point) {
             selectedInfo.innerHTML = `
                 <div class="selected-point animated fadeIn">
                     <h4>${point.name}</h4>
-                    <div style="margin-bottom: 15px;">
+                    <div style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
                         <span class="category-badge">${point.category}</span>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=${point.realCoords}" target="_blank" class="nav-btn">
+                            🚗 Cómo llegar
+                        </a>
                     </div>
                     <p>${point.description}</p>
                     <img src="${point.photo}" alt="${point.name}" style="width: 100%; border-radius: 12px; margin-top: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid white;">
