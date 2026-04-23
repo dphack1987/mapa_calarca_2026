@@ -480,8 +480,23 @@ function isOpen(hours) {
 
 // Helper function to add a single marker
 function addMarker(point) {
+    let icon;
+    
+    // Si el punto tiene un ID, creamos un icono circular con número
+    if (point.id) {
+        icon = L.divIcon({
+            html: `<div class="marker-number-container">${point.id}</div>`,
+            className: 'custom-marker-icon',
+            iconSize: [40, 40],
+            iconAnchor: [20, 40],
+            popupAnchor: [0, -40]
+        });
+    } else {
+        icon = getCategoryIcon(point.category);
+    }
+
     const marker = L.marker(point.coords, {
-        icon: getCategoryIcon(point.category)
+        icon: icon
     }).addTo(map);
     
     // Popup personalizado más elegante
