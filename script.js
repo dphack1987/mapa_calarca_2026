@@ -176,7 +176,7 @@ const pointsOfInterest = [
             es: "Principal centro hospitalario del municipio, brindando servicios de salud a la comunidad de Calarcá.",
             en: "Main hospital center of the municipality, providing health services to the community of Calarcá."
         },
-        category: "Transporte", // Usando Transporte como categoría de servicios por ahora
+        category: "Servicios",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
         openHours: [0, 24]
     },
@@ -202,7 +202,7 @@ const pointsOfInterest = [
             es: "Cuerpo de bomberos voluntarios de Calarcá, siempre listos para servir a la comunidad.",
             en: "Volunteer fire department of Calarcá, always ready to serve the community."
         },
-        category: "Transporte",
+        category: "Servicios",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
         openHours: [0, 24]
     }
@@ -438,6 +438,9 @@ function getCategoryIcon(category) {
         case 'Centros Comerciales':
             iconUrl = 'https://cdn-icons-png.flaticon.com/512/2331/2331966.png'; // Icono de mall
             break;
+        case 'Servicios':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/1067/1067561.png'; // Icono de servicios/ayuda
+            break;
         case 'Recreación':
             iconUrl = 'https://cdn-icons-png.flaticon.com/512/1802/1802956.png';
             break;
@@ -518,6 +521,7 @@ function getCategoryColor(category) {
         case 'Comercio': return '#f39c12';
         case 'Transporte': return '#7f8c8d';
         case 'Centros Comerciales': return '#16a085';
+        case 'Servicios': return '#2980b9';
         case 'Recreación': return '#f1c40f';
         default: return '#27ae60';
     }

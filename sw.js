@@ -1,15 +1,16 @@
-const CACHE_NAME = 'calarca-2026-v11'; // Nueva versión
+const CACHE_NAME = 'calarca-2026-v12'; // Nueva versión
 const assets = [
   './',
-  './index.html?v=11',
-  './styles.css?v=11',
-  './script.js?v=11',
+  './index.html?v=12',
+  './styles.css?v=12',
+  './script.js?v=12',
   './manifest.json',
   './imagenes/LOGO CALARCA 2026.jpg',
   './imagenes/calarca 2026 mapa cara 2.jpg',
   './imagenes/flores1.jpg',
   './imagenes/franja1.jpg',
   './imagenes/pautaQR.jpg',
+  './imagenes/pautas/pauta_san_miguel.jpeg',
   'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
