@@ -135,23 +135,23 @@ const setupSearch = () => {
 
 // Function to get icon based on category
 function getCategoryIcon(category) {
-    let iconUrl, iconSize;
+    let iconUrl;
     
     switch(category) {
         case 'Cultura':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/1048/1048953.png'; // Icono de museo/cultura
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2921/2921471.png'; // Icono de Plaza/Monumento
             break;
         case 'Naturaleza':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/628/628283.png'; // Icono de hoja/naturaleza
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3222/3222800.png'; // Icono de Jardín/Flores
             break;
         case 'Aventura':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3050/3050511.png'; // Icono de montaña/aventura
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3050/3050511.png'; // Icono de Montaña/Senderismo
             break;
         case 'Arquitectura':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/4336/4336901.png'; // Icono de iglesia/edificio
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2885/2885446.png'; // Icono de Iglesia específica
             break;
         case 'Recreación':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2664/2664531.png'; // Icono de parque/familia
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/1802/1802956.png'; // Icono de Parque/Árboles
             break;
         default:
             iconUrl = 'https://cdn-icons-png.flaticon.com/512/684/684908.png'; // Pin genérico
@@ -159,9 +159,9 @@ function getCategoryIcon(category) {
 
     return L.icon({
         iconUrl: iconUrl,
-        iconSize: [35, 35],
-        iconAnchor: [17, 35],
-        popupAnchor: [0, -35],
+        iconSize: [40, 40], // Un poco más grandes para mejor visibilidad
+        iconAnchor: [20, 40],
+        popupAnchor: [0, -40],
         className: 'custom-marker-icon'
     });
 }
