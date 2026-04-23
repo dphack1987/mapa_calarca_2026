@@ -105,7 +105,7 @@ const pointsOfInterest = [
     {
         id: 1,
         name: { es: "Plaza de Bolívar (Parque Principal)", en: "Bolivar Square (Main Park)" },
-        coords: [950, 1010],
+        coords: [3932.6, 4624.9],
         realCoords: "4.5302,-75.6418",
         description: { 
             es: "El corazón de la 'Villa del Cacique'. Un espacio vibrante rodeado de arquitectura cafetera tradicional, donde locales y turistas se reúnen para disfrutar de un buen café, la brisa de la tarde y eventos culturales. Es el punto de partida ideal para explorar la ciudad.",

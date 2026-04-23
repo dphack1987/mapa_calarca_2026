@@ -1,9 +1,9 @@
-const CACHE_NAME = 'calarca-2026-v16'; // Nueva versión
+const CACHE_NAME = 'calarca-2026-v17'; // Nueva versión
 const assets = [
   './',
-  './index.html?v=16',
-  './styles.css?v=16',
-  './script.js?v=16',
+  './index.html?v=17',
+  './styles.css?v=17',
+  './script.js?v=17',
   './manifest.json',
   './imagenes/LOGO CALARCA 2026.jpg',
   './imagenes/calarca 2026 mapa cara 2.jpg',
