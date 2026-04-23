@@ -1,0 +1,21 @@
+{
+  "name": "Mapa Turístico Calarcá 2026",
+  "short_name": "Calarcá 2026",
+  "description": "Explora los tesoros de la Villa del Cacique",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#27ae60",
+  "theme_color": "#27ae60",
+  "icons": [
+    {
+      "src": "imagenes/LOGO CALARCA 2026.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg"
+    },
+    {
+      "src": "imagenes/LOGO CALARCA 2026.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg"
+    }
+  ]
+}

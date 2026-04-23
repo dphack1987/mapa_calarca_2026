@@ -55,7 +55,8 @@ const pointsOfInterest = [
         realCoords: "4.5302,-75.6418",
         description: "El corazón de Calarcá, un lugar lleno de historia y arquitectura tradicional cafetera.",
         category: "Cultura",
-        photo: "imagenes/LOGO CALARCA 2026.jpg"
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [8, 22] // 8 AM a 10 PM
     },
     {
         name: "Jardín Botánico del Quindío",
@@ -63,7 +64,8 @@ const pointsOfInterest = [
         realCoords: "4.5422,-75.6567",
         description: "Hogar del famoso mariposario y una colección increíble de palmas y flora regional.",
         category: "Naturaleza",
-        photo: "imagenes/LOGO CALARCA 2026.jpg"
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [9, 16] // 9 AM a 4 PM
     },
     {
         name: "Peñas Blancas",
@@ -71,7 +73,8 @@ const pointsOfInterest = [
         realCoords: "4.5150,-75.6000",
         description: "Majestuosa formación rocosa para los amantes del senderismo y la escalada.",
         category: "Aventura",
-        photo: "imagenes/LOGO CALARCA 2026.jpg"
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [6, 17] // 6 AM a 5 PM
     },
     {
         name: "Casa de la Cultura",
@@ -79,7 +82,8 @@ const pointsOfInterest = [
         realCoords: "4.5320,-75.6425",
         description: "Epicentro de las artes y la memoria histórica de la 'Villa del Cacique'.",
         category: "Cultura",
-        photo: "imagenes/LOGO CALARCA 2026.jpg"
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [8, 18] // 8 AM a 6 PM
     },
     {
         name: "Parque de la Vida",
@@ -87,7 +91,8 @@ const pointsOfInterest = [
         realCoords: "4.5250,-75.6350",
         description: "Espacio recreativo para la familia con senderos y zonas verdes.",
         category: "Recreación",
-        photo: "imagenes/LOGO CALARCA 2026.jpg"
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24] // Abierto 24 horas
     }
 ];
 
@@ -171,6 +176,14 @@ function getCategoryIcon(category) {
     });
 }
 
+// Function to check if a place is open
+function isOpen(hours) {
+    if (!hours) return true;
+    const now = new Date();
+    const hour = now.getHours();
+    return hour >= hours[0] && hour < hours[1];
+}
+
 // Helper function to add a single marker
 function addMarker(point) {
     const marker = L.marker(point.coords, {
@@ -194,16 +207,31 @@ function addMarker(point) {
     marker.on('click', () => {
         selectedInfo.style.opacity = '0';
         setTimeout(() => {
+            const currentUrl = window.location.href;
+            const shareText = encodeURIComponent(`¡Mira este lugar en Calarcá! 📍 ${point.name}: ${currentUrl}`);
+            const whatsappUrl = `https://wa.me/?text=${shareText}`;
+            
+            const openStatus = isOpen(point.openHours);
+            const statusLabel = openStatus ? 
+                '<span class="status-badge open">🟢 Abierto Ahora</span>' : 
+                '<span class="status-badge closed">🔴 Cerrado</span>';
+
             selectedInfo.innerHTML = `
                 <div class="selected-point animated fadeIn">
                     <h4>${point.name}</h4>
-                    <div style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="margin-bottom: 10px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
                         <span class="category-badge">${point.category}</span>
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=${point.realCoords}" target="_blank" class="nav-btn">
-                            🚗 Cómo llegar
-                        </a>
+                        ${statusLabel}
                     </div>
                     <p>${point.description}</p>
+                    <div class="point-actions">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=${point.realCoords}" target="_blank" class="action-btn nav-btn">
+                            🚗 Cómo llegar
+                        </a>
+                        <a href="${whatsappUrl}" target="_blank" class="action-btn whatsapp-btn">
+                            💬 WhatsApp
+                        </a>
+                    </div>
                     <img src="${point.photo}" alt="${point.name}" style="width: 100%; border-radius: 12px; margin-top: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 3px solid white;">
                 </div>
             `;
@@ -332,5 +360,43 @@ generateQR();
 setupQRDownload();
 setupCopyLink();
 
+// Función de Clima Real
+const fetchWeather = async () => {
+    try {
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=4.53&longitude=-75.64&current_weather=true`);
+        const data = await response.json();
+        const temp = Math.round(data.current_weather.temperature);
+        const code = data.current_weather.weathercode;
+        
+        const weatherDesc = {
+            0: "Cielo despejado",
+            1: "Principalmente despejado", 2: "Parcialmente nublado", 3: "Nublado",
+            45: "Niebla", 48: "Niebla escarchada",
+            51: "Llovizna ligera", 53: "Llovizna moderada", 55: "Llovizna densa",
+            61: "Lluvia ligera", 63: "Lluvia moderada", 65: "Lluvia fuerte",
+            80: "Chubascos ligeros", 81: "Chubascos moderados", 82: "Chubascos violentos"
+        };
+
+        document.getElementById('weather-info').innerHTML = `
+            <span class="weather-temp">${temp}°C</span>
+            <span class="weather-desc">${weatherDesc[code] || "Calarcá, Quindío"}</span>
+        `;
+    } catch (error) {
+        console.log("Error al cargar clima", error);
+    }
+};
+
+fetchWeather();
+setInterval(fetchWeather, 600000); // Actualizar cada 10 min
+
 // Initial Device Info in Console
 console.log(`Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isTouchDevice}`);
+
+// Register Service Worker for PWA
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('Service Worker registrado'))
+            .catch(err => console.log('Error al registrar Service Worker', err));
+    });
+}

@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa Turístico - Calarcá 2026</title>
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#27ae60">
+    <link rel="apple-touch-icon" href="imagenes/LOGO CALARCA 2026.jpg">
     <!-- Google Fonts: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Leaflet CSS -->
@@ -26,6 +30,13 @@
                 <img src="imagenes/LOGO CALARCA 2026.jpg" alt="Logo Calarcá 2026">
             </div>
             
+            <div class="sidebar-section weather-widget">
+                <div id="weather-info">
+                    <span class="weather-temp">--°C</span>
+                    <span class="weather-desc">Cargando clima...</span>
+                </div>
+            </div>
+
             <div class="sidebar-section">
                 <h3>Buscar Lugares</h3>
                 <div class="search-container">
