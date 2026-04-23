@@ -133,20 +133,57 @@ const setupSearch = () => {
     }
 };
 
+// Function to get icon based on category
+function getCategoryIcon(category) {
+    let iconUrl, iconSize;
+    
+    switch(category) {
+        case 'Cultura':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/1048/1048953.png'; // Icono de museo/cultura
+            break;
+        case 'Naturaleza':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/628/628283.png'; // Icono de hoja/naturaleza
+            break;
+        case 'Aventura':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3050/3050511.png'; // Icono de montaña/aventura
+            break;
+        case 'Arquitectura':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/4336/4336901.png'; // Icono de iglesia/edificio
+            break;
+        case 'Recreación':
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2664/2664531.png'; // Icono de parque/familia
+            break;
+        default:
+            iconUrl = 'https://cdn-icons-png.flaticon.com/512/684/684908.png'; // Pin genérico
+    }
+
+    return L.icon({
+        iconUrl: iconUrl,
+        iconSize: [35, 35],
+        iconAnchor: [17, 35],
+        popupAnchor: [0, -35],
+        className: 'custom-marker-icon'
+    });
+}
+
 // Helper function to add a single marker
 function addMarker(point) {
-    const marker = L.circleMarker(point.coords, {
-        radius: isMobile ? 12 : 10,
-        fillColor: getCategoryColor(point.category),
-        color: "#fff",
-        weight: 3,
-        opacity: 1,
-        fillOpacity: 0.9
+    const marker = L.marker(point.coords, {
+        icon: getCategoryIcon(point.category)
     }).addTo(map);
     
-    marker.bindPopup(`<b>${point.name}</b><br><small>${point.category}</small>`, {
-        closeButton: !isMobile,
-        autoPanPadding: [50, 50]
+    // Popup personalizado más elegante
+    const popupContent = `
+        <div class="modern-popup">
+            <b style="color: var(--primary-color); font-size: 1.1rem;">${point.name}</b>
+            <p style="margin: 5px 0; font-size: 0.8rem; font-weight: 700; color: var(--accent-color); text-transform: uppercase;">${point.category}</p>
+        </div>
+    `;
+    
+    marker.bindPopup(popupContent, {
+        closeButton: false,
+        autoPanPadding: [50, 50],
+        className: 'leaflet-custom-popup'
     });
 
     marker.on('click', () => {

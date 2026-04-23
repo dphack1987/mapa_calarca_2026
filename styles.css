@@ -456,21 +456,31 @@ footer {
     box-shadow: 0 -10px 30px rgba(0,0,0,0.03);
 }
 
-/* Leaflet Overrides con diseño moderno */
-.leaflet-popup-content-wrapper {
-    border-radius: 20px;
-    padding: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+/* Custom Icons & Popups */
+.custom-marker-icon {
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+    transition: transform 0.3s ease;
 }
 
-.leaflet-popup-tip {
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+.custom-marker-icon:hover {
+    transform: scale(1.2) translateY(-5px);
 }
 
-.leaflet-popup-content b {
-    color: var(--primary-color);
-    font-size: 1.2rem;
-    font-weight: 800;
+.leaflet-custom-popup .leaflet-popup-content-wrapper {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    padding: 5px 10px;
+    border: 2px solid var(--primary-color);
+}
+
+.leaflet-custom-popup .leaflet-popup-tip {
+    background: var(--primary-color);
+}
+
+.modern-popup {
+    text-align: center;
+    min-width: 120px;
 }
 
 /* Responsive */
