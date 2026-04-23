@@ -1,9 +1,9 @@
-const CACHE_NAME = 'calarca-2026-v6'; // Nueva versión
+const CACHE_NAME = 'calarca-2026-v7'; // Nueva versión
 const assets = [
   './',
-  './index.html?v=6',
-  './styles.css?v=6',
-  './script.js?v=6',
+  './index.html?v=7',
+  './styles.css?v=7',
+  './script.js?v=7',
   './manifest.json',
   './imagenes/LOGO CALARCA 2026.jpg',
   './imagenes/calarca 2026 mapa cara 2.jpg',
@@ -16,6 +16,7 @@ const assets = [
 ];
 
 self.addEventListener('install', e => {
+  self.skipWaiting(); // Fuerza a que el nuevo Service Worker se active de inmediato
   e.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll(assets);
@@ -29,6 +30,8 @@ self.addEventListener('activate', e => {
       return Promise.all(
         keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
       );
+    }).then(() => {
+      return self.clients.claim(); // Toma el control de las pestañas abiertas inmediatamente
     })
   );
 });
