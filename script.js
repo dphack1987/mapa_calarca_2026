@@ -11,14 +11,15 @@ const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 const map = L.map('map', {
     crs: L.CRS.Simple,
     minZoom: isMobile ? -2 : -1.5,
-    maxZoom: 3, // Aumentamos el zoom para permitir ver el detalle de alta calidad
+    maxZoom: 2, // Bajamos ligeramente para mantener la nitidez nativa
     zoomSnap: 0,
-    wheelDebounceTime: 40,
+    wheelDebounceTime: 30,
     attributionControl: false,
     maxBoundsViscosity: 1.0,
     tap: !isMobile,
     dragging: !isMobile || (isMobile && !isTouchDevice),
-    bounceAtZoomLimits: false
+    bounceAtZoomLimits: false,
+    preferCanvas: true // Mejora el rendimiento general
 });
 
 // Load the image to get its actual dimensions
@@ -30,7 +31,10 @@ mapImage.onload = function() {
     bounds = [[0, 0], [imgHeight, imgWidth]];
     
     // Add the image overlay with actual dimensions
-    L.imageOverlay(this.src, bounds).addTo(map);
+    const overlay = L.imageOverlay(this.src, bounds, {
+        interactive: true,
+        className: 'high-res-layer'
+    }).addTo(map);
     map.setMaxBounds(bounds);
     map.fitBounds(bounds);
     

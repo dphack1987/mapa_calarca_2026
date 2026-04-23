@@ -429,17 +429,24 @@ header {
     border: 8px solid var(--white);
 }
 
-/* Mejora de renderizado de imagen para evitar pixelado excesivo */
-.leaflet-image-layer {
-    image-rendering: -webkit-optimize-contrast; /* Optimiza contraste en Chrome/Safari */
-    image-rendering: high-quality; /* Sugerencia para navegadores modernos */
-    image-rendering: -moz-crisp-edges; /* Firefox */
-    -ms-interpolation-mode: bicubic; /* Internet Explorer antiguo */
+/* Mejora de renderizado de imagen para máxima nitidez sin pixelado hard */
+.leaflet-image-layer, .high-res-layer {
+    image-rendering: -webkit-optimize-contrast; 
+    image-rendering: smooth;
+    image-rendering: high-quality;
+    
+    /* Forzar el uso de la GPU para mantener la nitidez en transformaciones de escala */
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
-/* Forzar suavizado en el contenedor del mapa */
+/* Suavizado general del contenedor */
 .leaflet-container {
-    image-rendering: auto;
+    background: #f0f0f0;
+    outline: none;
 }
 
 .coordinate-helper {
