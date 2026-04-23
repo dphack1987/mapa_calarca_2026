@@ -1,9 +1,9 @@
-const CACHE_NAME = 'calarca-2026-v4'; // Nueva versión
+const CACHE_NAME = 'calarca-2026-v5'; // Nueva versión
 const assets = [
   './',
-  './index.html?v=4',
-  './styles.css?v=4',
-  './script.js?v=4',
+  './index.html?v=5',
+  './styles.css?v=5',
+  './script.js?v=5',
   './manifest.json',
   './imagenes/LOGO CALARCA 2026.jpg',
   './imagenes/calarca 2026 mapa cara 2.jpg',
@@ -19,6 +19,16 @@ self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll(assets);
+    })
+  );
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+      );
     })
   );
 });
