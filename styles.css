@@ -509,6 +509,52 @@ header {
     display: block;
 }
 
+.install-container {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 25px rgba(39, 174, 96, 0.2);
+}
+
+.install-text {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.install-btn {
+    background: white !important;
+    color: var(--primary-color) !important;
+}
+
+/* Botón Mi Ubicación */
+.location-control {
+    background: white;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    font-size: 1.2rem;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-color);
+}
+
+.location-control:hover {
+    transform: scale(1.1);
+    background: var(--primary-color);
+    color: white;
+}
+
 /* Mapa con Marco Vibrante */
 #map-container {
     flex: 1;

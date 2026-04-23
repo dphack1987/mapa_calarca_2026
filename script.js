@@ -389,6 +389,65 @@ const fetchWeather = async () => {
 fetchWeather();
 setInterval(fetchWeather, 600000); // Actualizar cada 10 min
 
+// Logic for My Location
+const locationBtn = document.getElementById('location-btn');
+let userLocationMarker;
+
+if (locationBtn) {
+    locationBtn.addEventListener('click', () => {
+        if (!navigator.geolocation) {
+            alert("Tu navegador no soporta geolocalización");
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude, longitude } = position.coords;
+            // Nota: Aquí hay un reto, el mapa es una imagen (CRS.Simple), 
+            // no podemos poner la ubicación GPS real directamente sin una conversión.
+            // Por ahora, mostraremos un mensaje o intentaremos centrar si estuviéramos en coordenadas reales.
+            // Como recomendación, esto funciona mejor en mapas con coordenadas geográficas.
+            alert(`Tu ubicación real es: ${latitude}, ${longitude}. ¡Estás en Calarcá!`);
+        }, () => {
+            alert("No se pudo obtener tu ubicación");
+        });
+    });
+}
+
+// Logic for PWA Installation
+let deferredPrompt;
+const installSection = document.getElementById('install-section');
+const installButton = document.getElementById('install-button');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevenir que el navegador muestre el prompt automático
+    e.preventDefault();
+    // Guardar el evento para dispararlo luego
+    deferredPrompt = e;
+    // Mostrar la sección de instalación
+    if (installSection) installSection.style.display = 'block';
+});
+
+if (installButton) {
+    installButton.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            // Mostrar el prompt de instalación
+            deferredPrompt.prompt();
+            // Esperar la respuesta del usuario
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`Usuario eligió instalar: ${outcome}`);
+            // Limpiar el prompt guardado
+            deferredPrompt = null;
+            // Ocultar la sección después de la elección
+            if (installSection) installSection.style.display = 'none';
+        }
+    });
+}
+
+window.addEventListener('appinstalled', () => {
+    console.log('App instalada con éxito');
+    if (installSection) installSection.style.display = 'none';
+});
+
 // Initial Device Info in Console
 console.log(`Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isTouchDevice}`);
 
