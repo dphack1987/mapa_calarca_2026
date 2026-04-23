@@ -117,29 +117,29 @@ const pointsOfInterest = [
     },
     {
         id: 2,
-        name: { es: "Jardín Botánico del Quindío", en: "Quindio Botanical Garden" },
+        name: { es: "Parroquia San José", en: "San Jose Parish" },
         coords: [3923.6, 4684.7],
-        realCoords: "4.5422,-75.6567",
+        realCoords: "4.5308,-75.6415",
         description: {
-            es: "Hogar del famoso mariposario y una colección increíble de palmas y flora regional. Un lugar imperdible para los amantes de la naturaleza y la fotografía.",
-            en: "Home to the famous butterfly garden and an incredible collection of palms and regional flora. A must-see for nature and photography lovers."
+            es: "Majestuoso templo católico ubicado frente a la Plaza de Bolívar. Un ícono de la fe y la arquitectura calarqueña, testigo de la historia del municipio.",
+            en: "Majestic Catholic temple located in front of Bolivar Square. An icon of faith and Calarcá architecture, witness to the municipality's history."
         },
-        category: "Naturaleza",
+        category: "Cultura",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
-        openHours: [9, 16]
+        openHours: [7, 19]
     },
     {
         id: 3,
-        name: { es: "Peñas Blancas", en: "White Rocks" },
+        name: { es: "Casa de la Cultura Lucelly García", en: "Lucelly Garcia House of Culture" },
         coords: [3863.8, 4474.2],
-        realCoords: "4.5150,-75.6000",
+        realCoords: "4.5320,-75.6425",
         description: {
-            es: "Majestuosa formación rocosa para los amantes del senderismo y la escalada. Ofrece una de las mejores vistas panorámicas de Calarcá y el Quindío.",
-            en: "Majestic rock formation for hiking and climbing lovers. It offers one of the best panoramic views of Calarcá and Quindio."
+            es: "Epicentro de las artes y la memoria histórica de Calarcá. Un espacio dedicado al fomento de la cultura, el teatro y la música en la 'Villa del Cacique'.",
+            en: "Epicenter of arts and historical memory of Calarcá. A space dedicated to the promotion of culture, theater, and music in the 'Villa del Cacique'."
         },
-        category: "Aventura",
+        category: "Cultura",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
-        openHours: [6, 17]
+        openHours: [8, 18]
     },
     {
         id: 4,
