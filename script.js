@@ -111,8 +111,9 @@ const pointsOfInterest = [
         name: { es: "Plaza de Bolívar (Parque Principal)", en: "Bolivar Square (Main Park)" },
         coords: [3932.6, 4624.9],
         realCoords: "4.5302,-75.6418",
+        phone: "+573100000000",
         description: { 
-            es: "El corazón de la 'Villa del Cacique'. Un espacio vibrante rodeado de arquitectura cafetera tradicional, donde locales y turistas se reúnen para disfrutar de un buen café, la brisa de la tarde y eventos culturales. Es el punto de partida ideal para explorar la ciudad.",
+            es: "El corazón de la 'Villa del Cacique'. Un espacio vibrante rodeado de arquitectura cafetera tradicional, donde locales y turistas se reuniuen para disfrutar de un buen café, la brisa de la tarde y eventos culturales. Es el punto de partida ideal para explorar la ciudad.",
             en: "The heart of the 'Villa del Cacique'. A vibrant space surrounded by traditional coffee architecture, where locals and tourists gather to enjoy good coffee, the afternoon breeze, and cultural events. It is the ideal starting point to explore the city."
         },
         category: "Cultura",
@@ -124,6 +125,7 @@ const pointsOfInterest = [
         name: { es: "Parroquia San José", en: "San Jose Parish" },
         coords: [3923.6, 4684.7],
         realCoords: "4.5308,-75.6415",
+        phone: "+573100000000",
         description: {
             es: "Majestuoso templo católico ubicado frente a la Plaza de Bolívar. Un ícono de la fe y la arquitectura calarqueña, testigo de la historia del municipio.",
             en: "Majestic Catholic temple located in front of Bolivar Square. An icon of faith and Calarcá architecture, witness to the municipality's history."
@@ -137,6 +139,7 @@ const pointsOfInterest = [
         name: { es: "Casa de la Cultura Lucelly García", en: "Lucelly Garcia House of Culture" },
         coords: [3863.8, 4474.2],
         realCoords: "4.5320,-75.6425",
+        phone: "+573100000000",
         description: {
             es: "Epicentro de las artes y la memoria histórica de Calarcá. Un espacio dedicado al fomento de la cultura, el teatro y la música en la 'Villa del Cacique'.",
             en: "Epicenter of arts and historical memory of Calarcá. A space dedicated to the promotion of culture, theater, and music in the 'Villa del Cacique'."
@@ -150,6 +153,7 @@ const pointsOfInterest = [
         name: { es: "Corregimiento La Virginia", en: "La Virginia Village" },
         coords: [750, 1420],
         realCoords: "4.5100,-75.6100",
+        phone: "+573100000000",
         description: {
             es: "Pintoresco corregimiento que sirve de entrada a la zona de Peñas Blancas. Conocido por su tranquilidad y belleza rural.",
             en: "Picturesque village that serves as an entrance to the Peñas Blancas area. Known for its tranquility and rural beauty."
@@ -163,6 +167,7 @@ const pointsOfInterest = [
         name: { es: "Recuca (Cultura Cafetera)", en: "Recuca (Coffee Culture)" },
         coords: [380, 820],
         realCoords: "4.4850,-75.6800",
+        phone: "+573108303779",
         description: {
             es: "Recorrido de la Cultura Cafetera. Vive la experiencia de ser caficultor por un día en una de las fincas más tradicionales de la región.",
             en: "Coffee Culture Tour. Live the experience of being a coffee farmer for a day in one of the most traditional farms in the region."
@@ -176,6 +181,7 @@ const pointsOfInterest = [
         name: { es: "Hospital La Misericordia", en: "La Misericordia Hospital" },
         coords: [980, 1080],
         realCoords: "4.5320,-75.6380",
+        phone: "+573100000000",
         description: {
             es: "Principal centro hospitalario del municipio, brindando servicios de salud a la comunidad de Calarcá.",
             en: "Main hospital center of the municipality, providing health services to the community of Calarcá."
@@ -189,6 +195,7 @@ const pointsOfInterest = [
         name: { es: "Galería Calarcá", en: "Calarca Gallery" },
         coords: [1080, 1030],
         realCoords: "4.5350,-75.6420",
+        phone: "+573100000000",
         description: {
             es: "Centro de comercio local donde se encuentran productos frescos, artesanías y la esencia del mercado calarqueño.",
             en: "Local commerce center where you can find fresh products, crafts and the essence of the Calarcá market."
@@ -202,6 +209,7 @@ const pointsOfInterest = [
         name: { es: "Restaurante Fercho", en: "Fercho Restaurant" },
         coords: [920, 1050],
         realCoords: "4.5315,-75.6410",
+        phone: "+573105025670",
         description: {
             es: "Deliciosa gastronomía local con el sabor auténtico de Calarcá. Un lugar tradicional para disfrutar en familia.",
             en: "Delicious local gastronomy with the authentic flavor of Calarcá. A traditional place to enjoy with family."
@@ -215,6 +223,7 @@ const pointsOfInterest = [
         name: { es: "San Miguel Café", en: "San Miguel Coffee" },
         coords: [960, 1030],
         realCoords: "4.5308,-75.6425",
+        phone: "+573104495532",
         description: {
             es: "Experiencia cafetera premium en el corazón de Calarcá. El mejor café de origen con un ambiente acogedor.",
             en: "Premium coffee experience in the heart of Calarcá. The best single-origin coffee with a cozy atmosphere."
@@ -228,6 +237,7 @@ const pointsOfInterest = [
         name: { es: "Bomberos Calarcá", en: "Calarca Firefighters" },
         coords: [930, 950],
         realCoords: "4.5290,-75.6440",
+        phone: "+573100000000",
         description: {
             es: "Cuerpo de bomberos voluntarios de Calarcá, siempre listos para servir a la comunidad.",
             en: "Volunteer fire department of Calarcá, always ready to serve the community."
@@ -241,6 +251,7 @@ const pointsOfInterest = [
         name: { es: "Parador Gastronómico Balboa", en: "Balboa Gastronomic Stop" },
         coords: [300, 280],
         realCoords: "4.4750,-75.7100",
+        phone: "+573100000000",
         description: {
             es: "Punto de parada obligatorio para disfrutar de la mejor gastronomía local en la vía principal.",
             en: "A mandatory stop to enjoy the best local gastronomy on the main road."
@@ -254,6 +265,7 @@ const pointsOfInterest = [
         name: { es: "Alcaldía de Calarcá", en: "Calarca City Hall" },
         coords: [3950, 4610],
         realCoords: "4.5305,-75.6415",
+        phone: "+573100000000",
         description: {
             es: "Sede del gobierno municipal, ubicada en el centro histórico de la ciudad.",
             en: "Seat of the municipal government, located in the historic city center."
@@ -267,6 +279,7 @@ const pointsOfInterest = [
         name: { es: "Quinti Café", en: "Quinti Coffee" },
         coords: [3900, 4700],
         realCoords: "4.5310,-75.6400",
+        phone: "+573126815139",
         description: {
             es: "Sabor y tradición en cada taza. Disfruta de una experiencia cafetera única.",
             en: "Flavor and tradition in every cup. Enjoy a unique coffee experience."
@@ -280,6 +293,7 @@ const pointsOfInterest = [
         name: { es: "Raíz Café", en: "Raiz Coffee" },
         coords: [3880, 4650],
         realCoords: "4.5300,-75.6410",
+        phone: "+573115188564",
         description: {
             es: "Conectando con nuestras raíces a través del mejor café de origen.",
             en: "Connecting with our roots through the best single-origin coffee."
@@ -293,6 +307,7 @@ const pointsOfInterest = [
         name: { es: "La Talanquera", en: "La Talanquera" },
         coords: [400, 350],
         realCoords: "4.4800,-75.7000",
+        phone: "+573219598257",
         description: {
             es: "Tradición gastronómica en la vía principal, ideal para una parada deliciosa.",
             en: "Gastronomic tradition on the main road, ideal for a delicious stop."
@@ -306,6 +321,7 @@ const pointsOfInterest = [
         name: { es: "Comaparado", en: "Comaparado" },
         coords: [500, 400],
         realCoords: "4.4900,-75.6900",
+        phone: "+573152721971",
         description: {
             es: "Servicios y atención de calidad para el viajero en Calarcá.",
             en: "Quality services and attention for the traveler in Calarcá."
@@ -392,10 +408,20 @@ function renderPointDetails(point) {
             `<span class="status-badge closed">${translations[currentLang].closed}</span>`;
 
         const isFav = favorites.includes(point.id);
+        const phoneHtml = point.phone ? `
+            <a href="https://wa.me/${point.phone.replace(/\+/g, '')}" target="_blank" class="action-btn whatsapp-btn">
+                💬 WhatsApp Directo
+            </a>
+            <a href="tel:${point.phone}" class="action-btn call-btn">
+                📞 Llamar Ahora
+            </a>
+        ` : '';
 
         selectedInfo.innerHTML = `
             <div class="selected-point" data-id="${point.id}">
-                <img src="${point.photo}" class="point-header-img" alt="${point.name[currentLang]}">
+                <div class="pauta-full-view">
+                    <img src="${point.photo}" class="point-header-img pauta-img" alt="${point.name[currentLang]}">
+                </div>
                 <div class="point-content">
                     <div class="point-title-row">
                         <h4>${point.name[currentLang]}</h4>
@@ -412,9 +438,7 @@ function renderPointDetails(point) {
                         <a href="https://www.google.com/maps/dir/?api=1&destination=${point.realCoords}" target="_blank" class="action-btn nav-btn">
                             ${translations[currentLang].howToGet}
                         </a>
-                        <a href="${whatsappUrl}" target="_blank" class="action-btn whatsapp-btn">
-                            💬 WhatsApp
-                        </a>
+                        ${phoneHtml}
                     </div>
                 </div>
             </div>
@@ -642,11 +666,24 @@ function renderAdsBanner() {
         
         div.onclick = () => {
             if (point) {
-                map.flyTo(point.coords, 1);
+                // Centrar el mapa en el punto con zoom adecuado
+                map.flyTo(point.coords, isMobile ? 0 : 1, {
+                    animate: true,
+                    duration: 1.5
+                });
+                
+                // Mostrar los detalles (ficha de información)
                 renderPointDetails(point);
-                // Abrir el sidebar para mostrar los detalles si está cerrado
+                
+                // Abrir el sidebar para mostrar los detalles si está cerrado (especialmente en móvil)
                 if (!adsSidebar.classList.contains('open')) {
                     toggleSidebar();
+                }
+
+                // Si hay un marcador asociado, abrir su popup para resaltar la ubicación
+                const marker = markers.find(m => m.getLatLng().lat === point.coords[0] && m.getLatLng().lng === point.coords[1]);
+                if (marker) {
+                    marker.openPopup();
                 }
             }
         };

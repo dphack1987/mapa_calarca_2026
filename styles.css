@@ -245,13 +245,54 @@ header {
     height: 100%;
     width: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: contain; /* Cambiado a contain para asegurar que NO se corte la pauta */
+    background: #fdfdfd; /* Fondo neutro para el área vacía si la imagen es diferente proporción */
     transition: all 0.5s ease;
 }
 
 .ad-item:hover img {
     filter: brightness(1.1);
-    transform: scale(1.1);
+    transform: scale(1.05);
+}
+
+/* Ficha de Información Detallada (Pautas y Puntos) */
+.pauta-full-view {
+    width: 100%;
+    background: #f0f0f0;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pauta-img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain; /* Asegura visualización completa en la ficha */
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.call-btn {
+    background: #3498db !important;
+}
+
+.call-btn:hover {
+    background: #2980b9 !important;
+    transform: translateY(-2px);
+}
+
+.whatsapp-btn {
+    background: #25D366 !important;
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E !important;
+    transform: translateY(-2px);
 }
 
 /* Layout Principal */
