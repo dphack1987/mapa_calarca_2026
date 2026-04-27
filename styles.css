@@ -192,12 +192,56 @@ header {
     color: var(--secondary-color);
 }
 
+/* Banner de Publicidad Superior */
+.ads-banner {
+    background: #fff;
+    height: 140px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--primary-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    z-index: 900;
+    scrollbar-width: thin;
+}
+
+.ads-banner::-webkit-scrollbar {
+    height: 6px;
+}
+
+.ad-item {
+    flex: 0 0 auto;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #eee;
+}
+
+.ad-item:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.ad-item img {
+    height: 100%;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
 /* Layout Principal */
 #main-content {
     display: flex;
     flex: 1;
     overflow: hidden;
     position: relative;
+    height: calc(100vh - 110px - 140px - 40px); /* Restando header, banner y footer */
 }
 
 /* Sidebar Estilo con fondo floral completo */

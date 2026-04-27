@@ -609,8 +609,11 @@ function getCategoryColor(category) {
     }
 }
 
-// Initial display
+// Initial Render
+renderWelcome();
+updateFavoritesUI();
 displayMarkers();
+renderAdsBanner();
 
 // Search Logic
 function setupSearch() {
