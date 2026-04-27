@@ -652,12 +652,34 @@ const pautasPublicitarias = [
 
 function renderAdsBanner() {
     const banner = document.getElementById('ads-banner');
-    if (!banner) {
-        console.error("No se encontró el elemento ads-banner");
-        return;
-    }
+    if (!banner) return;
     
     banner.innerHTML = '';
+    
+    // Botón de minimizar/maximizar
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'ads-banner-toggle';
+    toggleBtn.innerHTML = '✕';
+    toggleBtn.title = "Minimizar/Maximizar publicidad";
+    toggleBtn.onclick = (e) => {
+        e.stopPropagation();
+        banner.classList.toggle('minimized');
+        toggleBtn.innerHTML = banner.classList.contains('minimized') ? '➕' : '✕';
+        
+        // Si está minimizado, agregar texto guía
+        if (banner.classList.contains('minimized')) {
+            const guide = document.createElement('span');
+            guide.className = 'banner-guide-text';
+            guide.innerText = currentLang === 'es' ? ' Publicidad' : ' Ads';
+            guide.style.fontSize = '12px';
+            guide.style.marginLeft = '10px';
+            banner.appendChild(guide);
+        } else {
+            renderAdsBanner(); // Re-renderizar para limpiar texto guía y mostrar items
+        }
+    };
+    banner.appendChild(toggleBtn);
+
     pautasPublicitarias.forEach(pauta => {
         const point = pointsOfInterest.find(p => p.id === pauta.id);
         const div = document.createElement('div');
