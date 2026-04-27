@@ -911,7 +911,30 @@ console.log(`Versión: 2.0 - Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isT
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('Service Worker registrado'))
+            .then(reg => {
+                console.log('Service Worker registrado');
+                
+                // Detectar actualizaciones del Service Worker
+                reg.addEventListener('updatefound', () => {
+                    const newWorker = reg.installing;
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            // Nueva versión disponible, recargar para aplicar
+                            console.log('Nueva versión detectada, recargando...');
+                            window.location.reload();
+                        }
+                    });
+                });
+            })
             .catch(err => console.log('Error al registrar Service Worker', err));
+    });
+
+    // Escuchar el evento controllerchange para recargar cuando el nuevo SW tome el control
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+            window.location.reload();
+            refreshing = true;
+        }
     });
 }
