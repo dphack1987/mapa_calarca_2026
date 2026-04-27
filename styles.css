@@ -192,52 +192,66 @@ header {
     color: var(--secondary-color);
 }
 
-/* Banner de Publicidad Superior */
+/* Banner de Publicidad Superior - Rediseño Premium */
 .ads-banner {
-    background: #ffffff;
-    height: 120px;
+    background: linear-gradient(to right, #ffffff, #f9f9f9, #ffffff);
+    height: 220px; /* Aumentado significativamente para mayor impacto */
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 10px;
+    gap: 25px;
+    padding: 15px 30px;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-    border-bottom: 3px solid var(--primary-color);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    z-index: 1100; /* Por encima del header si es necesario */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
+    border-bottom: 5px solid var(--primary-color);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+    z-index: 1100;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
 }
 
-/* Solo mostrar scrollbar si el contenido desborda */
 .ads-banner::-webkit-scrollbar {
-    display: none; /* Ocultar por defecto para limpieza */
+    height: 6px;
+    display: block;
+}
+
+.ads-banner::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
 }
 
 .ad-item {
     flex: 0 0 auto;
-    height: 100%;
-    border-radius: 10px;
+    height: 180px; /* Tamaño imponente */
+    min-width: 280px; /* Más ancho para visibilidad premium */
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
-    border: 2px solid transparent;
-    background: #f9f9f9;
+    border: 4px solid transparent;
+    background: white;
+    position: relative;
 }
 
 .ad-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(-8px);
     border-color: var(--primary-color);
+    box-shadow: 0 20px 45px rgba(39, 174, 96, 0.3);
 }
 
 .ad-item img {
     height: 100%;
-    width: auto;
+    width: 100%;
     display: block;
-    object-fit: contain;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.ad-item:hover img {
+    filter: brightness(1.1);
+    transform: scale(1.1);
 }
 
 /* Layout Principal */
@@ -246,55 +260,40 @@ header {
     flex: 1;
     overflow: hidden;
     position: relative;
-    height: calc(100vh - 110px - 120px - 40px); /* Ajustado a nueva altura del banner */
+    height: calc(100vh - 110px - 220px - 40px); /* Ajustado al nuevo tamaño del banner */
 }
 
 /* --- OPTIMIZACIÓN DISPOSITIVOS --- */
 
 /* Versión PC (Escritorio) */
 .device-pc .ads-banner {
-    height: 140px;
-    padding: 10px 30px;
-    background: #fdfdfd;
+    height: 240px; /* Máximo impacto visual en PC */
+    padding: 20px 45px;
 }
 
 .device-pc .ad-item {
-    height: 120px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    height: 200px;
+    min-width: 320px;
 }
 
-.device-pc #map-container {
-    padding: 30px;
+.device-pc #main-content {
+    height: calc(100vh - 110px - 240px - 40px);
 }
 
 /* Versión MÓVIL */
-.device-mobile header {
-    height: 90px;
-    padding: 10px 15px;
-}
-
-.device-mobile .title-container h1 {
-    font-size: 1.6rem;
-}
-
-.device-mobile .title-container p {
-    font-size: 0.8rem;
-}
-
 .device-mobile .ads-banner {
-    height: 100px;
-    padding: 5px;
-    gap: 10px;
-    border-bottom-width: 2px;
+    height: 180px;
+    padding: 15px;
+    gap: 15px;
 }
 
 .device-mobile .ad-item {
-    height: 85px;
-    border-radius: 8px;
+    height: 150px;
+    min-width: 240px;
 }
 
 .device-mobile #main-content {
-    height: calc(100vh - 90px - 100px - 40px);
+    height: calc(100vh - 90px - 180px - 40px);
 }
 
 .device-mobile #map-container {
