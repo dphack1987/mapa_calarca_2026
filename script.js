@@ -164,7 +164,7 @@ const pointsOfInterest = [
             en: "Coffee Culture Tour. Live the experience of being a coffee farmer for a day in one of the most traditional farms in the region."
         },
         category: "Cultura",
-        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        photo: "imagenes/pautas/pauta_recuca.jpg",
         openHours: [9, 17]
     },
     {
@@ -244,6 +244,71 @@ const pointsOfInterest = [
         category: "Gastronomía Local",
         photo: "imagenes/LOGO CALARCA 2026.jpg",
         openHours: [7, 20]
+    },
+    {
+        id: 12,
+        name: { es: "Alcaldía de Calarcá", en: "Calarca City Hall" },
+        coords: [3950, 4610],
+        realCoords: "4.5305,-75.6415",
+        description: {
+            es: "Sede del gobierno municipal, ubicada en el centro histórico de la ciudad.",
+            en: "Seat of the municipal government, located in the historic city center."
+        },
+        category: "Servicios",
+        photo: "imagenes/pautas/pauta_alcaldia.jpg",
+        openHours: [8, 16]
+    },
+    {
+        id: 13,
+        name: { es: "Quinti Café", en: "Quinti Coffee" },
+        coords: [3900, 4700],
+        realCoords: "4.5310,-75.6400",
+        description: {
+            es: "Sabor y tradición en cada taza. Disfruta de una experiencia cafetera única.",
+            en: "Flavor and tradition in every cup. Enjoy a unique coffee experience."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_quinti.jpg",
+        openHours: [8, 20]
+    },
+    {
+        id: 14,
+        name: { es: "Raíz Café", en: "Raiz Coffee" },
+        coords: [3880, 4650],
+        realCoords: "4.5300,-75.6410",
+        description: {
+            es: "Conectando con nuestras raíces a través del mejor café de origen.",
+            en: "Connecting with our roots through the best single-origin coffee."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_raiz.jpg",
+        openHours: [9, 21]
+    },
+    {
+        id: 15,
+        name: { es: "La Talanquera", en: "La Talanquera" },
+        coords: [400, 350],
+        realCoords: "4.4800,-75.7000",
+        description: {
+            es: "Tradición gastronómica en la vía principal, ideal para una parada deliciosa.",
+            en: "Gastronomic tradition on the main road, ideal for a delicious stop."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_talanquera.jpg",
+        openHours: [10, 22]
+    },
+    {
+        id: 16,
+        name: { es: "Comaparado", en: "Comaparado" },
+        coords: [500, 400],
+        realCoords: "4.4900,-75.6900",
+        description: {
+            es: "Servicios y atención de calidad para el viajero en Calarcá.",
+            en: "Quality services and attention for the traveler in Calarcá."
+        },
+        category: "Comercio",
+        photo: "imagenes/pautas/pauta_comaparado.jpg",
+        openHours: [8, 18]
     }
 ];
 

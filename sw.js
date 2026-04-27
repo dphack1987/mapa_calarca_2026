@@ -1,9 +1,9 @@
-const CACHE_NAME = 'calarca-2026-v21'; // Nueva versión
+const CACHE_NAME = 'calarca-2026-v22'; // Nueva versión
 const assets = [
   './',
-  './index.html?v=21',
-  './styles.css?v=21',
-  './script.js?v=21',
+  './index.html?v=22',
+  './styles.css?v=22',
+  './script.js?v=22',
   './manifest.json',
   './imagenes/LOGO CALARCA 2026.jpg',
   './imagenes/calarca 2026 mapa cara 2.jpg',
@@ -11,6 +11,13 @@ const assets = [
   './imagenes/franja1.jpg',
   './imagenes/pautaQR.jpg',
   './imagenes/pautas/pauta_san_miguel.jpeg',
+  './imagenes/pautas/pauta_fercho.jpg',
+  './imagenes/pautas/pauta_alcaldia.jpg',
+  './imagenes/pautas/pauta_comaparado.jpg',
+  './imagenes/pautas/pauta_quinti.jpg',
+  './imagenes/pautas/pauta_raiz.jpg',
+  './imagenes/pautas/pauta_recuca.jpg',
+  './imagenes/pautas/pauta_talanquera.jpg',
   'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
@@ -38,7 +45,7 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  e.respondWith(
+  e.respondWith(  
     caches.match(e.request).then(response => {
       return response || fetch(e.request);
     })
