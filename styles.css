@@ -249,6 +249,82 @@ header {
     height: calc(100vh - 110px - 120px - 40px); /* Ajustado a nueva altura del banner */
 }
 
+/* --- OPTIMIZACIÓN DISPOSITIVOS --- */
+
+/* Versión PC (Escritorio) */
+.device-pc .ads-banner {
+    height: 140px;
+    padding: 10px 30px;
+    background: #fdfdfd;
+}
+
+.device-pc .ad-item {
+    height: 120px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.device-pc #map-container {
+    padding: 30px;
+}
+
+/* Versión MÓVIL */
+.device-mobile header {
+    height: 90px;
+    padding: 10px 15px;
+}
+
+.device-mobile .title-container h1 {
+    font-size: 1.6rem;
+}
+
+.device-mobile .title-container p {
+    font-size: 0.8rem;
+}
+
+.device-mobile .ads-banner {
+    height: 100px;
+    padding: 5px;
+    gap: 10px;
+    border-bottom-width: 2px;
+}
+
+.device-mobile .ad-item {
+    height: 85px;
+    border-radius: 8px;
+}
+
+.device-mobile #main-content {
+    height: calc(100vh - 90px - 100px - 40px);
+}
+
+.device-mobile #map-container {
+    padding: 10px;
+}
+
+.device-mobile #map {
+    border-width: 4px;
+    border-radius: 15px;
+}
+
+.device-mobile .coordinate-helper {
+    bottom: 20px;
+    right: 20px;
+    font-size: 0.7rem;
+    padding: 6px 12px;
+}
+
+.device-mobile #ads-sidebar {
+    width: 100%; /* Sidebar ocupa todo el ancho en móvil */
+}
+
+/* Ocultar elementos innecesarios en móvil para ahorrar espacio */
+@media (max-width: 480px) {
+    .device-mobile footer {
+        padding: 10px;
+        font-size: 0.7rem;
+    }
+}
+
 /* Sidebar Estilo con fondo floral completo */
 #ads-sidebar {
     width: 380px;

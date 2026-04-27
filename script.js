@@ -3,9 +3,13 @@ let imgWidth = 2000;
 let imgHeight = 1500;
 let bounds = [[0, 0], [imgHeight, imgWidth]];
 
-// Device Detection
+// Device Detection & Device Class Assignment
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+// Add device class to body for CSS targeting
+document.body.classList.add(isMobile ? 'device-mobile' : 'device-pc');
+if (isTouchDevice) document.body.classList.add('device-touch');
 
 // Map Initialization with refined zoom
 const map = L.map('map', {
