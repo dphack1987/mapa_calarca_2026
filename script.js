@@ -315,6 +315,7 @@ const pointsOfInterest = [
 const selectedInfo = document.getElementById('selected-info');
 const favoritesContainer = document.getElementById('favorites-container');
 const adsSidebar = document.getElementById('ads-sidebar');
+const adsBanner = document.getElementById('ads-banner');
 const sidebarOverlay = document.getElementById('sidebar-overlay');
 const menuToggle = document.getElementById('menu-toggle');
 
@@ -606,6 +607,52 @@ function getCategoryColor(category) {
         case 'Servicios': return '#2980b9';
         case 'Recreación': return '#f1c40f';
         default: return '#27ae60';
+    }
+}
+
+// Pautas publicitarias para el banner superior
+const pautasPublicitarias = [
+    { id: 12, photo: "imagenes/pautas/pauta_alcaldia.jpg" },
+    { id: 16, photo: "imagenes/pautas/pauta_comaparado.jpg" },
+    { id: 10, photo: "imagenes/pautas/pauta_fercho.jpg" },
+    { id: 13, photo: "imagenes/pautas/pauta_quinti.jpg" },
+    { id: 14, photo: "imagenes/pautas/pauta_raiz.jpg" },
+    { id: 5, photo: "imagenes/pautas/pauta_recuca.jpg" },
+    { id: 11, photo: "imagenes/pautas/pauta_san_miguel.jpeg" },
+    { id: 15, photo: "imagenes/pautas/pauta_talanquera.jpg" }
+];
+
+function renderAdsBanner() {
+    const banner = document.getElementById('ads-banner');
+    if (!banner) {
+        console.error("No se encontró el elemento ads-banner");
+        return;
+    }
+    
+    banner.innerHTML = '';
+    pautasPublicitarias.forEach(pauta => {
+        const point = pointsOfInterest.find(p => p.id === pauta.id);
+        const div = document.createElement('div');
+        div.className = 'ad-item';
+        div.innerHTML = `<img src="${pauta.photo}" alt="Pauta ${pauta.id}" onerror="this.src='imagenes/LOGO CALARCA 2026.jpg'">`;
+        
+        div.onclick = () => {
+            if (point) {
+                map.flyTo(point.coords, 1);
+                renderPointDetails(point);
+                // Abrir el sidebar para mostrar los detalles si está cerrado
+                if (!adsSidebar.classList.contains('open')) {
+                    toggleSidebar();
+                }
+            }
+        };
+        banner.appendChild(div);
+    });
+
+    // Activar scroll horizontal solo si es necesario (cuando el contenido excede el ancho)
+    if (banner.scrollWidth > banner.clientWidth) {
+        banner.style.overflowX = 'auto';
+        banner.style.scrollbarWidth = 'thin'; // Restaurar scrollbar si desborda
     }
 }
 

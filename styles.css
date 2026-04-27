@@ -194,38 +194,43 @@ header {
 
 /* Banner de Publicidad Superior */
 .ads-banner {
-    background: #fff;
-    height: 140px;
+    background: #ffffff;
+    height: 120px;
     width: 100%;
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 10px 20px;
+    padding: 10px;
     overflow-x: auto;
+    overflow-y: hidden;
     white-space: nowrap;
-    border-bottom: 2px solid var(--primary-color);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    z-index: 900;
-    scrollbar-width: thin;
+    border-bottom: 3px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 1100; /* Por encima del header si es necesario */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
 }
 
+/* Solo mostrar scrollbar si el contenido desborda */
 .ads-banner::-webkit-scrollbar {
-    height: 6px;
+    display: none; /* Ocultar por defecto para limpieza */
 }
 
 .ad-item {
     flex: 0 0 auto;
     height: 100%;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     transition: transform 0.3s ease;
     cursor: pointer;
-    border: 1px solid #eee;
+    border: 2px solid transparent;
+    background: #f9f9f9;
 }
 
 .ad-item:hover {
-    transform: translateY(-5px) scale(1.02);
+    transform: scale(1.05);
+    border-color: var(--primary-color);
 }
 
 .ad-item img {
@@ -241,7 +246,7 @@ header {
     flex: 1;
     overflow: hidden;
     position: relative;
-    height: calc(100vh - 110px - 140px - 40px); /* Restando header, banner y footer */
+    height: calc(100vh - 110px - 120px - 40px); /* Ajustado a nueva altura del banner */
 }
 
 /* Sidebar Estilo con fondo floral completo */
