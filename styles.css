@@ -217,20 +217,13 @@ header {
     height: 100%;
     width: 100%;
     display: block;
-    background-color: #f0f0f0;
+    background-color: #e5e9e7;
     z-index: 1;
 }
 
-/* Indicador de carga sutil */
+/* Ocultar indicador de carga si existiera */
 #map::after {
-    content: 'Cargando...';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 0.9rem;
-    color: #999;
-    z-index: 0;
+    display: none;
 }
 
 /* Banner de Publicidad - Móvil (Abajo) */

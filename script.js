@@ -17,53 +17,48 @@ const map = L.map('map', {
     minZoom: -3,
     maxZoom: 3,
     zoomSnap: 0.1,
-    attributionControl: false,
-    preferCanvas: true
+    attributionControl: false
 });
 
 const mapImagePath = 'imagenes/mapa_principal.jpg';
 
-// Pre-load the image
+// Definir dimensiones iniciales para que el mapa no esté "vacio"
+const initialBounds = [[0, 0], [2000, 3000]];
+const overlay = L.imageOverlay(mapImagePath, initialBounds).addTo(map);
+
+// Cuando la imagen cargue, ajustar las dimensiones reales
 const mapImage = new Image();
 mapImage.onload = function() {
     imgWidth = this.width;
     imgHeight = this.height;
     bounds = [[0, 0], [imgHeight, imgWidth]];
     
-    // Add the image overlay
-    L.imageOverlay(mapImagePath, bounds).addTo(map);
-    
+    overlay.setBounds(bounds);
     map.setMaxBounds(bounds.pad(0.1));
     map.fitBounds(bounds);
-    
     map.invalidateSize();
-    console.log("Mapa Leaflet inicializado con imagen de:", imgWidth, "x", imgHeight);
- };
-
-mapImage.onerror = function() {
-    console.error("ERROR CRÍTICO: No se pudo cargar la imagen del mapa en:", mapImagePath);
-    // Intento desesperado con ruta absoluta
-    const absolutePath = window.location.origin + '/' + mapImagePath;
-    console.log("Reintentando con ruta absoluta:", absolutePath);
-    const retryImage = new Image();
-    retryImage.onload = function() {
-        console.log("¡ÉXITO en el reintento!");
-        imgWidth = this.width;
-        imgHeight = this.height;
-        bounds = [[0, 0], [imgHeight, imgWidth]];
-        L.imageOverlay(absolutePath, bounds).addTo(map);
-        map.fitBounds(bounds);
-        map.invalidateSize();
-    };
-    retryImage.src = absolutePath;
+    console.log("Mapa cargado con dimensiones reales:", imgWidth, "x", imgHeight);
 };
-
 mapImage.src = mapImagePath;
+
+// Asegurar que el mapa se vea al cargar
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 500);
+});
 
 // Re-dimensionar mapa al cambiar el tamaño de ventana
 window.addEventListener('resize', () => {
     map.invalidateSize();
 });
+
+// Service Worker Registration
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js?v=43');
+    });
+}
 
 // Language and Favorites State
 let currentLang = 'es';
