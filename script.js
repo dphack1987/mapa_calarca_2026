@@ -28,8 +28,8 @@ const map = L.map('map', {
 
 // Load the image to get its actual dimensions
 const mapImage = new Image();
-const mapImagePath = 'imagenes/mapa/calarca 2026 mapa cara 2.jpg';
-mapImage.src = mapImagePath; // Removido cache busting para evitar conflictos con SW
+const mapImagePath = 'imagenes/mapa_principal.jpg';
+mapImage.src = mapImagePath;
 
 mapImage.onload = function() {
     imgWidth = this.width;
@@ -38,31 +38,22 @@ mapImage.onload = function() {
     
     console.log(`Imagen del mapa cargada con éxito: ${imgWidth}x${imgHeight}px`);
     
-    // Add the image overlay with actual dimensions
-    const overlay = L.imageOverlay(mapImagePath, bounds, {
-        interactive: true,
-        className: 'high-res-layer'
-    }).addTo(map);
+    // Add the image overlay
+    L.imageOverlay(mapImagePath, bounds).addTo(map);
     
-    // Configurar límites y vista inicial
     map.setMaxBounds(bounds.pad(0.1));
-    
-    // Ajustar vista inicial
     map.fitBounds(bounds);
     
-    // Forzar redibujado inmediato y después de un breve delay
+    // Forzar redibujado
     map.invalidateSize();
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 500);
+    setTimeout(() => map.invalidateSize(), 500);
  };
 
 mapImage.onerror = function() {
-    console.error("ERROR CRÍTICO: No se pudo cargar la imagen del mapa en: " + mapImagePath);
-    // Intento de recuperación con ruta alternativa por si acaso
-    if (!mapImagePath.startsWith('./')) {
-        console.log("Reintentando con ./ ...");
-        mapImage.src = './' + mapImagePath;
+    console.error("ERROR CRÍTICO: No se pudo cargar " + mapImagePath);
+    // Intento con ruta absoluta si la relativa falla
+    if (!mapImage.src.includes(window.location.origin)) {
+        mapImage.src = window.location.origin + '/' + mapImagePath;
     }
 };
 
@@ -1273,7 +1264,7 @@ console.log(`Versión: 2.0 - Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isT
 // Service Worker Registration for PWA with enhanced update logic
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=36')
+        navigator.serviceWorker.register('sw.js?v=37')
             .then(registration => {
                 console.log('SW registrado con éxito:', registration.scope);
                 
