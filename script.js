@@ -28,7 +28,7 @@ const map = L.map('map', {
 
 // Load the image to get its actual dimensions
 const mapImage = new Image();
-const mapImagePath = 'imagenes/calarca 2026 mapa cara 2.jpg';
+const mapImagePath = 'imagenes/mapa/calarca 2026 mapa cara 2.jpg';
 mapImage.src = mapImagePath + '?v=' + new Date().getTime(); // Cache busting for the map image
 
 mapImage.onload = function() {
@@ -1270,7 +1270,7 @@ console.log(`Versión: 2.0 - Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isT
 // Service Worker Registration for PWA with enhanced update logic
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=34')
+        navigator.serviceWorker.register('sw.js?v=35')
             .then(registration => {
                 console.log('SW registrado con éxito:', registration.scope);
                 
