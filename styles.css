@@ -213,6 +213,8 @@ header {
     height: 100%;
     width: 100%;
     display: block;
+    background-color: #d0d7d4; /* Color de fondo más visible para diagnóstico */
+    border: 1px solid #ccc;
 }
 
 /* Banner de Publicidad - Móvil (Abajo) */
