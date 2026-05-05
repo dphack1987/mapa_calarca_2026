@@ -329,6 +329,286 @@ const pointsOfInterest = [
         category: "Comercio",
         photo: "imagenes/pautas/pauta_comaparado.jpg",
         openHours: [8, 18]
+    },
+    {
+        id: 17,
+        name: { es: "Albania", en: "Albania" },
+        coords: [3960, 4650],
+        realCoords: "4.5310,-75.6420",
+        phone: "+573100000000",
+        description: {
+            es: "Deliciosa gastronomía local en un ambiente acogedor.",
+            en: "Delicious local gastronomy in a cozy atmosphere."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_albania.jpg",
+        openHours: [11, 21]
+    },
+    {
+        id: 18,
+        name: { es: "Alemania", en: "Alemania" },
+        coords: [3940, 4670],
+        realCoords: "4.5300,-75.6430",
+        phone: "+573100000000",
+        description: {
+            es: "Sabor tradicional con un toque internacional.",
+            en: "Traditional flavor with an international touch."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_alemania.jpg",
+        openHours: [12, 22]
+    },
+    {
+        id: 19,
+        name: { es: "Amaranta", en: "Amaranta" },
+        coords: [3920, 4690],
+        realCoords: "4.5290,-75.6440",
+        phone: "+573100000000",
+        description: {
+            es: "Café de origen y repostería artesanal.",
+            en: "Single-origin coffee and artisanal pastries."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_amaranta.jpg",
+        openHours: [8, 20]
+    },
+    {
+        id: 20,
+        name: { es: "Bendito", en: "Bendito" },
+        coords: [3900, 4710],
+        realCoords: "4.5280,-75.6450",
+        phone: "+573100000000",
+        description: {
+            es: "El lugar perfecto para un buen café y una buena charla.",
+            en: "The perfect place for a good coffee and a good chat."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_bendito.jpg",
+        openHours: [9, 21]
+    },
+    {
+        id: 21,
+        name: { es: "Bisonte", en: "Bisonte" },
+        coords: [3880, 4730],
+        realCoords: "4.5270,-75.6460",
+        phone: "+573100000000",
+        description: {
+            es: "Especialistas en carnes a la parrilla y platos típicos.",
+            en: "Specialists in grilled meats and typical dishes."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_bisonte.jpg",
+        openHours: [12, 23]
+    },
+    {
+        id: 22,
+        name: { es: "Chaparral", en: "Chaparral" },
+        coords: [3860, 4750],
+        realCoords: "4.5260,-75.6470",
+        phone: "+573100000000",
+        description: {
+            es: "Tradición y sabor en cada plato.",
+            en: "Tradition and flavor in every dish."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_chaparral.jpg",
+        openHours: [11, 20]
+    },
+    {
+        id: 23,
+        name: { es: "Confía", en: "Confia" },
+        coords: [3840, 4770],
+        realCoords: "4.5250,-75.6480",
+        phone: "+573100000000",
+        description: {
+            es: "Servicios financieros y atención personalizada.",
+            en: "Financial services and personalized attention."
+        },
+        category: "Servicios",
+        photo: "imagenes/pautas/pauta_confia.jpg",
+        openHours: [8, 17]
+    },
+    {
+        id: 24,
+        name: { es: "Coomocal", en: "Coomocal" },
+        coords: [3820, 4790],
+        realCoords: "4.5240,-75.6490",
+        phone: "+573100000000",
+        description: {
+            es: "Transporte seguro y confiable para toda la región.",
+            en: "Safe and reliable transport for the entire region."
+        },
+        category: "Transporte",
+        photo: "imagenes/pautas/pauta_coomocal.jpg",
+        openHours: [5, 21]
+    },
+    {
+        id: 25,
+        name: { es: "Descanso", en: "Descanso" },
+        coords: [3800, 4810],
+        realCoords: "4.5230,-75.6500",
+        phone: "+573100000000",
+        description: {
+            es: "Hospedaje acogedor con el mejor ambiente rural.",
+            en: "Cozy lodging with the best rural atmosphere."
+        },
+        category: "Hospedaje Rural",
+        photo: "imagenes/pautas/pauta_descanso.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 26,
+        name: { es: "Domo", en: "Domo" },
+        coords: [3780, 4830],
+        realCoords: "4.5220,-75.6510",
+        phone: "+573100000000",
+        description: {
+            es: "Experiencia de glamping única en contacto con la naturaleza.",
+            en: "Unique glamping experience in contact with nature."
+        },
+        category: "Hospedaje Rural",
+        photo: "imagenes/pautas/pauta_domo.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 27,
+        name: { es: "Marta", en: "Marta" },
+        coords: [3760, 4850],
+        realCoords: "4.5210,-75.6520",
+        phone: "+573100000000",
+        description: {
+            es: "Cocina casera con el amor de hogar.",
+            en: "Home cooking with the love of home."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_marta.jpg",
+        openHours: [11, 15]
+    },
+    {
+        id: 28,
+        name: { es: "Master", en: "Master" },
+        coords: [3740, 4870],
+        realCoords: "4.5200,-75.6530",
+        phone: "+573100000000",
+        description: {
+            es: "Todo lo que necesitas para tu hogar en un solo lugar.",
+            en: "Everything you need for your home in one place."
+        },
+        category: "Comercio",
+        photo: "imagenes/pautas/pauta_master.jpg",
+        openHours: [8, 19]
+    },
+    {
+        id: 29,
+        name: { es: "Origen", en: "Origen" },
+        coords: [3720, 4890],
+        realCoords: "4.5190,-75.6540",
+        phone: "+573100000000",
+        description: {
+            es: "El verdadero sabor del café de origen.",
+            en: "The true flavor of single-origin coffee."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_origen.jpg",
+        openHours: [8, 20]
+    },
+    {
+        id: 30,
+        name: { es: "Peñas", en: "Peñas" },
+        coords: [3700, 4910],
+        realCoords: "4.5180,-75.6550",
+        phone: "+573100000000",
+        description: {
+            es: "Aventura y naturaleza en las majestuosas Peñas Blancas.",
+            en: "Adventure and nature in the majestic Peñas Blancas."
+        },
+        category: "Aventura",
+        photo: "imagenes/pautas/pauta_peñas.jpg",
+        openHours: [8, 17]
+    },
+    {
+        id: 31,
+        name: { es: "Quindío Travel", en: "Quindio Travel" },
+        coords: [3680, 4930],
+        realCoords: "4.5170,-75.6560",
+        phone: "+573100000000",
+        description: {
+            es: "Tu agencia de viajes para explorar el Quindío.",
+            en: "Your travel agency to explore Quindío."
+        },
+        category: "Transporte",
+        photo: "imagenes/pautas/pauta_quindio_travel.jpg",
+        openHours: [8, 18]
+    },
+    {
+        id: 32,
+        name: { es: "Quindus", en: "Quindus" },
+        coords: [3660, 4950],
+        realCoords: "4.5160,-75.6570",
+        phone: "+573126336143",
+        description: {
+            es: "Café, comida rápida y el mejor ambiente.",
+            en: "Coffee, fast food and the best atmosphere."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_quindus.jpg",
+        openHours: [8, 21]
+    },
+    {
+        id: 33,
+        name: { es: "Río", en: "Rio" },
+        coords: [3640, 4970],
+        realCoords: "4.5150,-75.6580",
+        phone: "+573100000000",
+        description: {
+            es: "Conexión natural junto al río.",
+            en: "Natural connection by the river."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/pautas/pauta_rio.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 34,
+        name: { es: "Tertulia", en: "Tertulia" },
+        coords: [3620, 4990],
+        realCoords: "4.5140,-75.6590",
+        phone: "+573100000000",
+        description: {
+            es: "Un espacio para compartir y disfrutar del buen café.",
+            en: "A space to share and enjoy good coffee."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_tertulia.jpg",
+        openHours: [10, 22]
+    },
+    {
+        id: 35,
+        name: { es: "Ticlan", en: "Ticlan" },
+        coords: [3600, 5010],
+        realCoords: "4.5130,-75.6600",
+        phone: "+573100000000",
+        description: {
+            es: "Gastronomía con identidad propia.",
+            en: "Gastronomy with its own identity."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/pautas/pauta_ticlan.jpg",
+        openHours: [12, 21]
+    },
+    {
+        id: 36,
+        name: { es: "Mapa Calarcá 2026", en: "Calarca Map 2026" },
+        coords: [3580, 5030],
+        realCoords: "4.5120,-75.6610",
+        phone: "+573100000000",
+        description: {
+            es: "Información general y mapa detallado de la región.",
+            en: "General information and detailed map of the region."
+        },
+        category: "Cultura",
+        photo: "imagenes/pautas/pauta_mapa.jpg",
+        openHours: [0, 24]
     }
 ];
 
@@ -502,46 +782,46 @@ function getCategoryIcon(category) {
     
     switch(category) {
         case 'Cultura':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2921/2921471.png';
+            iconUrl = 'imagenes/casillas_info/casillas_atractivos.jpg';
             break;
         case 'Naturaleza':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3222/3222800.png';
+            iconUrl = 'imagenes/casillas_info/casillas_atractivos.jpg';
             break;
         case 'Aventura':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3050/3050511.png';
+            iconUrl = 'imagenes/casillas_info/casillas_agencias.jpg';
             break;
         case 'Hospedaje Rural':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2163/2163350.png'; // Icono de cabaña/casa rural
+            iconUrl = 'imagenes/casillas_info/casillas_alojamiento.jpg';
             break;
         case 'Hospedaje Urbano':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2329/2329895.png'; // Icono de hotel/edificio
+            iconUrl = 'imagenes/casillas_info/casillas_alojamiento.jpg';
             break;
         case 'Gastronomía Local':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2737/2737034.png'; // Icono de comida tradicional
+            iconUrl = 'imagenes/casillas_info/casillas_restaurantes.jpg';
             break;
         case 'Gastronomía Internacional':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png'; // Icono de hamburguesa/pasta
+            iconUrl = 'imagenes/casillas_info/casillas_pizeria.jpg';
             break;
         case 'Gastronomía de Mar':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2927/2927347.png'; // Icono de pescado
+            iconUrl = 'imagenes/casillas_info/casillas_restaurantes.jpg';
             break;
         case 'Comercio':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2331/2331970.png'; // Icono de tienda/bolsa
+            iconUrl = 'imagenes/casillas_info/casillas tiendas de cafe.jpg';
             break;
         case 'Transporte':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2898/2898588.png'; // Icono de bus/transporte
+            iconUrl = 'imagenes/casillas_info/casillas_taxis.jpg';
             break;
         case 'Centros Comerciales':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/2331/2331966.png'; // Icono de mall
+            iconUrl = 'imagenes/casillas_info/casillas tiendas de cafe.jpg';
             break;
         case 'Servicios':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/1067/1067561.png'; // Icono de servicios/ayuda
+            iconUrl = 'imagenes/casillas_info/casillas_alcaldia.jpg';
             break;
         case 'Recreación':
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/1802/1802956.png';
+            iconUrl = 'imagenes/casillas_info/casillas_atractivos.jpg';
             break;
         default:
-            iconUrl = 'https://cdn-icons-png.flaticon.com/512/684/684908.png';
+            iconUrl = 'imagenes/LOGO CALARCA 2026.jpg';
     }
 
     return L.icon({
@@ -647,7 +927,11 @@ const pautasPublicitarias = [
     { id: 14, photo: "imagenes/pautas/pauta_raiz.jpg" },
     { id: 5, photo: "imagenes/pautas/pauta_recuca.jpg" },
     { id: 11, photo: "imagenes/pautas/pauta_san_miguel.jpeg" },
-    { id: 15, photo: "imagenes/pautas/pauta_talanquera.jpg" }
+    { id: 15, photo: "imagenes/pautas/pauta_talanquera.jpg" },
+    { id: 19, photo: "imagenes/pautas/pauta_amaranta.jpg" },
+    { id: 21, photo: "imagenes/pautas/pauta_bisonte.jpg" },
+    { id: 32, photo: "imagenes/pautas/pauta_quindus.jpg" },
+    { id: 34, photo: "imagenes/pautas/pauta_tertulia.jpg" }
 ];
 
 function renderAdsBanner() {
