@@ -195,35 +195,89 @@ header {
 #main-content {
     flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Cambiado a row para que las pautas queden al lado en PC */
     position: relative;
     overflow: hidden;
+    height: 100%;
 }
 
 #map-container {
     flex: 1;
     position: relative;
     background-color: #e5e9e7;
+    height: 100%; /* Asegurar altura total */
+    min-width: 0; /* Evitar desbordamiento flex */
 }
 
 #map {
     height: 100%;
     width: 100%;
+    display: block;
 }
 
-/* Banner de Publicidad - "A los lados" o al fondo */
+/* Banner de Publicidad - Móvil (Abajo) */
 .ads-banner {
     background: #f8f9fa;
-    height: 110px;
+    height: 100px;
     width: 100%;
     display: flex;
     overflow-x: auto;
     gap: 15px;
-    padding: 15px;
+    padding: 10px;
     z-index: 1050;
     box-shadow: 0 -2px 15px rgba(0,0,0,0.08);
     flex-shrink: 0;
     border-top: 1px solid #eee;
+    position: absolute; /* Para que esté sobre el mapa en móvil si se desea, o estático al final */
+    bottom: 0;
+    left: 0;
+}
+
+/* En PC, las pautas van al lado derecho de forma estática */
+@media (min-width: 1024px) {
+    #main-content {
+        flex-direction: row;
+    }
+
+    .ads-banner {
+        position: relative; /* Estático al lado */
+        width: 250px;
+        height: 100%;
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+        border-top: none;
+        border-left: 1px solid #eee;
+        padding: 20px;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.05);
+    }
+
+    .ad-item {
+        width: 100%;
+        min-width: unset;
+        height: 180px; /* Pautas más grandes en PC */
+        margin-bottom: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+}
+
+/* En móvil, el banner es una barra horizontal al fondo */
+@media (max-width: 1023px) {
+    #main-content {
+        flex-direction: column;
+    }
+    
+    .ads-banner {
+        position: relative;
+        height: 150px; /* Pautas más grandes en móvil */
+        border-top: 1px solid #eee;
+    }
+
+    .ad-item {
+        height: 120px;
+        min-width: 200px;
+    }
 }
 
 .ads-banner::-webkit-scrollbar {
@@ -471,12 +525,93 @@ header {
     margin-bottom: 10px;
 }
 
-.action-btn {
-    border-radius: 10px;
-    font-weight: 600;
-    text-transform: none;
-    letter-spacing: 0;
+/* Botones de acción elaborados */
+.point-actions-elaborated {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.nav-btn-full {
+    background: var(--primary-color);
+    color: white;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 10px;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: white;
+}
+
+.call-btn {
+    background: #3498db;
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    filter: brightness(1.1);
+}
+
+.point-content {
+    padding: 20px;
+}
+
+.point-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.category-badge {
+    background: #f0f0f0;
+    color: #555;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.status-badge.open { background: #e8f5e9; color: #2e7d32; }
+.status-badge.closed { background: #ffebee; color: #c62828; }
+
+.fav-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.fav-btn:hover { transform: scale(1.2); }
 
 /* Banner de Publicidad Lateral Estático en PC */
 @media (min-width: 1024px) {

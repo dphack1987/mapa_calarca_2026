@@ -49,7 +49,17 @@ mapImage.onload = function() {
     });
     
     console.log(`Mapa cargado: ${imgWidth}x${imgHeight}px`);
+    
+    // Forzar redibujado para evitar que se vea cortado
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 100);
  };
+
+// Re-dimensionar mapa al cambiar el tamaño de ventana
+window.addEventListener('resize', () => {
+    map.invalidateSize();
+});
 
 // Language and Favorites State
 let currentLang = 'es';
@@ -678,10 +688,15 @@ function updateFavoritesUI() {
 
 function renderPointDetails(point) {
     selectedInfo.style.opacity = '0';
+    
+    // Asegurar que el sidebar esté abierto para mostrar la información
+    if (!adsSidebar.classList.contains('open')) {
+        toggleSidebar();
+    }
+
     setTimeout(() => {
         const currentUrl = window.location.href;
         const shareText = encodeURIComponent(`¡Mira este lugar en Calarcá! 📍 ${point.name[currentLang]}: ${currentUrl}`);
-        const whatsappUrl = `https://wa.me/?text=${shareText}`;
         
         const openStatus = isOpen(point.openHours);
         const statusLabel = openStatus ? 
@@ -689,13 +704,17 @@ function renderPointDetails(point) {
             `<span class="status-badge closed">${translations[currentLang].closed}</span>`;
 
         const isFav = favorites.includes(point.id);
+        
+        // Botones de acción directos: WhatsApp y Cómo llegar
         const phoneHtml = point.phone ? `
-            <a href="https://wa.me/${point.phone.replace(/\+/g, '')}" target="_blank" class="action-btn whatsapp-btn">
-                💬 WhatsApp Directo
-            </a>
-            <a href="tel:${point.phone}" class="action-btn call-btn">
-                📞 Llamar Ahora
-            </a>
+            <div class="action-grid">
+                <a href="https://wa.me/${point.phone.replace(/\+/g, '')}?text=${encodeURIComponent('Hola, vi su anuncio en el Mapa Turístico Calarcá 2026 y me gustaría obtener más información.')}" target="_blank" class="action-btn whatsapp-btn">
+                    💬 WhatsApp Directo
+                </a>
+                <a href="tel:${point.phone}" class="action-btn call-btn">
+                    📞 Llamar
+                </a>
+            </div>
         ` : '';
 
         selectedInfo.innerHTML = `
@@ -714,10 +733,10 @@ function renderPointDetails(point) {
                         <span class="category-badge">${point.category}</span>
                         ${statusLabel}
                     </div>
-                    <p>${point.description[currentLang]}</p>
-                    <div class="point-actions">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=${point.realCoords}" target="_blank" class="action-btn nav-btn">
-                            ${translations[currentLang].howToGet}
+                    <p style="margin-bottom: 20px; line-height: 1.6;">${point.description[currentLang]}</p>
+                    <div class="point-actions-elaborated">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=${point.realCoords}" target="_blank" class="action-btn nav-btn-full">
+                            📍 Cómo llegar (GPS)
                         </a>
                         ${phoneHtml}
                     </div>
@@ -725,6 +744,9 @@ function renderPointDetails(point) {
             </div>
         `;
         selectedInfo.style.opacity = '1';
+        
+        // Hacer scroll suave hacia la información destacada en el sidebar
+        selectedInfo.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 300);
 }
 
