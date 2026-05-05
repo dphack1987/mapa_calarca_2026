@@ -217,24 +217,19 @@ header {
     height: 100%;
     width: 100%;
     display: block;
-    background-color: #f0f0f0; /* Fondo gris neutro */
-    background-image: url('imagenes/mapa_principal.jpg'); /* Imagen de fondo como respaldo */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: #f0f0f0;
     z-index: 1;
 }
 
-/* Indicador de carga */
+/* Indicador de carga sutil */
 #map::after {
-    content: 'Cargando mapa (24MB)... por favor espera';
+    content: 'Cargando...';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1rem;
-    font-weight: bold;
-    color: #666;
+    font-size: 0.9rem;
+    color: #999;
     z-index: 0;
 }
 

@@ -36,9 +36,6 @@ mapImage.onload = function() {
     map.setMaxBounds(bounds.pad(0.1));
     map.fitBounds(bounds);
     
-    // Quitar el fondo de respaldo del CSS una vez cargado en Leaflet
-    document.getElementById('map').style.backgroundImage = 'none';
-    
     map.invalidateSize();
     console.log("Mapa Leaflet inicializado con imagen de:", imgWidth, "x", imgHeight);
  };
@@ -1270,7 +1267,7 @@ console.log(`Versión: 2.0 - Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isT
 // Service Worker Registration for PWA with enhanced update logic
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=40')
+        navigator.serviceWorker.register('sw.js?v=42')
             .then(registration => {
                 console.log('SW registrado con éxito:', registration.scope);
                 
