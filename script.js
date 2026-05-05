@@ -11,7 +11,7 @@ const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 document.body.classList.add(isMobile ? 'device-mobile' : 'device-pc');
 if (isTouchDevice) document.body.classList.add('device-touch');
 
-// Map Initialization with refined zoom
+// Map Initialization
 const map = L.map('map', {
     crs: L.CRS.Simple,
     minZoom: -3,
@@ -21,17 +21,14 @@ const map = L.map('map', {
     preferCanvas: true
 });
 
-// Load the image to get its actual dimensions
 const mapImagePath = 'imagenes/mapa_principal.jpg';
-console.log("Intentando cargar imagen del mapa:", mapImagePath);
 
+// Pre-load the image
 const mapImage = new Image();
 mapImage.onload = function() {
     imgWidth = this.width;
     imgHeight = this.height;
     bounds = [[0, 0], [imgHeight, imgWidth]];
-    
-    console.log("¡ÉXITO! Imagen del mapa cargada:", imgWidth, "x", imgHeight);
     
     // Add the image overlay
     L.imageOverlay(mapImagePath, bounds).addTo(map);
@@ -39,11 +36,11 @@ mapImage.onload = function() {
     map.setMaxBounds(bounds.pad(0.1));
     map.fitBounds(bounds);
     
-    // Forzar redibujado varias veces para asegurar visibilidad
+    // Quitar el fondo de respaldo del CSS una vez cargado en Leaflet
+    document.getElementById('map').style.backgroundImage = 'none';
+    
     map.invalidateSize();
-    setTimeout(() => map.invalidateSize(), 100);
-    setTimeout(() => map.invalidateSize(), 500);
-    setTimeout(() => map.invalidateSize(), 1000);
+    console.log("Mapa Leaflet inicializado con imagen de:", imgWidth, "x", imgHeight);
  };
 
 mapImage.onerror = function() {
@@ -1273,7 +1270,7 @@ console.log(`Versión: 2.0 - Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isT
 // Service Worker Registration for PWA with enhanced update logic
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=38')
+        navigator.serviceWorker.register('sw.js?v=40')
             .then(registration => {
                 console.log('SW registrado con éxito:', registration.scope);
                 
