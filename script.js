@@ -842,22 +842,28 @@ function isOpen(hours) {
     return hour >= hours[0] && hour < hours[1];
 }
 
+// Custom Elaborated Marker Icon with Category Image
+function createElaboratedIcon(point) {
+    const categoryIcon = getCategoryIcon(point.category).options.iconUrl;
+    
+    return L.divIcon({
+        html: `
+            <div class="elaborated-marker">
+                <div class="marker-id">${point.id}</div>
+                <div class="marker-thumb" style="background-image: url('${categoryIcon}')"></div>
+                <div class="marker-pin"></div>
+            </div>
+        `,
+        className: 'custom-marker-container',
+        iconSize: [50, 60],
+        iconAnchor: [25, 60],
+        popupAnchor: [0, -60]
+    });
+}
+
 // Helper function to add a single marker
 function addMarker(point) {
-    let icon;
-    
-    // Si el punto tiene un ID, creamos un icono circular con número
-    if (point.id) {
-        icon = L.divIcon({
-            html: `<div class="marker-number-container">${point.id}</div>`,
-            className: 'custom-marker-icon',
-            iconSize: [40, 40],
-            iconAnchor: [20, 40],
-            popupAnchor: [0, -40]
-        });
-    } else {
-        icon = getCategoryIcon(point.category);
-    }
+    const icon = createElaboratedIcon(point);
 
     const marker = L.marker(point.coords, {
         icon: icon
@@ -866,8 +872,11 @@ function addMarker(point) {
     // Popup personalizado más elegante
     const popupContent = `
         <div class="modern-popup">
-            <b style="color: var(--primary-color); font-size: 1.1rem;">${point.name[currentLang]}</b>
-            <p style="margin: 5px 0; font-size: 0.8rem; font-weight: 700; color: var(--accent-color); text-transform: uppercase;">${point.category}</p>
+            <div class="popup-thumb" style="background-image: url('${point.photo}')"></div>
+            <div class="popup-info">
+                <b>${point.name[currentLang]}</b>
+                <p>${point.category}</p>
+            </div>
         </div>
     `;
     

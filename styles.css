@@ -260,54 +260,251 @@ header {
     padding: 5px;
 }
 
-/* Sidebar Estilo Profesional */
+/* Sidebar Estilo Profesional y Estático */
 #ads-sidebar {
-    width: 320px;
-    background: white;
+    width: 350px;
+    background: #ffffff;
     height: 100%;
-    position: absolute;
-    left: -320px;
-    top: 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; /* Cambiado de absolute a relative */
+    left: 0; /* Siempre visible en PC */
+    transition: all 0.4s ease;
     z-index: 2000;
-    box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+    box-shadow: 2px 0 15px rgba(0,0,0,0.05);
     overflow-y: auto;
-    padding: 0; /* Padding manejado internamente por secciones */
+    padding: 0;
+    flex-shrink: 0; /* No se encoge */
+    border-right: 1px solid #eee;
 }
 
-#ads-sidebar.open {
-    left: 0;
+/* Ocultar el overlay en PC */
+.sidebar-overlay {
+    display: none !important;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 1023px) {
+    #ads-sidebar {
+        position: fixed;
+        left: -100%;
+        width: 85%;
+        max-width: 320px;
+    }
+
+    #ads-sidebar.open {
+        left: 0;
+    }
+
+    .sidebar-overlay {
+        display: block !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1500;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
 }
 
 .sidebar-section {
-    padding: 20px;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 25px;
+    border-bottom: 1px solid #f5f5f5;
+    background: white;
 }
 
-/* Media Queries para PC - Pautas a los lados */
+.sidebar-section h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Diseño elaborado para los filtros (Casillas de Información) */
+.filter-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Cuadrícula de 2 columnas */
+    gap: 10px;
+}
+
+.filter-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.filter-btn::before {
+    content: '';
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    filter: grayscale(0.5);
+    transition: all 0.3s ease;
+}
+
+/* Asignación de imágenes a los botones de filtro */
+.filter-btn[data-category="todos"]::before { background-image: url('imagenes/LOGO CALARCA 2026.jpg'); }
+.filter-btn[data-category="Cultura"]::before { background-image: url('imagenes/casillas_info/casillas_atractivos.jpg'); }
+.filter-btn[data-category="Naturaleza"]::before { background-image: url('imagenes/casillas_info/casillas_atractivos.jpg'); }
+.filter-btn[data-category="Aventura"]::before { background-image: url('imagenes/casillas_info/casillas_agencias.jpg'); }
+.filter-btn[data-category="Hospedaje Rural"]::before { background-image: url('imagenes/casillas_info/casillas_alojamiento.jpg'); }
+.filter-btn[data-category="Hospedaje Urbano"]::before { background-image: url('imagenes/casillas_info/casillas_alojamiento.jpg'); }
+.filter-btn[data-category="Gastronomía Local"]::before { background-image: url('imagenes/casillas_info/casillas_restaurantes.jpg'); }
+.filter-btn[data-category="Gastronomía Internacional"]::before { background-image: url('imagenes/casillas_info/casillas_pizeria.jpg'); }
+.filter-btn[data-category="Gastronomía de Mar"]::before { background-image: url('imagenes/casillas_info/casillas_restaurantes.jpg'); }
+.filter-btn[data-category="Comercio"]::before { background-image: url('imagenes/casillas_info/casillas tiendas de cafe.jpg'); }
+.filter-btn[data-category="Transporte"]::before { background-image: url('imagenes/casillas_info/casillas_taxis.jpg'); }
+.filter-btn[data-category="Centros Comerciales"]::before { background-image: url('imagenes/casillas_info/casillas tiendas de cafe.jpg'); }
+.filter-btn[data-category="Servicios"]::before { background-image: url('imagenes/casillas_info/casillas_alcaldia.jpg'); }
+
+.filter-btn:hover {
+    background: #ffffff;
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.filter-btn:hover::before {
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.2);
+}
+
+.filter-btn.active::before {
+    filter: grayscale(0) brightness(1.2);
+}
+
+/* Buscador Elaborado */
+#search-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #f0f0f0;
+    border-radius: 15px;
+    background: #fdfdfd;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: white;
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.1);
+}
+
+/* Pasaporte (Favoritos) Elaborado */
+.favorites-bar {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 5px 5px 15px 5px;
+    scrollbar-width: none;
+}
+
+.fav-item {
+    min-width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.fav-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    border: 3px solid #f0f0f0;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.fav-item:hover img {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+/* Información Destacada Elaborada */
+#selected-info {
+    border-radius: 20px;
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    overflow: hidden;
+}
+
+.selected-point h4 {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.action-btn {
+    border-radius: 10px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* Banner de Publicidad Lateral Estático en PC */
 @media (min-width: 1024px) {
     .ads-banner {
-        width: 280px;
+        width: 300px;
         height: 100%;
-        flex-direction: column;
-        overflow-y: auto;
-        overflow-x: hidden;
-        order: 2; /* A la derecha */
-        border-top: none;
+        background: #fcfcfc;
         border-left: 1px solid #eee;
-        padding: 20px;
+        border-top: none;
+        flex-direction: column;
+        padding: 25px;
+        overflow-y: auto;
     }
 
     .ad-item {
         width: 100%;
-        min-width: unset;
-        height: 140px;
+        height: 150px;
+        margin-bottom: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 }
 
-/* Ocultar botón de minimizar en el nuevo layout ya que no es necesario */
-.ads-banner-toggle {
-    display: none !important;
+/* Botón de menú solo visible en móvil */
+@media (min-width: 1024px) {
+    #menu-toggle {
+        display: none !important;
+    }
 }
 
 #ads-sidebar::before {
@@ -763,60 +960,97 @@ header {
     font-weight: 500;
 }
 
-/* Custom Icons & Popups */
-.custom-marker-icon {
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-    transition: transform 0.3s ease;
+/* Marcadores Elaborados */
+.elaborated-marker {
+    position: relative;
+    width: 50px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
 }
 
-.custom-marker-icon:hover {
-    transform: scale(1.1) translateY(-5px);
-}
-
-/* Estilo para el número dentro del marcador */
-.marker-number-container {
-    background: var(--primary-color);
+.marker-id {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--accent-color);
     color: white;
+    font-size: 0.7rem;
+    font-weight: 800;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 800;
-    font-size: 1.2rem;
-    border: 3px solid white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    position: relative;
+    border: 2px solid white;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.marker-number-container::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 10px solid white;
+.marker-thumb {
+    width: 45px;
+    height: 45px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 3px solid white;
+    background-color: white;
+    z-index: 5;
+}
+
+.marker-pin {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid white;
+    margin-top: -5px;
+    z-index: 4;
+}
+
+/* Popup Elaborado */
+.modern-popup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 200px;
+    padding: 5px;
+}
+
+.popup-thumb {
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.popup-info b {
+    display: block;
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.popup-info p {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: 600;
+    margin: 0;
+    text-transform: uppercase;
 }
 
 .leaflet-custom-popup .leaflet-popup-content-wrapper {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    border-radius: 12px;
-    padding: 5px 10px;
-    border: 2px solid var(--primary-color);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-.leaflet-custom-popup .leaflet-popup-tip {
-    background: var(--primary-color);
-}
-
-.modern-popup {
-    text-align: center;
-    min-width: 120px;
-}
+/* Quitar clases antiguas si existen */
+.marker-number-container, .marker-number-container::after { display: none; }
 
 /* Responsive */
 @media (max-width: 1100px) {
