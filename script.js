@@ -28,33 +28,40 @@ const map = L.map('map', {
 
 // Load the image to get its actual dimensions
 const mapImage = new Image();
-mapImage.src = 'imagenes/calarca 2026 mapa cara 2.jpg';
+const mapImagePath = 'imagenes/calarca 2026 mapa cara 2.jpg';
+mapImage.src = mapImagePath + '?v=' + new Date().getTime(); // Cache busting for the map image
+
 mapImage.onload = function() {
     imgWidth = this.width;
     imgHeight = this.height;
     bounds = [[0, 0], [imgHeight, imgWidth]];
     
+    console.log(`Cargando imagen del mapa: ${imgWidth}x${imgHeight}px`);
+    
     // Add the image overlay with actual dimensions
-    const overlay = L.imageOverlay(this.src, bounds, {
+    const overlay = L.imageOverlay(mapImagePath, bounds, {
         interactive: true,
         className: 'high-res-layer'
     }).addTo(map);
     
     // Configurar límites y vista inicial
-    map.setMaxBounds(bounds.pad(0.1)); // Margen de 10% alrededor para mejor navegación
+    map.setMaxBounds(bounds.pad(0.1));
     
     // Ajustar vista inicial
     map.fitBounds(bounds, {
         padding: [20, 20]
     });
     
-    console.log(`Mapa cargado: ${imgWidth}x${imgHeight}px`);
-    
     // Forzar redibujado para evitar que se vea cortado
     setTimeout(() => {
         map.invalidateSize();
-    }, 100);
+    }, 200);
  };
+
+mapImage.onerror = function() {
+    console.error("Error crítico: No se pudo cargar la imagen del mapa en " + mapImagePath);
+    alert("Error al cargar el mapa. Por favor, refresca la página o revisa tu conexión.");
+};
 
 // Re-dimensionar mapa al cambiar el tamaño de ventana
 window.addEventListener('resize', () => {
@@ -1260,34 +1267,27 @@ window.addEventListener('appinstalled', () => {
 // Initial Device Info in Console
 console.log(`Versión: 2.0 - Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isTouchDevice}`);
 
-// Register Service Worker for PWA
+// Service Worker Registration for PWA with enhanced update logic
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-            .then(reg => {
-                console.log('Service Worker registrado');
+        navigator.serviceWorker.register('sw.js?v=34')
+            .then(registration => {
+                console.log('SW registrado con éxito:', registration.scope);
                 
-                // Detectar actualizaciones del Service Worker
-                reg.addEventListener('updatefound', () => {
-                    const newWorker = reg.installing;
+                // Detectar actualizaciones de SW
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
                     newWorker.addEventListener('statechange', () => {
                         if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            // Nueva versión disponible, recargar para aplicar
-                            console.log('Nueva versión detectada, recargando...');
-                            window.location.reload();
+                            // Nueva versión disponible
+                            console.log('Nueva versión disponible. Recargando...');
+                            if (confirm('Nueva versión del mapa disponible. ¿Deseas actualizar ahora?')) {
+                                window.location.reload();
+                            }
                         }
                     });
                 });
             })
-            .catch(err => console.log('Error al registrar Service Worker', err));
-    });
-
-    // Escuchar el evento controllerchange para recargar cuando el nuevo SW tome el control
-    let refreshing = false;
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (!refreshing) {
-            window.location.reload();
-            refreshing = true;
-        }
+            .catch(err => console.log('SW registro fallido:', err));
     });
 }
