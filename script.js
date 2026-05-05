@@ -14,29 +14,24 @@ if (isTouchDevice) document.body.classList.add('device-touch');
 // Map Initialization with refined zoom
 const map = L.map('map', {
     crs: L.CRS.Simple,
-    minZoom: isMobile ? -2.5 : -2, // Permitir ver todo el mapa incluso en pantallas pequeñas
-    maxZoom: 3, // Aumentado para permitir ver detalles de las pautas en el mapa
-    zoomSnap: 0.1, // Zoom más fluido
-    wheelDebounceTime: 40,
+    minZoom: -3,
+    maxZoom: 3,
+    zoomSnap: 0.1,
     attributionControl: false,
-    maxBoundsViscosity: 0.8, // Permite un rebote suave al llegar al límite
-    tap: !isMobile,
-    dragging: true, // Siempre habilitado, Leaflet maneja bien el toque
-    bounceAtZoomLimits: true,
     preferCanvas: true
 });
 
 // Load the image to get its actual dimensions
-const mapImage = new Image();
 const mapImagePath = 'imagenes/mapa_principal.jpg';
-mapImage.src = mapImagePath;
+console.log("Intentando cargar imagen del mapa:", mapImagePath);
 
+const mapImage = new Image();
 mapImage.onload = function() {
     imgWidth = this.width;
     imgHeight = this.height;
     bounds = [[0, 0], [imgHeight, imgWidth]];
     
-    console.log(`Imagen del mapa cargada con éxito: ${imgWidth}x${imgHeight}px`);
+    console.log("¡ÉXITO! Imagen del mapa cargada:", imgWidth, "x", imgHeight);
     
     // Add the image overlay
     L.imageOverlay(mapImagePath, bounds).addTo(map);
@@ -44,18 +39,32 @@ mapImage.onload = function() {
     map.setMaxBounds(bounds.pad(0.1));
     map.fitBounds(bounds);
     
-    // Forzar redibujado
+    // Forzar redibujado varias veces para asegurar visibilidad
     map.invalidateSize();
+    setTimeout(() => map.invalidateSize(), 100);
     setTimeout(() => map.invalidateSize(), 500);
+    setTimeout(() => map.invalidateSize(), 1000);
  };
 
 mapImage.onerror = function() {
-    console.error("ERROR CRÍTICO: No se pudo cargar " + mapImagePath);
-    // Intento con ruta absoluta si la relativa falla
-    if (!mapImage.src.includes(window.location.origin)) {
-        mapImage.src = window.location.origin + '/' + mapImagePath;
-    }
+    console.error("ERROR CRÍTICO: No se pudo cargar la imagen del mapa en:", mapImagePath);
+    // Intento desesperado con ruta absoluta
+    const absolutePath = window.location.origin + '/' + mapImagePath;
+    console.log("Reintentando con ruta absoluta:", absolutePath);
+    const retryImage = new Image();
+    retryImage.onload = function() {
+        console.log("¡ÉXITO en el reintento!");
+        imgWidth = this.width;
+        imgHeight = this.height;
+        bounds = [[0, 0], [imgHeight, imgWidth]];
+        L.imageOverlay(absolutePath, bounds).addTo(map);
+        map.fitBounds(bounds);
+        map.invalidateSize();
+    };
+    retryImage.src = absolutePath;
 };
+
+mapImage.src = mapImagePath;
 
 // Re-dimensionar mapa al cambiar el tamaño de ventana
 window.addEventListener('resize', () => {
@@ -1264,7 +1273,7 @@ console.log(`Versión: 2.0 - Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isT
 // Service Worker Registration for PWA with enhanced update logic
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=37')
+        navigator.serviceWorker.register('sw.js?v=38')
             .then(registration => {
                 console.log('SW registrado con éxito:', registration.scope);
                 
