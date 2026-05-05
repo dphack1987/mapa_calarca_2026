@@ -14,16 +14,16 @@ if (isTouchDevice) document.body.classList.add('device-touch');
 // Map Initialization with refined zoom
 const map = L.map('map', {
     crs: L.CRS.Simple,
-    minZoom: isMobile ? -2 : -1.5,
-    maxZoom: 2, // Bajamos ligeramente para mantener la nitidez nativa
-    zoomSnap: 0,
-    wheelDebounceTime: 30,
+    minZoom: isMobile ? -2.5 : -2, // Permitir ver todo el mapa incluso en pantallas pequeñas
+    maxZoom: 3, // Aumentado para permitir ver detalles de las pautas en el mapa
+    zoomSnap: 0.1, // Zoom más fluido
+    wheelDebounceTime: 40,
     attributionControl: false,
-    maxBoundsViscosity: 1.0,
+    maxBoundsViscosity: 0.8, // Permite un rebote suave al llegar al límite
     tap: !isMobile,
-    dragging: !isMobile || (isMobile && !isTouchDevice),
-    bounceAtZoomLimits: false,
-    preferCanvas: true // Mejora el rendimiento general
+    dragging: true, // Siempre habilitado, Leaflet maneja bien el toque
+    bounceAtZoomLimits: true,
+    preferCanvas: true
 });
 
 // Load the image to get its actual dimensions
@@ -39,16 +39,16 @@ mapImage.onload = function() {
         interactive: true,
         className: 'high-res-layer'
     }).addTo(map);
-    map.setMaxBounds(bounds);
-    map.fitBounds(bounds);
+    
+    // Configurar límites y vista inicial
+    map.setMaxBounds(bounds.pad(0.1)); // Margen de 10% alrededor para mejor navegación
+    
+    // Ajustar vista inicial
+    map.fitBounds(bounds, {
+        padding: [20, 20]
+    });
     
     console.log(`Mapa cargado: ${imgWidth}x${imgHeight}px`);
-     
-     // Adjust dragging for mobile (double finger pan vs single finger)
-     if (isMobile && isTouchDevice) {
-         map.dragging.disable();
-         map.dragging.enable();
-     }
  };
 
 // Language and Favorites State
@@ -667,7 +667,8 @@ function updateFavoritesUI() {
                 <p>${point.name[currentLang]}</p>
             `;
             div.onclick = () => {
-                map.flyTo(point.coords, 1);
+                const zoomLevel = isMobile ? 0 : 1;
+                map.flyTo(point.coords, zoomLevel);
                 renderPointDetails(point);
             };
             favoritesContainer.appendChild(div);
@@ -918,20 +919,36 @@ function getCategoryColor(category) {
     }
 }
 
-// Pautas publicitarias para el banner superior
+// Pautas publicitarias para el banner superior - Incluimos todas las disponibles
 const pautasPublicitarias = [
-    { id: 12, photo: "imagenes/pautas/pauta_alcaldia.jpg" },
-    { id: 16, photo: "imagenes/pautas/pauta_comaparado.jpg" },
+    { id: 5, photo: "imagenes/pautas/pauta_recuca.jpg" },
     { id: 10, photo: "imagenes/pautas/pauta_fercho.jpg" },
+    { id: 11, photo: "imagenes/pautas/pauta_san_miguel.jpeg" },
+    { id: 12, photo: "imagenes/pautas/pauta_alcaldia.jpg" },
     { id: 13, photo: "imagenes/pautas/pauta_quinti.jpg" },
     { id: 14, photo: "imagenes/pautas/pauta_raiz.jpg" },
-    { id: 5, photo: "imagenes/pautas/pauta_recuca.jpg" },
-    { id: 11, photo: "imagenes/pautas/pauta_san_miguel.jpeg" },
     { id: 15, photo: "imagenes/pautas/pauta_talanquera.jpg" },
+    { id: 16, photo: "imagenes/pautas/pauta_comaparado.jpg" },
+    { id: 17, photo: "imagenes/pautas/pauta_albania.jpg" },
+    { id: 18, photo: "imagenes/pautas/pauta_alemania.jpg" },
     { id: 19, photo: "imagenes/pautas/pauta_amaranta.jpg" },
+    { id: 20, photo: "imagenes/pautas/pauta_bendito.jpg" },
     { id: 21, photo: "imagenes/pautas/pauta_bisonte.jpg" },
+    { id: 22, photo: "imagenes/pautas/pauta_chaparral.jpg" },
+    { id: 23, photo: "imagenes/pautas/pauta_confia.jpg" },
+    { id: 24, photo: "imagenes/pautas/pauta_coomocal.jpg" },
+    { id: 25, photo: "imagenes/pautas/pauta_descanso.jpg" },
+    { id: 26, photo: "imagenes/pautas/pauta_domo.jpg" },
+    { id: 27, photo: "imagenes/pautas/pauta_marta.jpg" },
+    { id: 28, photo: "imagenes/pautas/pauta_master.jpg" },
+    { id: 29, photo: "imagenes/pautas/pauta_origen.jpg" },
+    { id: 30, photo: "imagenes/pautas/pauta_peñas.jpg" },
+    { id: 31, photo: "imagenes/pautas/pauta_quindio_travel.jpg" },
     { id: 32, photo: "imagenes/pautas/pauta_quindus.jpg" },
-    { id: 34, photo: "imagenes/pautas/pauta_tertulia.jpg" }
+    { id: 33, photo: "imagenes/pautas/pauta_rio.jpg" },
+    { id: 34, photo: "imagenes/pautas/pauta_tertulia.jpg" },
+    { id: 35, photo: "imagenes/pautas/pauta_ticlan.jpg" },
+    { id: 36, photo: "imagenes/pautas/pauta_mapa.jpg" }
 ];
 
 function renderAdsBanner() {
@@ -972,7 +989,6 @@ function renderAdsBanner() {
         
         div.onclick = () => {
             if (point) {
-                // Centrar el mapa en el punto con zoom adecuado
                 map.flyTo(point.coords, isMobile ? 0 : 1, {
                     animate: true,
                     duration: 1.5

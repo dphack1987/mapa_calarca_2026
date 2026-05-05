@@ -12,27 +12,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <link rel="stylesheet" href="styles.css?v=32">
+    <link rel="stylesheet" href="styles.css?v=33">
 </head>
 <body>
     <header>
-        <div class="language-picker">
-            <button class="lang-btn active" data-lang="es">ES</button>
-            <button class="lang-btn" data-lang="en">EN</button>
-        </div>
         <button id="menu-toggle">☰</button>
         <div class="title-container">
             <h1>Calarcá 2026</h1>
             <p>Corazón del Paisaje Cultural Cafetero</p>
         </div>
+        <div class="language-picker">
+            <button class="lang-btn active" data-lang="es">ES</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
     </header>
     
-    <div id="ads-banner" class="ads-banner">
-        <!-- Las pautas publicitarias se cargarán aquí dinámicamente -->
-    </div>
-    
-    <div id="main-content">
-        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <div id="main-layout">
         <aside id="ads-sidebar">
             <div class="sidebar-logo">
                 <img src="imagenes/LOGO CALARCA 2026.jpg" alt="Logo Calarcá 2026">
@@ -41,7 +36,6 @@
             <div class="sidebar-section">
                 <h3 id="label-favorites">Mi Pasaporte (Favoritos)</h3>
                 <div id="favorites-container" class="favorites-bar">
-                    <!-- Aquí se cargarán los favoritos -->
                     <p style="font-size: 0.8rem; color: #888;">No has guardado lugares aún.</p>
                 </div>
             </div>
@@ -107,21 +101,29 @@
                     </div>
                 </div>
             </div>
-        </aside>
-        
-        <div id="map-container">
-            <div id="map"></div>
-            <div id="location-btn" class="location-control" title="Mi Ubicación">📍</div>
-            <div id="coords" class="coordinate-helper">Coordenadas: [0, 0]</div>
-        </div>
-    </div>
 
-    <footer>
-        <p>&copy; 2026 Calarcá - Quindío, Colombia. Todos los derechos reservados.</p>
-    </footer>
+            <div class="sidebar-footer">
+                <p>&copy; 2026 Calarcá - Quindío, Colombia.</p>
+            </div>
+        </aside>
+
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+        
+        <main id="main-content">
+            <div id="map-container">
+                <div id="map"></div>
+                <div id="location-btn" class="location-control" title="Mi Ubicación">📍</div>
+                <div id="coords" class="coordinate-helper">Coordenadas: [0, 0]</div>
+            </div>
+
+            <div id="ads-banner" class="ads-banner">
+                <!-- Las pautas publicitarias se cargarán aquí dinámicamente -->
+            </div>
+        </main>
+    </div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="script.js?v=32"></script>
+    <script src="script.js?v=33"></script>
 </body>
 </html>
