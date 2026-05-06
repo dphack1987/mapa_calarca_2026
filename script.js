@@ -14,49 +14,41 @@ if (isTouchDevice) document.body.classList.add('device-touch');
 // Map Initialization
 const map = L.map('map', {
     crs: L.CRS.Simple,
-    minZoom: -3,
-    maxZoom: 3,
-    zoomSnap: 0.1,
-    attributionControl: false
+    minZoom: isMobile ? -2 : -1.5,
+    maxZoom: 2,
+    zoomSnap: 0,
+    attributionControl: false,
+    preferCanvas: true
 });
 
 const mapImagePath = 'imagenes/mapa_principal.jpg';
 
-// Definir dimensiones iniciales para que el mapa no esté "vacio"
-const initialBounds = [[0, 0], [2000, 3000]];
-const overlay = L.imageOverlay(mapImagePath, initialBounds).addTo(map);
-
-// Cuando la imagen cargue, ajustar las dimensiones reales
+// Load the image to get its actual dimensions
 const mapImage = new Image();
 mapImage.onload = function() {
     imgWidth = this.width;
     imgHeight = this.height;
     bounds = [[0, 0], [imgHeight, imgWidth]];
     
-    overlay.setBounds(bounds);
-    map.setMaxBounds(bounds.pad(0.1));
+    // Add the image overlay with actual dimensions
+    L.imageOverlay(mapImagePath, bounds).addTo(map);
+    
+    map.setMaxBounds(bounds);
     map.fitBounds(bounds);
-    map.invalidateSize();
-    console.log("Mapa cargado con dimensiones reales:", imgWidth, "x", imgHeight);
-};
-mapImage.src = mapImagePath;
-
-// Asegurar que el mapa se vea al cargar
-window.addEventListener('load', () => {
+    
+    console.log(`Mapa cargado correctamente: ${imgWidth}x${imgHeight}px`);
+    
+    // Forzar redibujado para evitar que se vea cortado
     setTimeout(() => {
         map.invalidateSize();
-    }, 500);
-});
-
-// Re-dimensionar mapa al cambiar el tamaño de ventana
-window.addEventListener('resize', () => {
-    map.invalidateSize();
-});
+    }, 100);
+};
+mapImage.src = mapImagePath;
 
 // Register Service Worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=44');
+        navigator.serviceWorker.register('sw.js?v=45');
     });
 }
 
