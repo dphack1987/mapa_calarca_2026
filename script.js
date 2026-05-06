@@ -53,10 +53,10 @@ window.addEventListener('resize', () => {
     map.invalidateSize();
 });
 
-// Service Worker Registration
+// Register Service Worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=43');
+        navigator.serviceWorker.register('sw.js?v=44');
     });
 }
 
