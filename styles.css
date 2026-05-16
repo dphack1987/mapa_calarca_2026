@@ -208,9 +208,9 @@ header {
     position: relative;
     background-color: #e5e9e7;
     height: 100%;
-    width: 100%;
     min-width: 0;
     z-index: 1;
+    overflow: hidden;
 }
 
 #map {
@@ -226,103 +226,125 @@ header {
     display: none;
 }
 
-/* Banner de Publicidad - Móvil (Abajo) */
+/* Pautas publicitarias - Asegurar visibilidad */
 .ads-banner {
-    background: #f8f9fa;
-    height: 100px;
-    width: 100%;
+    background: #ffffff;
+    width: 260px;
+    height: 100%;
     display: flex;
-    overflow-x: auto;
+    flex-direction: column;
+    overflow-y: auto;
     gap: 15px;
-    padding: 10px;
+    padding: 20px;
     z-index: 1050;
-    box-shadow: 0 -2px 15px rgba(0,0,0,0.08);
+    box-shadow: -2px 0 10px rgba(0,0,0,0.05);
     flex-shrink: 0;
-    border-top: 1px solid #eee;
-    position: absolute; /* Para que esté sobre el mapa en móvil si se desea, o estático al final */
-    bottom: 0;
-    left: 0;
+    border-left: 1px solid #eee;
 }
 
-/* En PC, las pautas van al lado derecho de forma estática */
-@media (min-width: 1024px) {
-    #main-content {
-        flex-direction: row;
-    }
-
-    .ads-banner {
-        position: relative; /* Estático al lado */
-        width: 250px;
-        height: 100%;
-        flex-direction: column;
-        overflow-y: auto;
-        overflow-x: hidden;
-        border-top: none;
-        border-left: 1px solid #eee;
-        padding: 20px;
-        box-shadow: -2px 0 10px rgba(0,0,0,0.05);
-    }
-
-    .ad-item {
-        width: 100%;
-        min-width: unset;
-        height: 180px; /* Pautas más grandes en PC */
-        margin-bottom: 20px;
-        border-radius: 15px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
+.ads-banner-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* En móvil, el banner es una barra horizontal al fondo */
-@media (max-width: 1023px) {
-    #main-content {
-        flex-direction: column;
-    }
-    
-    .ads-banner {
-        position: relative;
-        height: 150px; /* Pautas más grandes en móvil */
-        border-top: 1px solid #eee;
-    }
-
-    .ad-item {
-        height: 120px;
-        min-width: 200px;
-    }
+.ads-banner.minimized {
+    width: 60px;
+    padding: 15px 5px;
 }
 
-.ads-banner::-webkit-scrollbar {
-    height: 4px;
+.ads-banner.minimized .ad-item {
+    display: none;
 }
 
-.ads-banner::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
+.banner-guide-text {
+    color: var(--text-dark);
+    font-size: 0.8rem;
+    margin-top: 10px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
 }
 
 .ad-item {
-    flex: 0 0 auto;
-    height: 80px;
-    min-width: 160px;
-    border-radius: 12px;
-    border: 1px solid #ddd;
+    width: 100%;
+    min-height: 160px;
+    border-radius: 15px;
+    border: 1px solid #eee;
     overflow: hidden;
     background: white;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .ad-item:hover {
     transform: translateY(-3px);
     border-color: var(--primary-color);
-    box-shadow: 0 6px 15px rgba(39, 174, 96, 0.15);
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.15);
 }
 
 .ad-item img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 5px;
+    padding: 10px;
+}
+
+/* En móvil, el banner es una barra horizontal al fondo */
+@media (max-width: 1023px) {
+    #main-content {
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    #map-container {
+        flex: 1;
+        height: auto;
+    }
+    
+    .ads-banner {
+        width: 100%;
+        height: 160px;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border-left: none;
+        border-top: 1px solid #eee;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        padding: 10px;
+    }
+    
+    .ad-item {
+        width: 220px;
+        height: 140px;
+        flex: 0 0 auto;
+        margin-bottom: 0;
+    }
+    
+    .ads-banner-toggle {
+        position: sticky;
+        top: 0;
+        right: 0;
+        left: auto;
+        margin-left: 10px;
+    }
 }
 
 /* Sidebar Estilo Profesional y Estático */

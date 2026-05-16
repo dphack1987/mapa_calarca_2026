@@ -21,7 +21,7 @@ const map = L.map('map', {
     preferCanvas: true
 });
 
-const mapImagePath = 'imagenes/mapa_principal.jpg';
+const mapImagePath = 'imagenes/mapa/mapa_principal.jpg';
 
 // Load the image to get its actual dimensions
 const mapImage = new Image();
@@ -36,7 +36,7 @@ mapImage.onload = function() {
     map.setMaxBounds(bounds);
     map.fitBounds(bounds);
     
-    console.log(`Mapa cargado correctamente: ${imgWidth}x${imgHeight}px`);
+    console.log(`Mapa de carpeta 'mapa' cargado correctamente: ${imgWidth}x${imgHeight}px`);
     
     // Forzar redibujado para evitar que se vea cortado
     setTimeout(() => {
@@ -1257,13 +1257,15 @@ window.addEventListener('appinstalled', () => {
 // Initial Device Info in Console
 console.log(`Versión: 2.0 - Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isTouchDevice}`);
 
-// Service Worker Registration for PWA with enhanced update logic
+// Service Worker Registration for PWA - Sin recarga automática
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=42')
+        navigator.serviceWorker.register('sw.js?v=43')
             .then(registration => {
                 console.log('SW registrado con éxito:', registration.scope);
                 
+                // Desactivamos la detección automática de actualizaciones para evitar recargas
+                /*
                 // Detectar actualizaciones de SW
                 registration.addEventListener('updatefound', () => {
                     const newWorker = registration.installing;
@@ -1277,6 +1279,7 @@ if ('serviceWorker' in navigator) {
                         }
                     });
                 });
+                */
             })
             .catch(err => console.log('SW registro fallido:', err));
     });
