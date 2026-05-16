@@ -616,6 +616,412 @@ const pointsOfInterest = [
         category: "Cultura",
         photo: "imagenes/pautas/pauta_mapa.jpg",
         openHours: [0, 24]
+    },
+    {
+        id: 37,
+        name: { es: "Peñas Blancas", en: "Peñas Blancas" },
+        coords: [1621.4, 3732.5],
+        realCoords: "4.5150,-75.6150",
+        phone: "+573100000000",
+        description: {
+            es: "Impresionantes formaciones rocosas con vistas panorámicas de la región cafetera.",
+            en: "Impressive rock formations with panoramic views of the coffee region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 38,
+        name: { es: "Punto 5", en: "Point 5" },
+        coords: [790.8, 1984.4],
+        realCoords: "4.5050,-75.6200",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés turístico en la región.",
+            en: "Tourist point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 39,
+        name: { es: "La Nueva Albania", en: "La Nueva Albania" },
+        coords: [538.0, 1696.1],
+        realCoords: "4.5020,-75.6250",
+        phone: "+573100000000",
+        description: {
+            es: "Comunidad rural con tradiciones cafeteras.",
+            en: "Rural community with coffee traditions."
+        },
+        category: "Cultura",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 40,
+        name: { es: "Parapente", en: "Paragliding" },
+        coords: [1986.8, 3868.5],
+        realCoords: "4.5200,-75.6100",
+        phone: "+573100000000",
+        description: {
+            es: "Experiencia de parapente con vistas impresionantes.",
+            en: "Paragliding experience with breathtaking views."
+        },
+        category: "Aventura",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [6, 18]
+    },
+    {
+        id: 41,
+        name: { es: "ZS Mirada del Río", en: "ZS River View" },
+        coords: [2565.1, 2574.1],
+        realCoords: "4.5180,-75.6050",
+        phone: "+573100000000",
+        description: {
+            es: "Mirador con vistas al río y paisajes naturales.",
+            en: "Viewpoint with river and natural landscape views."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 42,
+        name: { es: "Mariposo", en: "Mariposo" },
+        coords: [956.5, 1949.8],
+        realCoords: "4.5080,-75.6180",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés en la región.",
+            en: "Point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 43,
+        name: { es: "Punto 9", en: "Point 9" },
+        coords: [2072.6, 2856.1],
+        realCoords: "4.5190,-75.6080",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés turístico.",
+            en: "Tourist point of interest."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 44,
+        name: { es: "Fortaleza W", en: "Fortaleza W" },
+        coords: [4869.9, 1826.7],
+        realCoords: "4.5350,-75.5950",
+        phone: "+573100000000",
+        description: {
+            es: "Estructura histórica con valor cultural.",
+            en: "Historical structure with cultural value."
+        },
+        category: "Cultura",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 45,
+        name: { es: "Punto 12", en: "Point 12" },
+        coords: [2035.0, 2850.3],
+        realCoords: "4.5185,-75.6085",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés en la región.",
+            en: "Point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 46,
+        name: { es: "Quindío Café", en: "Quindío Coffee" },
+        coords: [791.9, 1704.5],
+        realCoords: "4.5055,-75.6245",
+        phone: "+573100000000",
+        description: {
+            es: "Experiencia cafetera en el corazón del Quindío.",
+            en: "Coffee experience in the heart of Quindío."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [8, 20]
+    },
+    {
+        id: 47,
+        name: { es: "Punto 14", en: "Point 14" },
+        coords: [2085.3, 2705.3],
+        realCoords: "4.5195,-75.6095",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés turístico.",
+            en: "Tourist point of interest."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 48,
+        name: { es: "Punto 15", en: "Point 15" },
+        coords: [1909.2, 2701.0],
+        realCoords: "4.5175,-75.6105",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés en la región.",
+            en: "Point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 49,
+        name: { es: "Punto 16", en: "Point 16" },
+        coords: [2103.3, 2809.3],
+        realCoords: "4.5205,-75.6075",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés turístico.",
+            en: "Tourist point of interest."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 50,
+        name: { es: "Punto 17", en: "Point 17" },
+        coords: [2062.5, 2715.5],
+        realCoords: "4.5188,-75.6092",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés en la región.",
+            en: "Point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 51,
+        name: { es: "Punto 18", en: "Point 18" },
+        coords: [2098.5, 2771.8],
+        realCoords: "4.5198,-75.6082",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés turístico.",
+            en: "Tourist point of interest."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 52,
+        name: { es: "Punto 19", en: "Point 19" },
+        coords: [2210.8, 2825.0],
+        realCoords: "4.5215,-75.6065",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés en la región.",
+            en: "Point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 53,
+        name: { es: "Punto 20", en: "Point 20" },
+        coords: [2128.5, 2777.8],
+        realCoords: "4.5208,-75.6078",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés turístico.",
+            en: "Tourist point of interest."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 54,
+        name: { es: "Punto 21", en: "Point 21" },
+        coords: [2060.5, 2759.8],
+        realCoords: "4.5186,-75.6086",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés en la región.",
+            en: "Point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 55,
+        name: { es: "Ferkolu Café", en: "Ferkolu Coffee" },
+        coords: [2077.5, 2720.0],
+        realCoords: "4.5192,-75.6090",
+        phone: "+573100000000",
+        description: {
+            es: "Café de origen y ambiente acogedor.",
+            en: "Single-origin coffee and cozy atmosphere."
+        },
+        category: "Gastronomía Local",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [8, 21]
+    },
+    {
+        id: 56,
+        name: { es: "Punto 24", en: "Point 24" },
+        coords: [2017.5, 2827.5],
+        realCoords: "4.5178,-75.6072",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés turístico.",
+            en: "Tourist point of interest."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 57,
+        name: { es: "Punto 29", en: "Point 29" },
+        coords: [2087.0, 2766.0],
+        realCoords: "4.5196,-75.6080",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés en la región.",
+            en: "Point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 58,
+        name: { es: "Punto 30", en: "Point 30" },
+        coords: [1974.7, 2731.2],
+        realCoords: "4.5170,-75.6098",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés turístico.",
+            en: "Tourist point of interest."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 59,
+        name: { es: "Punto 34", en: "Point 34" },
+        coords: [1537.7, 3170.5],
+        realCoords: "4.5140,-75.6120",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés en la región.",
+            en: "Point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 60,
+        name: { es: "Punto 35", en: "Point 35" },
+        coords: [2075.0, 2671.5],
+        realCoords: "4.5190,-75.6100",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés turístico.",
+            en: "Tourist point of interest."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 61,
+        name: { es: "Punto 36", en: "Point 36" },
+        coords: [926.0, 2113.3],
+        realCoords: "4.5070,-75.6170",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés en la región.",
+            en: "Point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 62,
+        name: { es: "Punto 38", en: "Point 38" },
+        coords: [2700.0, 2211.5],
+        realCoords: "4.5250,-75.6030",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés turístico.",
+            en: "Tourist point of interest."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 63,
+        name: { es: "Punto 39", en: "Point 39" },
+        coords: [614.1, 1595.8],
+        realCoords: "4.5035,-75.6265",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés en la región.",
+            en: "Point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 64,
+        name: { es: "Punto 32", en: "Point 32" },
+        coords: [470.0, 1483.5],
+        realCoords: "4.5020,-75.6280",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés turístico.",
+            en: "Tourist point of interest."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
+    },
+    {
+        id: 65,
+        name: { es: "Punto 33", en: "Point 33" },
+        coords: [784.5, 1771.8],
+        realCoords: "4.5050,-75.6235",
+        phone: "+573100000000",
+        description: {
+            es: "Punto de interés en la región.",
+            en: "Point of interest in the region."
+        },
+        category: "Naturaleza",
+        photo: "imagenes/LOGO CALARCA 2026.jpg",
+        openHours: [0, 24]
     }
 ];
 
