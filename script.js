@@ -612,12 +612,14 @@ function renderAdsBanner() {
 function abrirModalPauta(pauta) {
     console.log('🪟 Abriendo modal para:', pauta);
     
-    const modal = document.getElementById('pauta-modal');
-    const modalBody = document.getElementById('pauta-modal-body');
+    const modal = document.getElementById('info-modal');
+    const modalBody = document.getElementById('info-modal-body');
     
     if (!modal || !modalBody) {
         console.log('❌ ERROR: No se encontró el modal');
-        alert('No se puede mostrar la información. Intenta de nuevo.');
+        console.log('Buscando info-modal:', modal);
+        console.log('Buscando info-modal-body:', modalBody);
+        alert('No se puede mostrar la información. Actualiza la página.');
         return;
     }
     
@@ -660,14 +662,14 @@ window.addEventListener('load', () => {
     const closeModalBtn = document.querySelector('.pauta-modal-close');
     if (closeModalBtn) {
         closeModalBtn.addEventListener('click', () => {
-            const modal = document.getElementById('pauta-modal');
+            const modal = document.getElementById('info-modal');
             if (modal) modal.style.display = 'none';
         });
     }
     
     // Cerrar modal al hacer clic fuera
     window.addEventListener('click', (event) => {
-        const modal = document.getElementById('pauta-modal');
+        const modal = document.getElementById('info-modal');
         if (modal && event.target === modal) {
             modal.style.display = 'none';
         }
