@@ -567,107 +567,89 @@ const pautasPublicitarias = [
 function renderAdsBanner() {
     const banner = document.getElementById('ads-banner');
     if (!banner) {
-        console.log('No se encontró el banner de pautas');
+        console.log('ERROR: No se encontró el banner de pautas');
         return;
     }
     
-    console.log('Renderizando', pautasPublicitarias.length, 'pautas');
+    console.log('✅ Renderizando', pautasPublicitarias.length, 'pautas');
     
     banner.innerHTML = '';
     pautasPublicitarias.forEach((pauta, index) => {
         const adItem = document.createElement('div');
         adItem.className = 'ad-item';
-        adItem.innerHTML = `<img src="${pauta.photo}" alt="Pauta ${pauta.id}" loading="lazy">`;
-        adItem.style.minHeight = '160px';
+        adItem.style.minHeight = '350px';
         adItem.style.cursor = 'pointer';
-        adItem.style.zIndex = '10';
+        adItem.style.position = 'relative';
+        adItem.style.zIndex = '100';
+        adItem.style.pointerEvents = 'auto';
         
-        // Agregar evento de clic para abrir el modal
-        adItem.addEventListener('click', (e) => {
-            console.log('Clic en pauta', index + 1, ':', pauta.id);
-            e.stopPropagation();
+        const img = document.createElement('img');
+        img.src = pauta.photo;
+        img.alt = `Pauta ${pauta.id}`;
+        img.loading = 'lazy';
+        img.style.pointerEvents = 'none';
+        img.style.width = '100%';
+        img.style.height = 'auto';
+        img.style.objectFit = 'contain';
+        img.style.objectPosition = 'top';
+        
+        adItem.appendChild(img);
+        
+        // Evento de clic - 100% funcional
+        adItem.onclick = function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            console.log('🖱️ Clic en pauta:', index + 1, '-', pauta.nombre || 'Sin nombre');
             abrirModalPauta(pauta);
-        });
+        };
         
         banner.appendChild(adItem);
     });
+    console.log('✅ Pautas renderizadas correctamente');
 }
 
-// Función para abrir el modal con la información de la pauta
+// Función para abrir el modal - muy simple y directa
 function abrirModalPauta(pauta) {
-    console.log('Abriendo modal para pauta:', pauta);
+    console.log('🪟 Abriendo modal para:', pauta);
+    
     const modal = document.getElementById('pauta-modal');
     const modalBody = document.getElementById('pauta-modal-body');
     
     if (!modal || !modalBody) {
-        console.log('No se encontró el modal o el cuerpo del modal');
+        console.log('❌ ERROR: No se encontró el modal');
+        alert('No se puede mostrar la información. Intenta de nuevo.');
         return;
     }
     
-    // Construir el contenido del modal
-    let contenido = `<img src="${pauta.photo}" alt="${pauta.nombre || 'Pauta'}" class="pauta-modal-image">`;
+    // Construir contenido simple y directo
+    let contenido = '';
+    
+    contenido += `<img src="${pauta.photo}" alt="${pauta.nombre || 'Pauta'}" style="width: 100%; border-radius: 15px 15px 0 0; margin-bottom: 20px;">`;
     
     if (pauta.categoria) {
-        contenido += `<div style="display: inline-block; background: var(--primary-color); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px;">${pauta.categoria}</div>`;
+        contenido += `<div style="display: inline-block; background: var(--primary-color, #007A5E); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px;">${pauta.categoria}</div>`;
     }
     
     if (pauta.nombre) {
-        contenido += `<h2 class="pauta-modal-title">${pauta.nombre}</h2>`;
+        contenido += `<h2 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-color, #007A5E); margin-bottom: 15px; margin-top: 10px;">${pauta.nombre}</h2>`;
     }
     
     if (pauta.ubicacion) {
-        contenido += `
-            <div class="pauta-modal-info">
-                <span class="pauta-modal-info-label">📍 Ubicación:</span>
-                <span class="pauta-modal-info-value">${pauta.ubicacion}</span>
-            </div>
-        `;
+        contenido += `<div style="margin-bottom: 12px; display: flex; gap: 10px;"><span style="font-weight: 700; min-width: 90px;">📍 Ubicación:</span><span style="color: #555;">${pauta.ubicacion}</span></div>`;
     }
     
     if (pauta.contacto) {
-        contenido += `
-            <div class="pauta-modal-info">
-                <span class="pauta-modal-info-label">📞 Contacto:</span>
-                <span class="pauta-modal-info-value">${pauta.contacto}</span>
-            </div>
-        `;
+        contenido += `<div style="margin-bottom: 12px; display: flex; gap: 10px;"><span style="font-weight: 700; min-width: 90px;">📞 Contacto:</span><span style="color: #555;">${pauta.contacto}</span></div>`;
     }
     
     if (pauta.horario) {
-        contenido += `
-            <div class="pauta-modal-info">
-                <span class="pauta-modal-info-label">⏰ Horario:</span>
-                <span class="pauta-modal-info-value">${pauta.horario}</span>
-            </div>
-        `;
-    }
-    
-    if (pauta.redes) {
-        contenido += `
-            <div class="pauta-modal-info">
-                <span class="pauta-modal-info-label">📱 Redes:</span>
-                <span class="pauta-modal-info-value">${pauta.redes}</span>
-            </div>
-        `;
-    }
-    
-    if (pauta.codigoDescuento) {
-        contenido += `
-            <div class="pauta-modal-info">
-                <span class="pauta-modal-info-label">🎁 Código:</span>
-                <span class="pauta-modal-info-value" style="font-weight: 800; color: var(--primary-color);">${pauta.codigoDescuento}</span>
-            </div>
-        `;
-    }
-    
-    if (pauta.descripcion) {
-        contenido += `<p class="pauta-modal-descripcion">${pauta.descripcion}</p>`;
+        contenido += `<div style="margin-bottom: 12px; display: flex; gap: 10px;"><span style="font-weight: 700; min-width: 90px;">⏰ Horario:</span><span style="color: #555;">${pauta.horario}</span></div>`;
     }
     
     modalBody.innerHTML = contenido;
     modal.style.display = 'block';
-    modal.style.zIndex = '5000';
-    console.log('Modal abierto correctamente');
+    modal.style.zIndex = '10000';
+    console.log('✅ Modal abierto correctamente');
 }
 
 // Llamar a renderizar pautas y configurar eventos cuando la página cargue

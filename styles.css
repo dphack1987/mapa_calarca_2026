@@ -296,6 +296,9 @@ header {
     align-items: flex-start;
     justify-content: center;
     flex-shrink: 0;
+    position: relative;
+    z-index: 100 !important;
+    pointer-events: auto !important;
 }
 
 .ad-item img {
