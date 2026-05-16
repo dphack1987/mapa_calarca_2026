@@ -12,7 +12,7 @@ const map = L.map('map', {
 
 // Calculate the bounds
 const bounds = [[0, 0], [IMAGE_HEIGHT, IMAGE_WIDTH]];
-L.imageOverlay('imagenes/mapa.jpg', bounds).addTo(map);
+L.imageOverlay('imagenes/mapa_principal.jpg', bounds).addTo(map);
 
 map.fitBounds(bounds, { padding: [20, 20] });
 
