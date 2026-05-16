@@ -18,6 +18,7 @@ const map = L.map('map', {
     maxZoom: 2,
     zoomSnap: 0,
     attributionControl: false,
+    zoomControl: true,
     preferCanvas: true
 });
 
