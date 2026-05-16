@@ -576,7 +576,8 @@ function renderAdsBanner() {
     banner.innerHTML = '';
     pautasPublicitarias.forEach((pauta, index) => {
         const adItem = document.createElement('div');
-        adItem.style.cssText = 'width: 100%; min-height: 350px; height: 350px; border-radius: 18px; border: 1px solid #f0f0f0; background: white; cursor: pointer; display: flex; align-items: flex-start; justify-content: center; flex-shrink: 0; position: relative; z-index: 100;';
+        adItem.style.cssText = 'width: 100%; min-height: 350px; height: 350px; border-radius: 18px; border: 1px solid #f0f0f0; background: white; cursor: pointer; display: flex; align-items: flex-start; justify-content: center; flex-shrink: 0; position: relative; z-index: 10000;';
+        adItem.setAttribute('data-pauta-id', pauta.id);
         
         const img = document.createElement('img');
         img.src = pauta.photo;
@@ -585,18 +586,25 @@ function renderAdsBanner() {
         
         adItem.appendChild(img);
         
-        // Evento de clic - SUPER SIMPLE
-        adItem.onclick = function() {
+        // Evento de clic - SUPER SIMPLE y MUY SEGURO
+        adItem.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             console.log('🖱️ CLIC en pauta:', index + 1, '-', pauta.nombre);
+            console.log('📄 Datos completos de la pauta:', pauta);
             abrirModalNuevo(pauta);
-        };
+        }, true);
         
         banner.appendChild(adItem);
     });
     console.log('✅ Pautas renderizadas');
 }
 
-// Función para abrir el modal NUEVO - SUPER SIMPLE
+// Llamar inmediatamente a renderizar pautas - NO ESPERAR A NADA
+console.log('🚀 Iniciando renderizado de pautas...');
+renderAdsBanner();
+
+// Función para abrir el modal NUEVO - SUPER SIMPLE y SEGURO
 function abrirModalNuevo(pauta) {
     console.log('🪟 Abriendo modal para:', pauta);
     
@@ -607,11 +615,11 @@ function abrirModalNuevo(pauta) {
         console.log('❌ ERROR: No se encontró el modal NUEVO');
         console.log('modal-nuevo:', modal);
         console.log('contenido-modal:', contenido);
-        alert('ERROR: Actualiza la página completamente!');
+        alert('ERROR: Por favor actualiza la página completamente!');
         return;
     }
     
-    // Construir contenido - 100% directo
+    // Construir contenido - 100% directo y seguro
     let html = '';
     html += `<img src="${pauta.photo}" style="width: 100%; border-radius: 15px; margin-bottom: 20px;">`;
     
@@ -637,22 +645,22 @@ function abrirModalNuevo(pauta) {
     
     contenido.innerHTML = html;
     modal.style.display = 'block';
-    console.log('✅ Modal NUEVO abierto');
+    console.log('✅ Modal NUEVO abierto exitosamente!');
 }
 
-// Cerrar modal nuevo
+// Cerrar modal nuevo - SUPER SEGURO
 document.addEventListener('click', function(e) {
+    console.log('🖱️ Click en documento:', e.target.id, e.target.className);
     if (e.target.id === 'cerrar-modal' || e.target.id === 'modal-nuevo') {
         const modal = document.getElementById('modal-nuevo');
-        if (modal) modal.style.display = 'none';
+        if (modal) {
+            modal.style.display = 'none';
+            console.log('❌ Modal cerrado');
+        }
     }
-});
+}, true);
 
-// Llamar a renderizar pautas cuando la página cargue
-window.addEventListener('load', function() {
-    renderAdsBanner();
-    console.log('✅ Página cargada completamente - v200');
-});
+console.log('✅ Todo listo! Puedes hacer clic en las pautas.');
 
 // Service Worker Registration for PWA - Sin recarga automática
 if ('serviceWorker' in navigator) {
