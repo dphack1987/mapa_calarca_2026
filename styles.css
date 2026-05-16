@@ -283,8 +283,8 @@ header {
 
 .ad-item {
     width: 100%;
-    min-height: 250px;
-    height: 250px;
+    min-height: 320px;
+    height: 320px;
     border-radius: 18px;
     border: 1px solid #f0f0f0;
     overflow: hidden;
@@ -340,8 +340,8 @@ header {
     .ad-item {
         min-width: 90%;
         width: 90%;
-        min-height: 300px;
-        height: 300px;
+        min-height: 400px;
+        height: 400px;
         flex-shrink: 0;
         scroll-snap-align: center;
     }
