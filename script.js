@@ -350,7 +350,7 @@ const pautasPublicitarias = [
         nombre: "Amaranta libros Café",
         ubicacion: "calle 40 Nro. 22-16 Calarcá",
         contacto: "320 6590103",
-        categoria: "Tiendas de Café"
+        categoria: "Libros y Café"
     },
     { 
         id: 18, 
@@ -428,10 +428,10 @@ const pautasPublicitarias = [
     { 
         id: 15, 
         photo: "imagenes/pautas/pauta_talanquera.jpg",
-        nombre: "La Talanquera",
-        ubicacion: "Calarcá",
-        contacto: "321 959 8257",
-        categoria: "Restaurantes"
+        nombre: "Asadero la Talanquera Carne a la llanera",
+        ubicacion: "Carrera 24 Nro 42- 15",
+        contacto: "321 9598257",
+        categoria: "Parrillas"
     },
     { 
         id: 16, 
@@ -444,18 +444,18 @@ const pautasPublicitarias = [
     { 
         id: 20, 
         photo: "imagenes/pautas/pauta_bendito.jpg",
-        nombre: "Bendito",
-        ubicacion: "Calarcá",
-        contacto: "",
-        categoria: "Tiendas de Café"
-    },
-    { 
-        id: 21, 
-        photo: "imagenes/pautas/pauta_bisonte.jpg",
         nombre: "Bendito Pekado",
         ubicacion: "Cra 24 nro 40-65 Calarcá",
         contacto: "321 354 3541",
         categoria: "Pizzerías"
+    },
+    { 
+        id: 19, 
+        photo: "imagenes/pautas/pauta_bisonte.jpg",
+        nombre: "Bisonte Parrilla Bar",
+        ubicacion: "Carrera 24 Nro 44-10 Calarcá",
+        contacto: "314 4618 773",
+        categoria: "Parrillas"
     },
     { 
         id: 22, 
@@ -507,11 +507,11 @@ const pautasPublicitarias = [
     },
     { 
         id: 29, 
-        photo: "imagenes/pautas/pauta_origen.jpg",
-        nombre: "Origen",
-        ubicacion: "Calarcá",
-        contacto: "",
-        categoria: "Tiendas de Café"
+        photo: "imagenes/pautas/pauta_tertulia.jpg",
+        nombre: "La Tertulia Café",
+        ubicacion: "Calle 40 Cra 25 Esquina Plaza de Bolívar",
+        contacto: "3154053802",
+        categoria: "Escuela de Café y Tostadora"
     },
     { 
         id: 30, 
