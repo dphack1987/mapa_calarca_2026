@@ -465,25 +465,27 @@ function abrirModalPauta(pauta) {
     modal.style.display = 'block';
 }
 
-// Cerrar modal al hacer clic en la X
-const closeModalBtn = document.querySelector('.pauta-modal-close');
-if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', () => {
-        const modal = document.getElementById('pauta-modal');
-        if (modal) modal.style.display = 'none';
-    });
-}
-
-// Cerrar modal al hacer clic fuera
-window.addEventListener('click', (event) => {
-    const modal = document.getElementById('pauta-modal');
-    if (modal && event.target === modal) {
-        modal.style.display = 'none';
+// Llamar a renderizar pautas y configurar eventos cuando la página cargue
+window.addEventListener('load', () => {
+    renderAdsBanner();
+    
+    // Cerrar modal al hacer clic en la X
+    const closeModalBtn = document.querySelector('.pauta-modal-close');
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', () => {
+            const modal = document.getElementById('pauta-modal');
+            if (modal) modal.style.display = 'none';
+        });
     }
+    
+    // Cerrar modal al hacer clic fuera
+    window.addEventListener('click', (event) => {
+        const modal = document.getElementById('pauta-modal');
+        if (modal && event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
 });
-
-// Llamar a renderizar pautas cuando la página cargue
-window.addEventListener('load', renderAdsBanner);
 
 // Service Worker Registration for PWA - Sin recarga automática
 if ('serviceWorker' in navigator) {
