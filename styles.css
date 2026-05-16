@@ -321,25 +321,29 @@ header {
     }
     
     .ads-banner {
-        width: 100%; /* Ancho completo en móviles */
-        height: 40vh; /* 40% de la altura para pautas */
-        flex-direction: row; /* Pautas en fila horizontal */
-        overflow-x: auto; /* Scroll horizontal */
+        width: 100%;
+        height: auto;
+        min-height: 40vh;
+        flex-direction: row;
+        overflow-x: scroll !important;
         overflow-y: hidden;
         border-left: none;
         border-top: 2px solid #eee;
         box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-        padding: 15px;
-        gap: 15px;
+        padding: 20px 15px;
+        gap: 20px;
         flex-shrink: 0;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
     }
     
     .ad-item {
-        min-width: 320px;
-        width: 320px;
-        min-height: 220px;
-        height: auto;
+        min-width: 90%;
+        width: 90%;
+        min-height: 250px;
+        height: 250px;
         flex-shrink: 0;
+        scroll-snap-align: center;
     }
     
     .ads-banner-toggle {
