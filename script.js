@@ -326,7 +326,15 @@ const pautasPublicitarias = [
         nombre: "Quindus Café",
         ubicacion: "km 4 via al valle la Bella",
         contacto: "312 633 61 43",
-        categoria: "Tiendas de Café"
+        categoria: "Restaurantes, Comidas Rápidas y Asados"
+    },
+    { 
+        id: 14, 
+        photo: "imagenes/pautas/pauta_raiz.jpg",
+        nombre: "Coma parado",
+        ubicacion: "calle 41 nro 25-37 Calarcá",
+        contacto: "305 353 59 59",
+        categoria: "Restaurantes, Comidas Rápidas y Asados"
     },
     { 
         id: 17, 
@@ -334,7 +342,7 @@ const pautasPublicitarias = [
         nombre: "Café Origen Bar y Restaurante",
         ubicacion: "Carrera 25 Nro 40-25 Calarcá",
         contacto: "301 857 2792",
-        categoria: "Tiendas de Café"
+        categoria: "Restaurantes, Comidas Rápidas y Asados"
     },
     { 
         id: 24, 
@@ -350,7 +358,7 @@ const pautasPublicitarias = [
         nombre: "Café Raiz Coffee",
         ubicacion: "Cra 24 Nro. 41-29",
         contacto: "311 518 8564",
-        categoria: "Tiendas de Café"
+        categoria: "Restaurantes, Comidas Rápidas y Asados"
     },
     { 
         id: 5, 
@@ -363,10 +371,18 @@ const pautasPublicitarias = [
     { 
         id: 10, 
         photo: "imagenes/pautas/pauta_fercho.jpg",
-        nombre: "Restaurante Fercho",
-        ubicacion: "Calarcá",
+        nombre: "Comidas rapidas Donde fercho",
+        ubicacion: "calle 37 nro 24-52 Calarcá",
         contacto: "310 502 5670",
-        categoria: "Restaurantes"
+        categoria: "Restaurantes, Comidas Rápidas y Asados"
+    },
+    { 
+        id: 28, 
+        photo: "imagenes/pautas/pauta_master.jpg",
+        nombre: "Master Rancho Gourmet",
+        ubicacion: "calle 42 nro. 23 -43 Calarcá",
+        contacto: "310 8052860",
+        categoria: "Restaurantes, Comidas Rápidas y Asados"
     },
     { 
         id: 11, 
@@ -436,10 +452,10 @@ const pautasPublicitarias = [
     { 
         id: 21, 
         photo: "imagenes/pautas/pauta_bisonte.jpg",
-        nombre: "Bisonte",
-        ubicacion: "Calarcá",
-        contacto: "",
-        categoria: "Restaurantes"
+        nombre: "Bendito Pekado",
+        ubicacion: "Cra 24 nro 40-65 Calarcá",
+        contacto: "321 354 3541",
+        categoria: "Pizzerías"
     },
     { 
         id: 22, 
@@ -456,6 +472,14 @@ const pautasPublicitarias = [
         ubicacion: "Calarcá",
         contacto: "",
         categoria: "Servicios"
+    },
+    { 
+        id: 40, 
+        photo: "imagenes/pautas/pauta_coomocal.jpg",
+        nombre: "COOMOCAL",
+        ubicacion: "calle 40 nro. 25- 61 calarcá",
+        contacto: "315 755 43 43",
+        categoria: "Transporte y Taxis"
     },
     { 
         id: 25, 
@@ -480,14 +504,6 @@ const pautasPublicitarias = [
         ubicacion: "km 3 Alto del Río Calarcá",
         contacto: "312 721 4550",
         categoria: "Alojamiento"
-    },
-    { 
-        id: 28, 
-        photo: "imagenes/pautas/pauta_master.jpg",
-        nombre: "Master",
-        ubicacion: "Calarcá",
-        contacto: "",
-        categoria: "Comercio"
     },
     { 
         id: 29, 
