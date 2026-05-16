@@ -306,6 +306,7 @@ header {
     object-position: top;
     padding: 0;
     display: block;
+    pointer-events: none;
 }
 
 /* En móviles, diseño VERTICAL perfecto */

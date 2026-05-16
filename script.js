@@ -321,13 +321,60 @@ console.log(`Versión: 2.0 - Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isT
 // Pautas publicitarias - Todas visibles con información detallada
 const pautasPublicitarias = [
     { 
+        id: 13, 
+        photo: "imagenes/pautas/pauta_quindus.jpg",
+        nombre: "Quindus Café",
+        ubicacion: "km 4 via al valle la Bella",
+        contacto: "312 633 61 43",
+        categoria: "Tiendas de Café"
+    },
+    { 
         id: 17, 
-        photo: "imagenes/pautas/pauta_albania.jpg",
-        nombre: "Centro Recreativo La Nueva Albania",
-        ubicacion: "KM 6 Vía Calarca - Barcelona",
-        contacto: "3117179148",
-        horario: "Lunes a Domingo: 9:00 AM a 5:00 PM",
-        descripcion: "Ven y disfruta de nuestros toboganes!"
+        photo: "imagenes/pautas/pauta_origen.jpg",
+        nombre: "Café Origen Bar y Restaurante",
+        ubicacion: "Carrera 25 Nro 40-25 Calarcá",
+        contacto: "301 857 2792",
+        categoria: "Tiendas de Café"
+    },
+    { 
+        id: 24, 
+        photo: "imagenes/pautas/pauta_amaranta.jpg",
+        nombre: "Amaranta libros Café",
+        ubicacion: "calle 40 Nro. 22-16 Calarcá",
+        contacto: "320 6590103",
+        categoria: "Tiendas de Café"
+    },
+    { 
+        id: 18, 
+        photo: "imagenes/pautas/pauta_raiz.jpg",
+        nombre: "Café Raiz Coffee",
+        ubicacion: "Cra 24 Nro. 41-29",
+        contacto: "311 518 8564",
+        categoria: "Tiendas de Café"
+    },
+    { 
+        id: 5, 
+        photo: "imagenes/pautas/pauta_recuca.jpg",
+        nombre: "RECUCA - Recorrido de la cultura cafetera",
+        ubicacion: "Vía Vda. Calle Larga, Calarcá",
+        contacto: "3108303779",
+        categoria: "Atractivos Turísticos"
+    },
+    { 
+        id: 10, 
+        photo: "imagenes/pautas/pauta_fercho.jpg",
+        nombre: "Restaurante Fercho",
+        ubicacion: "Calarcá",
+        contacto: "310 502 5670",
+        categoria: "Restaurantes"
+    },
+    { 
+        id: 11, 
+        photo: "imagenes/pautas/pauta_san_miguel.jpeg",
+        nombre: "Finca hotel San Miguel",
+        ubicacion: "Vereda la Bella, Vía quebrada Negra, Calarcá",
+        contacto: "310 4495532",
+        categoria: "Alojamiento"
     },
     { 
         id: 12, 
@@ -335,62 +382,195 @@ const pautasPublicitarias = [
         nombre: "Alcaldía de Calarcá",
         ubicacion: "Centro de Calarcá",
         contacto: "",
-        horario: "",
-        descripcion: "Calarca - Capital Mundial de las Mariposas"
+        descripcion: "Calarca - Capital Mundial de las Mariposas",
+        categoria: "Servicios"
     },
     { 
-        id: 18, 
+        id: 32, 
         photo: "imagenes/pautas/pauta_alemania.jpg",
-        nombre: "Chalet La Alemania",
-        ubicacion: "Quindío",
+        nombre: "La Alemania Chalet",
+        ubicacion: "Vereda Calle Larga, Calarcá",
         contacto: "323 444 4450",
-        horario: "",
-        redes: "@chaletlaalemania",
-        codigoDescuento: "#RESERVAHOY",
-        descripcion: "Tu escapada ideal en el Quindío"
+        categoria: "Alojamiento"
     },
-    { id: 5, photo: "imagenes/pautas/pauta_recuca.jpg" },
-    { id: 10, photo: "imagenes/pautas/pauta_fercho.jpg" },
-    { id: 11, photo: "imagenes/pautas/pauta_san_miguel.jpeg" },
-    { id: 13, photo: "imagenes/pautas/pauta_quinti.jpg" },
-    { id: 14, photo: "imagenes/pautas/pauta_raiz.jpg" },
-    { id: 15, photo: "imagenes/pautas/pauta_talanquera.jpg" },
-    { id: 16, photo: "imagenes/pautas/pauta_comaparado.jpg" },
-    { id: 19, photo: "imagenes/pautas/pauta_amaranta.jpg" },
-    { id: 20, photo: "imagenes/pautas/pauta_bendito.jpg" },
-    { id: 21, photo: "imagenes/pautas/pauta_bisonte.jpg" },
-    { id: 22, photo: "imagenes/pautas/pauta_chaparral.jpg" },
-    { id: 23, photo: "imagenes/pautas/pauta_confia.jpg" },
-    { id: 24, photo: "imagenes/pautas/pauta_coomocal.jpg" },
-    { id: 25, photo: "imagenes/pautas/pauta_descanso.jpg" },
-    { id: 26, photo: "imagenes/pautas/pauta_domo.jpg" },
-    { id: 27, photo: "imagenes/pautas/pauta_marta.jpg" },
-    { id: 28, photo: "imagenes/pautas/pauta_master.jpg" },
-    { id: 29, photo: "imagenes/pautas/pauta_origen.jpg" },
-    { id: 30, photo: "imagenes/pautas/pauta_peñas.jpg" },
-    { id: 31, photo: "imagenes/pautas/pauta_quindio_travel.jpg" },
-    { id: 32, photo: "imagenes/pautas/pauta_quindus.jpg" },
-    { id: 33, photo: "imagenes/pautas/pauta_rio.jpg" },
-    { id: 34, photo: "imagenes/pautas/pauta_tertulia.jpg" },
-    { id: 35, photo: "imagenes/pautas/pauta_ticlan.jpg" },
-    { id: 36, photo: "imagenes/pautas/pauta_mapa.jpg" }
+    { 
+        id: 33, 
+        photo: "imagenes/pautas/pauta_chaparral.jpg",
+        nombre: "Hotel el Gran Chaparral",
+        ubicacion: "Vereda la Bella Km 4 Calarcá",
+        contacto: "315 313 0782",
+        categoria: "Alojamiento"
+    },
+    { 
+        id: 34, 
+        photo: "imagenes/pautas/pauta_descanso.jpg",
+        nombre: "Finca Hotel el Descanso",
+        ubicacion: "Vereda Puerto Rico Km 3 Calarcá",
+        contacto: "315 343 3602",
+        categoria: "Alojamiento"
+    },
+    { 
+        id: 15, 
+        photo: "imagenes/pautas/pauta_talanquera.jpg",
+        nombre: "La Talanquera",
+        ubicacion: "Calarcá",
+        contacto: "321 959 8257",
+        categoria: "Restaurantes"
+    },
+    { 
+        id: 16, 
+        photo: "imagenes/pautas/pauta_comaparado.jpg",
+        nombre: "Comaparado",
+        ubicacion: "Calarcá",
+        contacto: "315 272 1971",
+        categoria: "Comercio"
+    },
+    { 
+        id: 20, 
+        photo: "imagenes/pautas/pauta_bendito.jpg",
+        nombre: "Bendito",
+        ubicacion: "Calarcá",
+        contacto: "",
+        categoria: "Tiendas de Café"
+    },
+    { 
+        id: 21, 
+        photo: "imagenes/pautas/pauta_bisonte.jpg",
+        nombre: "Bisonte",
+        ubicacion: "Calarcá",
+        contacto: "",
+        categoria: "Restaurantes"
+    },
+    { 
+        id: 22, 
+        photo: "imagenes/pautas/pauta_chaparral.jpg",
+        nombre: "Chaparral",
+        ubicacion: "Calarcá",
+        contacto: "",
+        categoria: "Restaurantes"
+    },
+    { 
+        id: 23, 
+        photo: "imagenes/pautas/pauta_confia.jpg",
+        nombre: "Confía",
+        ubicacion: "Calarcá",
+        contacto: "",
+        categoria: "Servicios"
+    },
+    { 
+        id: 25, 
+        photo: "imagenes/pautas/pauta_descanso.jpg",
+        nombre: "Descanso",
+        ubicacion: "Calarcá",
+        contacto: "",
+        categoria: "Alojamiento"
+    },
+    { 
+        id: 26, 
+        photo: "imagenes/pautas/pauta_domo.jpg",
+        nombre: "El Domo aves y café",
+        ubicacion: "la Bella, Calarcá",
+        contacto: "323 4086 675",
+        categoria: "Atractivos Turísticos"
+    },
+    { 
+        id: 27, 
+        photo: "imagenes/pautas/pauta_marta.jpg",
+        nombre: "Finca Turística Martha Cecilia",
+        ubicacion: "km 3 Alto del Río Calarcá",
+        contacto: "312 721 4550",
+        categoria: "Alojamiento"
+    },
+    { 
+        id: 28, 
+        photo: "imagenes/pautas/pauta_master.jpg",
+        nombre: "Master",
+        ubicacion: "Calarcá",
+        contacto: "",
+        categoria: "Comercio"
+    },
+    { 
+        id: 29, 
+        photo: "imagenes/pautas/pauta_origen.jpg",
+        nombre: "Origen",
+        ubicacion: "Calarcá",
+        contacto: "",
+        categoria: "Tiendas de Café"
+    },
+    { 
+        id: 30, 
+        photo: "imagenes/pautas/pauta_peñas.jpg",
+        nombre: "Ecoparque Peñas Blancas",
+        ubicacion: "Corregimiento de La Virginia, Calarcá",
+        contacto: "310 396 7951",
+        categoria: "Atractivos Turísticos"
+    },
+    { 
+        id: 31, 
+        photo: "imagenes/pautas/pauta_quindio_travel.jpg",
+        nombre: "Quindío Travel",
+        ubicacion: "Calarcá",
+        contacto: "",
+        categoria: "Transporte"
+    },
+    { 
+        id: 6, 
+        photo: "imagenes/pautas/pauta_albania.jpg",
+        nombre: "Centro Recreativo La Nueva Albania",
+        ubicacion: "KM 6 Vía Calarca - Barcelona",
+        contacto: "3117179148",
+        horario: "Lunes a Domingo: 9:00 AM a 5:00 PM",
+        categoria: "Atractivos Turísticos"
+    },
+    { 
+        id: 7, 
+        photo: "imagenes/pautas/pauta_rio.jpg",
+        nombre: "Mirador Café del Río",
+        ubicacion: "Variante Chaguala, Km 2, Vereda Buenos Aires Bajo, Calarcá",
+        contacto: "315 291 79 14",
+        categoria: "Atractivos Turísticos"
+    },
+    { 
+        id: 35, 
+        photo: "imagenes/pautas/pauta_ticlan.jpg",
+        nombre: "San Juan de Ticlán",
+        ubicacion: "Vía Barcelona, Calarcá",
+        contacto: "310 468 0227",
+        categoria: "Alojamiento"
+    },
+    { 
+        id: 36, 
+        photo: "imagenes/pautas/pauta_mapa.jpg",
+        nombre: "Mapa Calarcá 2026",
+        ubicacion: "Calarcá",
+        contacto: "",
+        categoria: "Información"
+    }
 ];
 
 // Renderizar pautas publicitarias
 function renderAdsBanner() {
     const banner = document.getElementById('ads-banner');
-    if (!banner) return;
+    if (!banner) {
+        console.log('No se encontró el banner de pautas');
+        return;
+    }
+    
+    console.log('Renderizando', pautasPublicitarias.length, 'pautas');
     
     banner.innerHTML = '';
-    pautasPublicitarias.forEach(pauta => {
+    pautasPublicitarias.forEach((pauta, index) => {
         const adItem = document.createElement('div');
         adItem.className = 'ad-item';
         adItem.innerHTML = `<img src="${pauta.photo}" alt="Pauta ${pauta.id}" loading="lazy">`;
         adItem.style.minHeight = '160px';
         adItem.style.cursor = 'pointer';
+        adItem.style.zIndex = '10';
         
         // Agregar evento de clic para abrir el modal
-        adItem.addEventListener('click', () => {
+        adItem.addEventListener('click', (e) => {
+            console.log('Clic en pauta', index + 1, ':', pauta.id);
+            e.stopPropagation();
             abrirModalPauta(pauta);
         });
         
@@ -400,13 +580,21 @@ function renderAdsBanner() {
 
 // Función para abrir el modal con la información de la pauta
 function abrirModalPauta(pauta) {
+    console.log('Abriendo modal para pauta:', pauta);
     const modal = document.getElementById('pauta-modal');
     const modalBody = document.getElementById('pauta-modal-body');
     
-    if (!modal || !modalBody) return;
+    if (!modal || !modalBody) {
+        console.log('No se encontró el modal o el cuerpo del modal');
+        return;
+    }
     
     // Construir el contenido del modal
     let contenido = `<img src="${pauta.photo}" alt="${pauta.nombre || 'Pauta'}" class="pauta-modal-image">`;
+    
+    if (pauta.categoria) {
+        contenido += `<div style="display: inline-block; background: var(--primary-color); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px;">${pauta.categoria}</div>`;
+    }
     
     if (pauta.nombre) {
         contenido += `<h2 class="pauta-modal-title">${pauta.nombre}</h2>`;
@@ -463,6 +651,8 @@ function abrirModalPauta(pauta) {
     
     modalBody.innerHTML = contenido;
     modal.style.display = 'block';
+    modal.style.zIndex = '5000';
+    console.log('Modal abierto correctamente');
 }
 
 // Llamar a renderizar pautas y configurar eventos cuando la página cargue
