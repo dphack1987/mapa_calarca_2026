@@ -563,11 +563,11 @@ const pautasPublicitarias = [
     }
 ];
 
-// Renderizar pautas publicitarias
+// Renderizar pautas publicitarias - 100% NUEVO y SIMPLE
 function renderAdsBanner() {
     const banner = document.getElementById('ads-banner');
     if (!banner) {
-        console.log('ERROR: No se encontró el banner de pautas');
+        console.log('❌ ERROR: No se encontró el banner de pautas');
         return;
     }
     
@@ -576,104 +576,82 @@ function renderAdsBanner() {
     banner.innerHTML = '';
     pautasPublicitarias.forEach((pauta, index) => {
         const adItem = document.createElement('div');
-        adItem.className = 'ad-item';
-        adItem.style.minHeight = '350px';
-        adItem.style.cursor = 'pointer';
-        adItem.style.position = 'relative';
-        adItem.style.zIndex = '100';
-        adItem.style.pointerEvents = 'auto';
+        adItem.style.cssText = 'width: 100%; min-height: 350px; height: 350px; border-radius: 18px; border: 1px solid #f0f0f0; background: white; cursor: pointer; display: flex; align-items: flex-start; justify-content: center; flex-shrink: 0; position: relative; z-index: 100;';
         
         const img = document.createElement('img');
         img.src = pauta.photo;
         img.alt = `Pauta ${pauta.id}`;
-        img.loading = 'lazy';
-        img.style.pointerEvents = 'none';
-        img.style.width = '100%';
-        img.style.height = 'auto';
-        img.style.objectFit = 'contain';
-        img.style.objectPosition = 'top';
+        img.style.cssText = 'width: 100%; height: auto; object-fit: contain; object-position: top; pointer-events: none;';
         
         adItem.appendChild(img);
         
-        // Evento de clic - 100% funcional
-        adItem.onclick = function(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            console.log('🖱️ Clic en pauta:', index + 1, '-', pauta.nombre || 'Sin nombre');
-            abrirModalPauta(pauta);
+        // Evento de clic - SUPER SIMPLE
+        adItem.onclick = function() {
+            console.log('🖱️ CLIC en pauta:', index + 1, '-', pauta.nombre);
+            abrirModalNuevo(pauta);
         };
         
         banner.appendChild(adItem);
     });
-    console.log('✅ Pautas renderizadas correctamente');
+    console.log('✅ Pautas renderizadas');
 }
 
-// Función para abrir el modal - muy simple y directa
-function abrirModalPauta(pauta) {
+// Función para abrir el modal NUEVO - SUPER SIMPLE
+function abrirModalNuevo(pauta) {
     console.log('🪟 Abriendo modal para:', pauta);
     
-    const modal = document.getElementById('info-modal');
-    const modalBody = document.getElementById('info-modal-body');
+    const modal = document.getElementById('modal-nuevo');
+    const contenido = document.getElementById('contenido-modal');
     
-    if (!modal || !modalBody) {
-        console.log('❌ ERROR: No se encontró el modal');
-        console.log('Buscando info-modal:', modal);
-        console.log('Buscando info-modal-body:', modalBody);
-        alert('No se puede mostrar la información. Actualiza la página.');
+    if (!modal || !contenido) {
+        console.log('❌ ERROR: No se encontró el modal NUEVO');
+        console.log('modal-nuevo:', modal);
+        console.log('contenido-modal:', contenido);
+        alert('ERROR: Actualiza la página completamente!');
         return;
     }
     
-    // Construir contenido simple y directo
-    let contenido = '';
-    
-    contenido += `<img src="${pauta.photo}" alt="${pauta.nombre || 'Pauta'}" style="width: 100%; border-radius: 15px 15px 0 0; margin-bottom: 20px;">`;
+    // Construir contenido - 100% directo
+    let html = '';
+    html += `<img src="${pauta.photo}" style="width: 100%; border-radius: 15px; margin-bottom: 20px;">`;
     
     if (pauta.categoria) {
-        contenido += `<div style="display: inline-block; background: var(--primary-color, #007A5E); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px;">${pauta.categoria}</div>`;
+        html += `<div style="display: inline-block; background: #007A5E; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;">${pauta.categoria}</div>`;
     }
     
     if (pauta.nombre) {
-        contenido += `<h2 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-color, #007A5E); margin-bottom: 15px; margin-top: 10px;">${pauta.nombre}</h2>`;
+        html += `<h2 style="font-size: 1.6rem; font-weight: 800; color: #007A5E; margin-bottom: 15px; margin-top: 10px;">${pauta.nombre}</h2>`;
     }
     
     if (pauta.ubicacion) {
-        contenido += `<div style="margin-bottom: 12px; display: flex; gap: 10px;"><span style="font-weight: 700; min-width: 90px;">📍 Ubicación:</span><span style="color: #555;">${pauta.ubicacion}</span></div>`;
+        html += `<div style="margin-bottom: 12px; font-size: 1rem;"><strong>📍 Ubicación:</strong> ${pauta.ubicacion}</div>`;
     }
     
     if (pauta.contacto) {
-        contenido += `<div style="margin-bottom: 12px; display: flex; gap: 10px;"><span style="font-weight: 700; min-width: 90px;">📞 Contacto:</span><span style="color: #555;">${pauta.contacto}</span></div>`;
+        html += `<div style="margin-bottom: 12px; font-size: 1rem;"><strong>📞 Contacto:</strong> ${pauta.contacto}</div>`;
     }
     
     if (pauta.horario) {
-        contenido += `<div style="margin-bottom: 12px; display: flex; gap: 10px;"><span style="font-weight: 700; min-width: 90px;">⏰ Horario:</span><span style="color: #555;">${pauta.horario}</span></div>`;
+        html += `<div style="margin-bottom: 12px; font-size: 1rem;"><strong>⏰ Horario:</strong> ${pauta.horario}</div>`;
     }
     
-    modalBody.innerHTML = contenido;
+    contenido.innerHTML = html;
     modal.style.display = 'block';
-    modal.style.zIndex = '10000';
-    console.log('✅ Modal abierto correctamente');
+    console.log('✅ Modal NUEVO abierto');
 }
 
-// Llamar a renderizar pautas y configurar eventos cuando la página cargue
-window.addEventListener('load', () => {
-    renderAdsBanner();
-    
-    // Cerrar modal al hacer clic en la X
-    const closeModalBtn = document.querySelector('.pauta-modal-close');
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', () => {
-            const modal = document.getElementById('info-modal');
-            if (modal) modal.style.display = 'none';
-        });
+// Cerrar modal nuevo
+document.addEventListener('click', function(e) {
+    if (e.target.id === 'cerrar-modal' || e.target.id === 'modal-nuevo') {
+        const modal = document.getElementById('modal-nuevo');
+        if (modal) modal.style.display = 'none';
     }
-    
-    // Cerrar modal al hacer clic fuera
-    window.addEventListener('click', (event) => {
-        const modal = document.getElementById('info-modal');
-        if (modal && event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
+});
+
+// Llamar a renderizar pautas cuando la página cargue
+window.addEventListener('load', function() {
+    renderAdsBanner();
+    console.log('✅ Página cargada completamente - v200');
 });
 
 // Service Worker Registration for PWA - Sin recarga automática
