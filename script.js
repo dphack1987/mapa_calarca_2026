@@ -318,18 +318,44 @@ window.addEventListener('appinstalled', () => {
 // Initial Device Info in Console
 console.log(`Versión: 2.0 - Device: ${isMobile ? 'Mobile' : 'PC'}, Touch: ${isTouchDevice}`);
 
-// Pautas publicitarias - Todas visibles
+// Pautas publicitarias - Todas visibles con información detallada
 const pautasPublicitarias = [
+    { 
+        id: 17, 
+        photo: "imagenes/pautas/pauta_albania.jpg",
+        nombre: "Centro Recreativo La Nueva Albania",
+        ubicacion: "KM 6 Vía Calarca - Barcelona",
+        contacto: "3117179148",
+        horario: "Lunes a Domingo: 9:00 AM a 5:00 PM",
+        descripcion: "Ven y disfruta de nuestros toboganes!"
+    },
+    { 
+        id: 12, 
+        photo: "imagenes/pautas/pauta_alcaldia.jpg",
+        nombre: "Alcaldía de Calarcá",
+        ubicacion: "Centro de Calarcá",
+        contacto: "",
+        horario: "",
+        descripcion: "Calarca - Capital Mundial de las Mariposas"
+    },
+    { 
+        id: 18, 
+        photo: "imagenes/pautas/pauta_alemania.jpg",
+        nombre: "Chalet La Alemania",
+        ubicacion: "Quindío",
+        contacto: "323 444 4450",
+        horario: "",
+        redes: "@chaletlaalemania",
+        codigoDescuento: "#RESERVAHOY",
+        descripcion: "Tu escapada ideal en el Quindío"
+    },
     { id: 5, photo: "imagenes/pautas/pauta_recuca.jpg" },
     { id: 10, photo: "imagenes/pautas/pauta_fercho.jpg" },
     { id: 11, photo: "imagenes/pautas/pauta_san_miguel.jpeg" },
-    { id: 12, photo: "imagenes/pautas/pauta_alcaldia.jpg" },
     { id: 13, photo: "imagenes/pautas/pauta_quinti.jpg" },
     { id: 14, photo: "imagenes/pautas/pauta_raiz.jpg" },
     { id: 15, photo: "imagenes/pautas/pauta_talanquera.jpg" },
     { id: 16, photo: "imagenes/pautas/pauta_comaparado.jpg" },
-    { id: 17, photo: "imagenes/pautas/pauta_albania.jpg" },
-    { id: 18, photo: "imagenes/pautas/pauta_alemania.jpg" },
     { id: 19, photo: "imagenes/pautas/pauta_amaranta.jpg" },
     { id: 20, photo: "imagenes/pautas/pauta_bendito.jpg" },
     { id: 21, photo: "imagenes/pautas/pauta_bisonte.jpg" },
@@ -361,9 +387,100 @@ function renderAdsBanner() {
         adItem.className = 'ad-item';
         adItem.innerHTML = `<img src="${pauta.photo}" alt="Pauta ${pauta.id}" loading="lazy">`;
         adItem.style.minHeight = '160px';
+        adItem.style.cursor = 'pointer';
+        
+        // Agregar evento de clic para abrir el modal
+        adItem.addEventListener('click', () => {
+            abrirModalPauta(pauta);
+        });
+        
         banner.appendChild(adItem);
     });
 }
+
+// Función para abrir el modal con la información de la pauta
+function abrirModalPauta(pauta) {
+    const modal = document.getElementById('pauta-modal');
+    const modalBody = document.getElementById('pauta-modal-body');
+    
+    if (!modal || !modalBody) return;
+    
+    // Construir el contenido del modal
+    let contenido = `<img src="${pauta.photo}" alt="${pauta.nombre || 'Pauta'}" class="pauta-modal-image">`;
+    
+    if (pauta.nombre) {
+        contenido += `<h2 class="pauta-modal-title">${pauta.nombre}</h2>`;
+    }
+    
+    if (pauta.ubicacion) {
+        contenido += `
+            <div class="pauta-modal-info">
+                <span class="pauta-modal-info-label">📍 Ubicación:</span>
+                <span class="pauta-modal-info-value">${pauta.ubicacion}</span>
+            </div>
+        `;
+    }
+    
+    if (pauta.contacto) {
+        contenido += `
+            <div class="pauta-modal-info">
+                <span class="pauta-modal-info-label">📞 Contacto:</span>
+                <span class="pauta-modal-info-value">${pauta.contacto}</span>
+            </div>
+        `;
+    }
+    
+    if (pauta.horario) {
+        contenido += `
+            <div class="pauta-modal-info">
+                <span class="pauta-modal-info-label">⏰ Horario:</span>
+                <span class="pauta-modal-info-value">${pauta.horario}</span>
+            </div>
+        `;
+    }
+    
+    if (pauta.redes) {
+        contenido += `
+            <div class="pauta-modal-info">
+                <span class="pauta-modal-info-label">📱 Redes:</span>
+                <span class="pauta-modal-info-value">${pauta.redes}</span>
+            </div>
+        `;
+    }
+    
+    if (pauta.codigoDescuento) {
+        contenido += `
+            <div class="pauta-modal-info">
+                <span class="pauta-modal-info-label">🎁 Código:</span>
+                <span class="pauta-modal-info-value" style="font-weight: 800; color: var(--primary-color);">${pauta.codigoDescuento}</span>
+            </div>
+        `;
+    }
+    
+    if (pauta.descripcion) {
+        contenido += `<p class="pauta-modal-descripcion">${pauta.descripcion}</p>`;
+    }
+    
+    modalBody.innerHTML = contenido;
+    modal.style.display = 'block';
+}
+
+// Cerrar modal al hacer clic en la X
+const closeModalBtn = document.querySelector('.pauta-modal-close');
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', () => {
+        const modal = document.getElementById('pauta-modal');
+        if (modal) modal.style.display = 'none';
+    });
+}
+
+// Cerrar modal al hacer clic fuera
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('pauta-modal');
+    if (modal && event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
 
 // Llamar a renderizar pautas cuando la página cargue
 window.addEventListener('load', renderAdsBanner);

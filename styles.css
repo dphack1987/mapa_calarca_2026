@@ -1052,6 +1052,96 @@ header {
     color: var(--primary-color) !important;
 }
 
+/* Modal para información de pautas */
+.pauta-modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s ease;
+}
+
+.pauta-modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.pauta-modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 15px 20px;
+    line-height: 1;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+}
+
+.pauta-modal-close:hover,
+.pauta-modal-close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.pauta-modal-body {
+    padding: 0 25px 25px 25px;
+}
+
+.pauta-modal-image {
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    margin-bottom: 20px;
+}
+
+.pauta-modal-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.pauta-modal-info {
+    margin-bottom: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.pauta-modal-info-label {
+    font-weight: 700;
+    color: var(--text-dark);
+    min-width: 90px;
+}
+
+.pauta-modal-info-value {
+    color: #555;
+    flex: 1;
+}
+
+.pauta-modal-descripcion {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.6;
+}
+
 /* Botón Mi Ubicación */
 .location-control {
     background: white;
