@@ -395,11 +395,10 @@ const pautasPublicitarias = [
     { 
         id: 12, 
         photo: "imagenes/pautas/pauta_alcaldia.jpg",
-        nombre: "Alcaldía de Calarcá",
+        nombre: "Información de turismo de Calarcá",
         ubicacion: "Centro de Calarcá",
-        contacto: "",
-        descripcion: "Calarca - Capital Mundial de las Mariposas",
-        categoria: "Servicios"
+        contacto: "57 (606) 7430300",
+        categoria: "Alcaldía de Calarcá"
     },
     { 
         id: 32, 
@@ -524,10 +523,10 @@ const pautasPublicitarias = [
     { 
         id: 31, 
         photo: "imagenes/pautas/pauta_quindio_travel.jpg",
-        nombre: "Quindío Travel",
+        nombre: "Quindío travel",
         ubicacion: "Calarcá",
-        contacto: "",
-        categoria: "Transporte"
+        contacto: "317 44 260 44",
+        categoria: "Agencia de Viajes"
     },
     { 
         id: 6, 

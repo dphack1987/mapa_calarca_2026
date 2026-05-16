@@ -1057,7 +1057,7 @@ header {
 .pauta-modal {
     display: none;
     position: fixed;
-    z-index: 3000;
+    z-index: 5000 !important;
     left: 0;
     top: 0;
     width: 100%;
@@ -1077,6 +1077,8 @@ header {
     overflow-y: auto;
     animation: slideUp 0.3s ease;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 5001;
 }
 
 .pauta-modal-close {
