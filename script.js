@@ -100,38 +100,20 @@ const translations = {
     }
 };
 
-// Points of interest - Only numbers and coordinates from photos
+// Points of interest - 12 Atractivos Turísticos (de la imagen)
 const pointsOfInterest = [
-    { id: 4, coords: [1621.4, 3732.5] },
-    { id: 5, coords: [790.8, 1984.4] },
-    { id: 6, coords: [538.0, 1696.1] },
-    { id: 11, coords: [1986.8, 3868.5] },
-    { id: 7, coords: [2565.1, 2574.1] },
-    { id: 8, coords: [956.5, 1949.8] },
-    { id: 9, coords: [2072.6, 2856.1] },
-    { id: 10, coords: [4869.9, 1826.7] },
-    { id: 12, coords: [2035.0, 2850.3] },
-    { id: 13, coords: [791.9, 1704.5] },
-    { id: 14, coords: [2085.3, 2705.3] },
-    { id: 15, coords: [1909.2, 2701.0] },
-    { id: 16, coords: [2103.3, 2809.3] },
-    { id: 17, coords: [2062.5, 2715.5] },
-    { id: 18, coords: [2098.5, 2771.8] },
-    { id: 19, coords: [2210.8, 2825.0] },
-    { id: 20, coords: [2128.5, 2777.8] },
-    { id: 21, coords: [2060.5, 2759.8] },
-    { id: 28, coords: [2077.5, 2720.0] },
-    { id: 24, coords: [2017.5, 2827.5] },
-    { id: 29, coords: [2087.0, 2766.0] },
-    { id: 30, coords: [1974.7, 2731.2] },
-    { id: 34, coords: [1537.7, 3170.5] },
-    { id: 35, coords: [2075.0, 2671.5] },
-    { id: 36, coords: [926.0, 2113.3] },
-    { id: 38, coords: [2700.0, 2211.5] },
-    { id: 32, coords: [470.0, 1483.5] },
-    { id: 33, coords: [784.5, 1771.8] },
-    { id: 39, coords: [614.1, 1595.8] },
-    { id: 40, coords: [2041.0, 2768.5] }
+    { id: 1, nombre: "RECUCA Recorrido de la cultura cafetera", coords: [790.8, 1984.9] },
+    { id: 2, nombre: "Ruta del Cacao", coords: [956.5, 1949.8] },
+    { id: 3, nombre: "Parque en la Montaña Q'INTI la casa cafetera al revés", coords: [2072.6, 2856.1] },
+    { id: 4, nombre: "Ecoparque Peñas Blancas", coords: [1621.4, 3732.5] },
+    { id: 5, nombre: "El Domo aves y café", coords: [2035.0, 2850.3] },
+    { id: 6, nombre: "Centro Recreacional la Nueva Albania", coords: [538.0, 1696.1] },
+    { id: 7, nombre: "Mirador Café del río", coords: [2565.1, 2574.1] },
+    { id: 8, nombre: "Jardín Botánico del Quindío y Mariposario", coords: [791.9, 1704.5] },
+    { id: 9, nombre: "Fiesta Nacional del Café", coords: [2085.3, 2705.3] },
+    { id: 10, nombre: "Festivada del maíz en Barcelona", coords: [4869.9, 1826.7] },
+    { id: 11, nombre: "Parapente", coords: [1986.8, 3868.5] },
+    { id: 12, nombre: "Ciudad Sobre Letras", coords: [2017.5, 2827.5] }
 ];
 
 const selectedInfo = document.getElementById('selected-info');
@@ -169,12 +151,13 @@ function abrirBottomSheet(point) {
     
     if (!bottomSheet || !bottomSheetContent || !overlay) return;
     
-    const googleMapsUrl = point.googleMapsUrl || 'https://www.google.com/maps/search/?api=1&query=Calarcá,Quindío,Colombia';
+    const queryUbicacion = encodeURIComponent(`${point.nombre || 'Punto ' + point.id}, Calarcá, Quindío, Colombia`);
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${queryUbicacion}`;
     
     bottomSheetContent.innerHTML = `
         <div style="text-align: center;">
-            <h2 style="color: #27ae60; font-size: 1.8rem; font-weight: 800; margin-bottom: 20px;">Punto ${point.id}</h2>
-            <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Espera a que se agreguen los detalles completos de este punto de interés.</p>
+            <h2 style="color: #27ae60; font-size: 1.8rem; font-weight: 800; margin-bottom: 20px;">${point.nombre || 'Punto ' + point.id}</h2>
+            <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Información del atractivo turístico.</p>
             <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="
                 display: inline-block;
                 background: #4285F4;
