@@ -801,12 +801,7 @@ function renderizarCasillas() {
         `;
         
         item.addEventListener('click', () => {
-            // Navegar al punto en el mapa
-            map.flyTo(casilla.coords, 1.5, {
-                duration: 1.5
-            });
-            
-            // También abrir la imagen en el modal
+            // Solo abrir la imagen en el modal - deshabilitado redireccionamiento al mapa
             abrirModalImagenGrande(casilla.imagen, casilla.nombre);
         });
         
