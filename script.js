@@ -169,10 +169,27 @@ function abrirBottomSheet(point) {
     
     if (!bottomSheet || !bottomSheetContent || !overlay) return;
     
+    const googleMapsUrl = point.googleMapsUrl || 'https://www.google.com/maps/search/?api=1&query=Calarcá,Quindío,Colombia';
+    
     bottomSheetContent.innerHTML = `
         <div style="text-align: center;">
             <h2 style="color: #27ae60; font-size: 1.8rem; font-weight: 800; margin-bottom: 20px;">Punto ${point.id}</h2>
-            <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 30px;">Espera a que se agreguen los detalles completos de este punto de interés.</p>
+            <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Espera a que se agreguen los detalles completos de este punto de interés.</p>
+            <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="
+                display: inline-block;
+                background: #4285F4;
+                color: white;
+                border: none;
+                padding: 12px 30px;
+                border-radius: 25px;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                margin-bottom: 15px;
+            ">🚗 Cómo llegar (Google Maps)</a>
+            <br>
             <button onclick="cerrarBottomSheet()" style="
                 background: #27ae60;
                 color: white;
@@ -672,6 +689,10 @@ function abrirModalNuevo(pauta) {
         return;
     }
     
+    // Generar URL de Google Maps con la ubicación
+    const queryUbicacion = encodeURIComponent(`${pauta.nombre || ''}, ${pauta.ubicacion || ''}, Calarcá, Quindío, Colombia`);
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${queryUbicacion}`;
+    
     // Construir contenido - 100% directo y seguro
     let html = '';
     html += `<img src="${pauta.photo}" style="width: 100%; border-radius: 15px; margin-bottom: 20px;">`;
@@ -695,6 +716,24 @@ function abrirModalNuevo(pauta) {
     if (pauta.horario) {
         html += `<div style="margin-bottom: 12px; font-size: 1rem;"><strong>⏰ Horario:</strong> ${pauta.horario}</div>`;
     }
+    
+    // Botón de Cómo llegar
+    html += `<a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="
+        display: block;
+        background: #4285F4;
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        border-radius: 15px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        text-align: center;
+        margin-top: 20px;
+        box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+    ">🚗 Cómo llegar (Google Maps)</a>`;
     
     contenido.innerHTML = html;
     modal.style.display = 'block';
