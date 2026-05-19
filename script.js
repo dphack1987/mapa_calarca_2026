@@ -124,7 +124,7 @@ const translations = {
     }
 };
 
-// Points of interest - PRIMEROS 5 PUNTOS (tarea 1) - COORDENADAS INVERTIDAS [y, x] PARA LEAFLET CRS.Simple
+// Points of interest - PRIMEROS 5 PUNTOS + NUEVOS PUNTOS (#30, #32, #33) - COORDENADAS INVERTIDAS [y, x] PARA LEAFLET CRS.Simple
 const pointsOfInterest = [
     { 
         id: 1, 
@@ -165,6 +165,30 @@ const pointsOfInterest = [
         foto: "imagenes/pautas/pauta_domo.jpg",
         ubicacion: "La Bella, Calarcá",
         contacto: "323 4086 675"
+    },
+    { 
+        id: 30, 
+        nombre: "Alcaldía de Calarcá", 
+        coords: [2161.8, 2988.0],
+        foto: "imagenes/pautas/pauta_alcaldia.jpg",
+        ubicacion: "Centro de Calarcá",
+        contacto: null
+    },
+    { 
+        id: 32, 
+        nombre: "La Alemania Chalet", 
+        coords: [510.5, 1640.2],
+        foto: "imagenes/pautas/pauta_alemania.jpg",
+        ubicacion: "Km 6 vía Calarcá - Barcelona",
+        contacto: null
+    },
+    { 
+        id: 33, 
+        nombre: "Hotel El Gran Chaparral", 
+        coords: [860.4, 1938.0],
+        foto: "imagenes/pautas/pauta_chaparral.jpg",
+        ubicacion: "Calarcá",
+        contacto: null
     }
 ];
 
