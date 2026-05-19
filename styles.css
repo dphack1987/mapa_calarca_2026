@@ -9,6 +9,12 @@
     --glass-bg: rgba(255, 255, 255, 0.25);
 }
 
+/* Estilo para marcadores numerados personalizados */
+.custom-number-marker {
+    background: transparent !important;
+    border: none !important;
+}
+
 /* Scrollbar Personalizada */
 ::-webkit-scrollbar {
     width: 8px;
