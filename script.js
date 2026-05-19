@@ -702,6 +702,112 @@ document.addEventListener('click', function(e) {
 
 console.log('✅ Todo listo! Puedes hacer clic en las pautas.');
 
+// Casillas de Información - con coordenadas en el mapa
+const casillasInfo = [
+    {
+        id: 'atractivos',
+        nombre: 'Atractivos',
+        imagen: 'imagenes/casillas_info/casillas_atractivos.jpg',
+        coords: [1000, 2000]
+    },
+    {
+        id: 'agencias',
+        nombre: 'Agencias de Viajes',
+        imagen: 'imagenes/casillas_info/casillas_agencias.jpg',
+        coords: [1500, 2500]
+    },
+    {
+        id: 'alcaldia',
+        nombre: 'Alcaldía',
+        imagen: 'imagenes/casillas_info/casillas_alcaldia.jpg',
+        coords: [1800, 2800]
+    },
+    {
+        id: 'alojamiento',
+        nombre: 'Alojamiento',
+        imagen: 'imagenes/casillas_info/casillas_alojamiento.jpg',
+        coords: [2000, 3000]
+    },
+    {
+        id: 'escuela',
+        nombre: 'Escuela de Café',
+        imagen: 'imagenes/casillas_info/casillas_escuela.jpg',
+        coords: [2100, 2900]
+    },
+    {
+        id: 'libros',
+        nombre: 'Libros y Café',
+        imagen: 'imagenes/casillas_info/casillas_libros.jpg',
+        coords: [1900, 2700]
+    },
+    {
+        id: 'parrillas',
+        nombre: 'Parrillas',
+        imagen: 'imagenes/casillas_info/casillas_parrillas.jpg',
+        coords: [2200, 3100]
+    },
+    {
+        id: 'pizeria',
+        nombre: 'Pizzerías',
+        imagen: 'imagenes/casillas_info/casillas_pizeria.jpg',
+        coords: [2300, 3200]
+    },
+    {
+        id: 'restaurantes',
+        nombre: 'Restaurantes',
+        imagen: 'imagenes/casillas_info/casillas_restaurantes.jpg',
+        coords: [2400, 3300]
+    },
+    {
+        id: 'taxis',
+        nombre: 'Taxis y Transporte',
+        imagen: 'imagenes/casillas_info/casillas_taxis.jpg',
+        coords: [1700, 2600]
+    },
+    {
+        id: 'tiendas',
+        nombre: 'Tiendas de Café',
+        imagen: 'imagenes/casillas_info/casillas_tiendas_de_cafe.jpg',
+        coords: [2500, 3400]
+    }
+];
+
+// Función para renderizar las casillas de información
+function renderizarCasillas() {
+    const container = document.getElementById('casillas-container');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    casillasInfo.forEach(casilla => {
+        const item = document.createElement('div');
+        item.className = 'casilla-item';
+        item.innerHTML = `
+            <img src="${casilla.imagen}" alt="${casilla.nombre}">
+            <p>${casilla.nombre}</p>
+        `;
+        
+        item.addEventListener('click', () => {
+            // Navegar al punto en el mapa
+            map.flyTo(casilla.coords, 1.5, {
+                duration: 1.5
+            });
+            
+            // También abrir la imagen en el modal
+            abrirModalImagenGrande(casilla.imagen, casilla.nombre);
+        });
+        
+        container.appendChild(item);
+    });
+    
+    console.log('✅ Casillas de información renderizadas');
+}
+
+// Renderizar casillas después de que el mapa esté listo
+setTimeout(() => {
+    renderizarCasillas();
+}, 500);
+
 // Service Worker Registration for PWA - Sin recarga automática
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
