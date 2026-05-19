@@ -839,7 +839,7 @@ const casillasInfo = [
     {
         id: 'parrillas',
         nombre: 'Parrillas',
-        imagen: 'imagenes/casillas_info/casillas_parrillas.jpg',
+        imagen: 'imagenes/casillas_info/casillas_parrilas.jpg',
         coords: [2200, 3100]
     },
     {
