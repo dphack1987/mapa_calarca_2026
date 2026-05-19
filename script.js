@@ -161,10 +161,59 @@ if (selectedInfo) {
     `;
 }
 
-// Function to add markers with numbers to map
+// Funciones para el Bottom Sheet
+function abrirBottomSheet(point) {
+    const bottomSheet = document.getElementById('bottom-sheet');
+    const bottomSheetContent = document.getElementById('bottom-sheet-content');
+    const overlay = document.getElementById('bottom-sheet-overlay');
+    
+    if (!bottomSheet || !bottomSheetContent || !overlay) return;
+    
+    bottomSheetContent.innerHTML = `
+        <div style="text-align: center;">
+            <h2 style="color: #27ae60; font-size: 1.8rem; font-weight: 800; margin-bottom: 20px;">Punto ${point.id}</h2>
+            <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 30px;">Espera a que se agreguen los detalles completos de este punto de interés.</p>
+            <button onclick="cerrarBottomSheet()" style="
+                background: #27ae60;
+                color: white;
+                border: none;
+                padding: 12px 30px;
+                border-radius: 25px;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            ">Cerrar</button>
+        </div>
+    `;
+    
+    bottomSheet.classList.add('open');
+    overlay.classList.add('active');
+}
+
+function cerrarBottomSheet() {
+    const bottomSheet = document.getElementById('bottom-sheet');
+    const overlay = document.getElementById('bottom-sheet-overlay');
+    
+    if (bottomSheet) bottomSheet.classList.remove('open');
+    if (overlay) overlay.classList.remove('active');
+}
+
+// Function to add markers with numbers to map (con Marker Clustering)
 function displayMarkers() {
     markers.forEach(m => map.removeLayer(m));
     markers = [];
+
+    // Crear grupo de clustering
+    const markerClusterGroup = L.markerClusterGroup({
+        showCoverageOnHover: false,
+        maxClusterRadius: 50,
+        animate: true,
+        animateAddingMarkers: true,
+        spiderfyOnMaxZoom: true,
+        disableClusteringAtZoom: 2,
+        chunkedLoading: true
+    });
 
     pointsOfInterest.forEach(point => {
         // Create custom icon with number
@@ -188,19 +237,12 @@ function displayMarkers() {
             iconAnchor: [18, 18]
         });
 
-        const marker = L.marker(point.coords, { icon: numberIcon }).addTo(map);
+        const marker = L.marker(point.coords, { icon: numberIcon });
 
-        marker.bindPopup(`
-            <div style="text-align: center; font-family: 'Poppins', sans-serif; padding: 10px;">
-                <b style="display: block; margin-bottom: 5px; color: #27ae60; font-size: 1.2rem;">Punto ${point.id}</b>
-            </div>
-        `, {
-            closeButton: false,
-            autoPanPadding: [50, 50],
-            className: 'modern-popup'
-        });
-
-        marker.on('click', () => {
+        marker.on('click', (e) => {
+            e.originalEvent.stopPropagation();
+            abrirBottomSheet(point);
+            
             if (selectedInfo) {
                 selectedInfo.innerHTML = `
                     <div class="selected-point">
@@ -216,8 +258,11 @@ function displayMarkers() {
             }
         });
 
+        markerClusterGroup.addLayer(marker);
         markers.push(marker);
     });
+
+    map.addLayer(markerClusterGroup);
 }
 
 // Función para abrir modal con imagen grande
@@ -786,3 +831,17 @@ if ('serviceWorker' in navigator) {
             .catch(err => console.log('SW registro fallido:', err));
     });
 }
+
+// Event listeners para el Bottom Sheet
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('bottom-sheet-overlay');
+    const handle = document.querySelector('.bottom-sheet-handle');
+    
+    if (overlay) {
+        overlay.addEventListener('click', cerrarBottomSheet);
+    }
+    
+    if (handle) {
+        handle.addEventListener('click', cerrarBottomSheet);
+    }
+});
