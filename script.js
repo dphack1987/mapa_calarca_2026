@@ -220,22 +220,6 @@ function displayMarkers() {
     });
 }
 
-// Mapeo de categorías a imágenes de casillas_info
-const categoryImageMap = {
-    'Cultura': 'imagenes/casillas_info/casillas_atractivos.jpg',
-    'Naturaleza': 'imagenes/casillas_info/casillas_atractivos.jpg',
-    'Aventura': 'imagenes/casillas_info/casillas_agencias.jpg',
-    'Hospedaje Rural': 'imagenes/casillas_info/casillas_alojamiento.jpg',
-    'Hospedaje Urbano': 'imagenes/casillas_info/casillas_alojamiento.jpg',
-    'Gastronomía Local': 'imagenes/casillas_info/casillas_restaurantes.jpg',
-    'Gastronomía Internacional': 'imagenes/casillas_info/casillas_pizeria.jpg',
-    'Gastronomía de Mar': 'imagenes/casillas_info/casillas_restaurantes.jpg',
-    'Comercio': 'imagenes/casillas_info/casillas_tiendas_de_cafe.jpg',
-    'Transporte': 'imagenes/casillas_info/casillas_taxis.jpg',
-    'Centros Comerciales': 'imagenes/casillas_info/casillas_tiendas_de_cafe.jpg',
-    'Servicios': 'imagenes/casillas_info/casillas_alcaldia.jpg'
-};
-
 // Función para abrir modal con imagen grande
 function abrirModalImagenGrande(imagenPath, categoria) {
     const modal = document.getElementById('modal-nuevo');
@@ -252,22 +236,6 @@ function abrirModalImagenGrande(imagenPath, categoria) {
     
     modal.style.display = 'block';
 }
-
-// Filter buttons (basic functionality + abrir imagen grande)
-const filterBtns = document.querySelectorAll('.filter-btn');
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        const categoria = btn.getAttribute('data-category');
-        
-        // Si tiene una imagen asociada, abrir el modal
-        if (categoria !== 'todos' && categoryImageMap[categoria]) {
-            abrirModalImagenGrande(categoryImageMap[categoria], categoria);
-        }
-    });
-});
 
 // Favorites Logic
 function toggleFavorite(id) {
@@ -772,16 +740,16 @@ const casillasInfo = [
     }
 ];
 
-// Función para renderizar las casillas de información
+// Función para renderizar las casillas de información en el sidebar
 function renderizarCasillas() {
-    const container = document.getElementById('casillas-container');
+    const container = document.getElementById('casillas-sidebar-container');
     if (!container) return;
     
     container.innerHTML = '';
     
     casillasInfo.forEach(casilla => {
         const item = document.createElement('div');
-        item.className = 'casilla-item';
+        item.className = 'casilla-sidebar-item';
         item.innerHTML = `
             <img src="${casilla.imagen}" alt="${casilla.nombre}">
             <p>${casilla.nombre}</p>
@@ -800,7 +768,7 @@ function renderizarCasillas() {
         container.appendChild(item);
     });
     
-    console.log('✅ Casillas de información renderizadas');
+    console.log('✅ Casillas de información renderizadas en el sidebar');
 }
 
 // Renderizar casillas después de que el mapa esté listo
