@@ -475,9 +475,9 @@ header {
 .filter-btn[data-category="Gastronomía Local"]::before { background-image: url('imagenes/casillas_info/casillas_restaurantes.jpg'); }
 .filter-btn[data-category="Gastronomía Internacional"]::before { background-image: url('imagenes/casillas_info/casillas_pizeria.jpg'); }
 .filter-btn[data-category="Gastronomía de Mar"]::before { background-image: url('imagenes/casillas_info/casillas_restaurantes.jpg'); }
-.filter-btn[data-category="Comercio"]::before { background-image: url('imagenes/casillas_info/casillas tiendas de cafe.jpg'); }
+.filter-btn[data-category="Comercio"]::before { background-image: url('imagenes/casillas_info/casillas_tiendas_de_cafe.jpg'); }
 .filter-btn[data-category="Transporte"]::before { background-image: url('imagenes/casillas_info/casillas_taxis.jpg'); }
-.filter-btn[data-category="Centros Comerciales"]::before { background-image: url('imagenes/casillas_info/casillas tiendas de cafe.jpg'); }
+.filter-btn[data-category="Centros Comerciales"]::before { background-image: url('imagenes/casillas_info/casillas_tiendas_de_cafe.jpg'); }
 .filter-btn[data-category="Servicios"]::before { background-image: url('imagenes/casillas_info/casillas_alcaldia.jpg'); }
 
 .filter-btn:hover {

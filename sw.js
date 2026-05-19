@@ -38,7 +38,7 @@ const assets = [
   './imagenes/pautas/pauta_talanquera.jpg',
   './imagenes/pautas/pauta_tertulia.jpg',
   './imagenes/pautas/pauta_ticlan.jpg',
-  './imagenes/casillas_info/casillas tiendas de cafe.jpg',
+  './imagenes/casillas_info/casillas_tiendas_de_cafe.jpg',
   './imagenes/casillas_info/casillas_agencias.jpg',
   './imagenes/casillas_info/casillas_alcaldia.jpg',
   './imagenes/casillas_info/casillas_alojamiento.jpg',
