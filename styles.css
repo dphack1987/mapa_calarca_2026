@@ -1303,34 +1303,34 @@ header {
 
 /* Ajustar el main-content para que no quede tapado por la barra inferior */
 #main-content {
-    padding-bottom: 250px !important;
+    padding-bottom: 200px !important;
 }
 
 /* Responsive para la barra de casillas */
 @media (max-width: 768px) {
     .casillas-bottom-bar {
-        padding: 15px;
-    }
-    
-    .casillas-bottom-container {
-        gap: 15px;
-    }
-    
-    .casilla-bottom-item {
-        width: 135px;
-    }
-    
-    .casilla-bottom-item img {
-        height: 100px;
-    }
-    
-    .casilla-bottom-item p {
-        font-size: 0.75rem;
         padding: 10px 8px;
     }
     
+    .casillas-bottom-container {
+        gap: 10px;
+    }
+    
+    .casilla-bottom-item {
+        width: 120px;
+    }
+    
+    .casilla-bottom-item img {
+        height: 80px;
+    }
+    
+    .casilla-bottom-item p {
+        font-size: 0.7rem;
+        padding: 8px 6px;
+    }
+
     #main-content {
-        padding-bottom: 180px;
+        padding-bottom: 170px !important;
     }
 }
 
@@ -1515,14 +1515,14 @@ header {
 /* Media Queries para Mobile Ghost UI */
 @media (max-width: 768px) {
     header {
-        height: 70px;
-        top: 10px;
-        width: calc(100% - 20px);
-        padding: 5px 15px;
+        height: 55px;
+        top: 0;
+        width: 100%;
+        padding: 5px 10px;
     }
 
     .title-container h1 {
-        font-size: 1.2rem;
+        font-size: 1rem;
         letter-spacing: 1px;
     }
 
@@ -1531,7 +1531,7 @@ header {
     }
 
     .ads-banner {
-        top: 90px;
+        top: 65px;
         height: 140px;
         width: calc(100% - 20px);
         padding: 10px;
@@ -1592,25 +1592,29 @@ header {
     }
 
     header {
-        height: 90px;
-        padding: 0 15px;
+        height: 55px;
+        padding: 0 10px;
     }
 
     .title-container h1 {
-        font-size: 1.5rem;
-        letter-spacing: 2px;
+        font-size: 1rem;
+        letter-spacing: 1px;
     }
 
     .title-container p {
-        font-size: 0.8rem;
+        font-size: 0.6rem;
+    }
+
+    #main-layout {
+        height: calc(100vh - 55px);
     }
 
     #map-container {
-        padding: 15px;
+        padding: 0;
     }
 
     #map {
-        border-radius: 15px;
-        border-width: 4px;
+        border-radius: 0;
+        border-width: 0;
     }
 }
