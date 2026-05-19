@@ -62,7 +62,12 @@ mapImage.onload = function() {
     setTimeout(() => {
         map.invalidateSize();
         displayMarkers();
-    }, 100);
+        // Ajustar el zoom para que se vean todos los puntos
+        const group = L.featureGroup(markers);
+        if (markers.length > 0) {
+            map.fitBounds(group.getBounds().pad(0.1));
+        }
+    }, 200);
 };
 mapImage.src = mapImagePath;
 
@@ -124,7 +129,7 @@ const pointsOfInterest = [
     { 
         id: 1, 
         nombre: "Recuca - Recorrido de la cultura cafetera", 
-        coords: [1716.8, 504.0],
+        coords: [504.0, 1716.8],
         foto: "imagenes/pautas/pauta_recuca.jpg",
         ubicacion: "Vía Vda. Calle Larga, Calarcá",
         contacto: "3108303779"
@@ -132,7 +137,7 @@ const pointsOfInterest = [
     { 
         id: 2, 
         nombre: "Ruta del Cacao", 
-        coords: [1724.9, 469.1],
+        coords: [469.1, 1724.9],
         foto: null,
         ubicacion: "Vía Vda. Calle Larga, Calarcá",
         contacto: "3108303779"
@@ -140,7 +145,7 @@ const pointsOfInterest = [
     { 
         id: 3, 
         nombre: "Parque de la Montaña Quinti", 
-        coords: [2370.2, 256.2],
+        coords: [256.2, 2370.2],
         foto: null,
         ubicacion: "Cordoba, Quindío",
         contacto: "3126815139"
@@ -148,7 +153,7 @@ const pointsOfInterest = [
     { 
         id: 4, 
         nombre: "Eco Parque Peñas Blancas", 
-        coords: [4104.0, 1806.6],
+        coords: [1806.6, 4104.0],
         foto: null,
         ubicacion: "Corregimiento de La Virginia, Calarcá",
         contacto: "310 396 7951"
@@ -156,7 +161,7 @@ const pointsOfInterest = [
     { 
         id: 5, 
         nombre: "El Domo Aves y Café", 
-        coords: [2062.3, 849.4],
+        coords: [849.4, 2062.3],
         foto: null,
         ubicacion: "La Bella, Calarcá",
         contacto: "323 4086 675"
