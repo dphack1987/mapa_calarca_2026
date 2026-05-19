@@ -248,8 +248,6 @@ function abrirModalPunto(point) {
     modal.style.display = 'block';
     console.log('✅ Modal de punto abierto exitosamente!');
 }
-    if (overlay) overlay.classList.remove('active');
-}
 
 // Function to add markers with numbers to map (sin Marker Clustering para probar)
 function displayMarkers() {
