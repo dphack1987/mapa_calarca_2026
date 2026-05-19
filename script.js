@@ -189,6 +189,46 @@ const pointsOfInterest = [
         foto: "imagenes/pautas/pauta_chaparral.jpg",
         ubicacion: "Calarcá",
         contacto: null
+    },
+    { 
+        id: 34, 
+        nombre: "Finca Hotel El Descanso", 
+        coords: [1688.4, 3460.6],
+        foto: "imagenes/pautas/pauta_descanso.jpg",
+        ubicacion: "Calarcá",
+        contacto: null
+    },
+    { 
+        id: 35, 
+        nombre: "Hotel Armont", 
+        coords: [2269.2, 2920.5],
+        foto: "imagenes/pautas/pauta_amaranta.jpg",
+        ubicacion: "Calarcá",
+        contacto: null
+    },
+    { 
+        id: 36, 
+        nombre: "Finca Hotel San Miguel", 
+        coords: [1007.6, 2316.6],
+        foto: null,
+        ubicacion: "Calarcá",
+        contacto: null
+    },
+    { 
+        id: 38, 
+        nombre: "Finca Turística Martha Cecilia", 
+        coords: [2952.5, 2415.0],
+        foto: "imagenes/pautas/pauta_marta.jpg",
+        ubicacion: "Calarcá",
+        contacto: null
+    },
+    { 
+        id: 39, 
+        nombre: "San Juan de Ticlan", 
+        coords: [672.3, 1753.3],
+        foto: "imagenes/pautas/pauta_ticlan.jpg",
+        ubicacion: "Calarcá",
+        contacto: null
     }
 ];
 
