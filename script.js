@@ -740,16 +740,16 @@ const casillasInfo = [
     }
 ];
 
-// Función para renderizar las casillas de información en el sidebar
+// Función para renderizar las casillas de información en la barra inferior
 function renderizarCasillas() {
-    const container = document.getElementById('casillas-sidebar-container');
+    const container = document.getElementById('casillas-bottom-container');
     if (!container) return;
     
     container.innerHTML = '';
     
     casillasInfo.forEach(casilla => {
         const item = document.createElement('div');
-        item.className = 'casilla-sidebar-item';
+        item.className = 'casilla-bottom-item';
         item.innerHTML = `
             <img src="${casilla.imagen}" alt="${casilla.nombre}">
             <p>${casilla.nombre}</p>
@@ -768,7 +768,7 @@ function renderizarCasillas() {
         container.appendChild(item);
     });
     
-    console.log('✅ Casillas de información renderizadas en el sidebar');
+    console.log('✅ Casillas de información renderizadas en la barra inferior');
 }
 
 // Renderizar casillas después de que el mapa esté listo

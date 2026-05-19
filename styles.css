@@ -1231,46 +1231,98 @@ header {
     font-weight: 500;
 }
 
-/* Casillas de Información en el Sidebar */
-.casillas-sidebar-container {
+/* Barra de Casillas de Información en la parte inferior */
+.casillas-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-top: 3px solid var(--primary-color);
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+    padding: 15px 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.casillas-bottom-container {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    gap: 18px;
+    align-items: center;
+    min-width: max-content;
 }
 
-.casilla-sidebar-item {
+.casilla-bottom-item {
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border-radius: 15px;
+    transition: all 0.3s ease;
+    border-radius: 12px;
     overflow: hidden;
-    border: 3px solid rgba(39, 174, 96, 0.2);
+    border: 2px solid rgba(39, 174, 96, 0.3);
     background: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    width: 140px;
 }
 
-.casilla-sidebar-item:hover {
-    transform: translateX(8px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.25);
+.casilla-bottom-item:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
     border-color: var(--primary-color);
 }
 
-.casilla-sidebar-item img {
+.casilla-bottom-item img {
     width: 100%;
-    height: 180px;
+    height: 100px;
     object-fit: cover;
     display: block;
 }
 
-.casilla-sidebar-item p {
-    padding: 15px;
-    font-size: 0.95rem;
+.casilla-bottom-item p {
+    padding: 10px 8px;
+    font-size: 0.78rem;
     font-weight: 800;
     text-align: center;
     color: var(--primary-color);
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.2;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+}
+
+/* Ajustar el main-content para que no quede tapado por la barra inferior */
+#main-content {
+    padding-bottom: 160px;
+}
+
+/* Responsive para la barra de casillas */
+@media (max-width: 768px) {
+    .casillas-bottom-bar {
+        padding: 12px 15px;
+    }
+    
+    .casillas-bottom-container {
+        gap: 12px;
+    }
+    
+    .casilla-bottom-item {
+        width: 120px;
+    }
+    
+    .casilla-bottom-item img {
+        height: 85px;
+    }
+    
+    .casilla-bottom-item p {
+        font-size: 0.7rem;
+        padding: 8px 6px;
+    }
+    
+    #main-content {
+        padding-bottom: 150px;
+    }
 }
 
 /* Marcadores Elaborados */
