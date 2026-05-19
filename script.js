@@ -146,7 +146,7 @@ const pointsOfInterest = [
         id: 3, 
         nombre: "Parque de la Montaña Quinti", 
         coords: [256.2, 2370.2],
-        foto: null,
+        foto: "imagenes/pautas/pauta_quinti.jpg",
         ubicacion: "Cordoba, Quindío",
         contacto: "3126815139"
     },
@@ -154,7 +154,7 @@ const pointsOfInterest = [
         id: 4, 
         nombre: "Eco Parque Peñas Blancas", 
         coords: [1806.6, 4104.0],
-        foto: null,
+        foto: "imagenes/pautas/pauta_peñas.jpg",
         ubicacion: "Corregimiento de La Virginia, Calarcá",
         contacto: "310 396 7951"
     },
@@ -162,7 +162,7 @@ const pointsOfInterest = [
         id: 5, 
         nombre: "El Domo Aves y Café", 
         coords: [849.4, 2062.3],
-        foto: null,
+        foto: "imagenes/pautas/pauta_domo.jpg",
         ubicacion: "La Bella, Calarcá",
         contacto: "323 4086 675"
     }
