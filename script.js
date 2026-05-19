@@ -39,6 +39,25 @@ mapImage.onload = function() {
     
     console.log(`Mapa de carpeta 'mapa' cargado correctamente: ${imgWidth}x${imgHeight}px`);
     
+    // Evento para mostrar coordenadas al hacer clic en el mapa
+    map.on('click', function(e) {
+        const x = e.latlng.lng.toFixed(1);
+        const y = e.latlng.lat.toFixed(1);
+        console.log(`Coordenadas (click): [${x}, ${y}]`);
+        alert(`Coordenadas (x, y): [${x}, ${y}]`);
+    });
+
+    // Evento para mostrar coordenadas en tiempo real al mover el cursor
+    map.on('mousemove', function(e) {
+        const x = e.latlng.lng.toFixed(1);
+        const y = e.latlng.lat.toFixed(1);
+        const coordsElement = document.getElementById('coords');
+        if (coordsElement) {
+            coordsElement.textContent = `Coordenadas: [${x}, ${y}]`;
+        }
+        console.log(`Coordenadas (mover): [${x}, ${y}]`);
+    });
+    
     // Forzar redibujado para evitar que se vea cortado
     setTimeout(() => {
         map.invalidateSize();
@@ -46,14 +65,6 @@ mapImage.onload = function() {
     }, 100);
 };
 mapImage.src = mapImagePath;
-
-// Evento para mostrar coordenadas al hacer clic en el mapa
-map.on('click', function(e) {
-    const x = e.latlng.lng.toFixed(1);
-    const y = e.latlng.lat.toFixed(1);
-    console.log(`Coordenadas: [${x}, ${y}]`);
-    alert(`Coordenadas (x, y): [${x}, ${y}]`);
-});
 
 // Language and Favorites State
 let currentLang = 'es';
