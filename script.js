@@ -220,12 +220,52 @@ function displayMarkers() {
     });
 }
 
-// Filter buttons (basic functionality)
+// Mapeo de categorías a imágenes de casillas_info
+const categoryImageMap = {
+    'Cultura': 'imagenes/casillas_info/casillas_atractivos.jpg',
+    'Naturaleza': 'imagenes/casillas_info/casillas_atractivos.jpg',
+    'Aventura': 'imagenes/casillas_info/casillas_agencias.jpg',
+    'Hospedaje Rural': 'imagenes/casillas_info/casillas_alojamiento.jpg',
+    'Hospedaje Urbano': 'imagenes/casillas_info/casillas_alojamiento.jpg',
+    'Gastronomía Local': 'imagenes/casillas_info/casillas_restaurantes.jpg',
+    'Gastronomía Internacional': 'imagenes/casillas_info/casillas_pizeria.jpg',
+    'Gastronomía de Mar': 'imagenes/casillas_info/casillas_restaurantes.jpg',
+    'Comercio': 'imagenes/casillas_info/casillas_tiendas_de_cafe.jpg',
+    'Transporte': 'imagenes/casillas_info/casillas_taxis.jpg',
+    'Centros Comerciales': 'imagenes/casillas_info/casillas_tiendas_de_cafe.jpg',
+    'Servicios': 'imagenes/casillas_info/casillas_alcaldia.jpg'
+};
+
+// Función para abrir modal con imagen grande
+function abrirModalImagenGrande(imagenPath, categoria) {
+    const modal = document.getElementById('modal-nuevo');
+    const contenido = document.getElementById('contenido-modal');
+    
+    if (!modal || !contenido) return;
+    
+    contenido.innerHTML = `
+        <div style="text-align: center;">
+            <h2 style="font-size: 1.4rem; font-weight: 800; color: #007A5E; margin-bottom: 20px;">${categoria}</h2>
+            <img src="${imagenPath}" style="width: 100%; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+        </div>
+    `;
+    
+    modal.style.display = 'block';
+}
+
+// Filter buttons (basic functionality + abrir imagen grande)
 const filterBtns = document.querySelectorAll('.filter-btn');
 filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        
+        const categoria = btn.getAttribute('data-category');
+        
+        // Si tiene una imagen asociada, abrir el modal
+        if (categoria !== 'todos' && categoryImageMap[categoria]) {
+            abrirModalImagenGrande(categoryImageMap[categoria], categoria);
+        }
     });
 });
 
