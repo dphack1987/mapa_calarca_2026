@@ -121,11 +121,11 @@ const translations = {
 
 // Points of interest - 12 Atractivos Turísticos (de la imagen)
 const pointsOfInterest = [
-    { id: 1, nombre: "RECUCA Recorrido de la cultura cafetera", coords: [790.8, 1984.9] },
-    { id: 2, nombre: "Ruta del Cacao", coords: [956.5, 1949.8] },
-    { id: 3, nombre: "Parque en la Montaña Q'INTI la casa cafetera al revés", coords: [2072.6, 2856.1] },
-    { id: 4, nombre: "Ecoparque Peñas Blancas", coords: [1621.4, 3732.5] },
-    { id: 5, nombre: "El Domo aves y café", coords: [2035.0, 2850.3] },
+    { id: 1, nombre: "Recuca", coords: [1716.8, 504.0] },
+    { id: 2, nombre: "Ruta del Cacao", coords: [1724.9, 469.1] },
+    { id: 3, nombre: "Parque de la Montaña Quinti", coords: [2370.2, 256.2] },
+    { id: 4, nombre: "Eco Parque Peñas Blancas", coords: [4104.0, 1806.6] },
+    { id: 5, nombre: "El Domo Aves y Café", coords: [2062.3, 849.4] },
     { id: 6, nombre: "Centro Recreacional la Nueva Albania", coords: [538.0, 1696.1] },
     { id: 7, nombre: "Mirador Café del río", coords: [2565.1, 2574.1] },
     { id: 8, nombre: "Jardín Botánico del Quindío y Mariposario", coords: [791.9, 1704.5] },
