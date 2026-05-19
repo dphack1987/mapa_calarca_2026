@@ -121,18 +121,102 @@ const translations = {
 
 // Points of interest - 12 Atractivos Turísticos (de la imagen)
 const pointsOfInterest = [
-    { id: 1, nombre: "Recuca", coords: [1716.8, 504.0] },
-    { id: 2, nombre: "Ruta del Cacao", coords: [1724.9, 469.1] },
-    { id: 3, nombre: "Parque de la Montaña Quinti", coords: [2370.2, 256.2] },
-    { id: 4, nombre: "Eco Parque Peñas Blancas", coords: [4104.0, 1806.6] },
-    { id: 5, nombre: "El Domo Aves y Café", coords: [2062.3, 849.4] },
-    { id: 6, nombre: "Centro Recreacional la Nueva Albania", coords: [538.0, 1696.1] },
-    { id: 7, nombre: "Mirador Café del río", coords: [2565.1, 2574.1] },
-    { id: 8, nombre: "Jardín Botánico del Quindío y Mariposario", coords: [791.9, 1704.5] },
-    { id: 9, nombre: "Fiesta Nacional del Café", coords: [2085.3, 2705.3] },
-    { id: 10, nombre: "Festivada del maíz en Barcelona", coords: [4869.9, 1826.7] },
-    { id: 11, nombre: "Parapente", coords: [1986.8, 3868.5] },
-    { id: 12, nombre: "Ciudad Sobre Letras", coords: [2017.5, 2827.5] }
+    { 
+        id: 1, 
+        nombre: "Recuca - Recorrido de la cultura cafetera", 
+        coords: [1716.8, 504.0],
+        foto: "imagenes/pautas/pauta_recuca.jpg",
+        ubicacion: "Vía Vda. Calle Larga, Calarcá",
+        contacto: "3108303779"
+    },
+    { 
+        id: 2, 
+        nombre: "Ruta del Cacao", 
+        coords: [1724.9, 469.1],
+        foto: null,
+        ubicacion: "Vía Vda. Calle Larga, Calarcá",
+        contacto: "3108303779"
+    },
+    { 
+        id: 3, 
+        nombre: "Parque de la Montaña Quinti", 
+        coords: [2370.2, 256.2],
+        foto: null,
+        ubicacion: "Cordoba, Quindío",
+        contacto: "3126815139"
+    },
+    { 
+        id: 4, 
+        nombre: "Eco Parque Peñas Blancas", 
+        coords: [4104.0, 1806.6],
+        foto: null,
+        ubicacion: "Corregimiento de La Virginia, Calarcá",
+        contacto: "310 396 7951"
+    },
+    { 
+        id: 5, 
+        nombre: "El Domo Aves y Café", 
+        coords: [2062.3, 849.4],
+        foto: null,
+        ubicacion: "La Bella, Calarcá",
+        contacto: "323 4086 675"
+    },
+    { 
+        id: 6, 
+        nombre: "Centro Recreacional la Nueva Albania", 
+        coords: [538.0, 1696.1],
+        foto: null,
+        ubicacion: "km 6 vía Calarcá -Barcelona",
+        contacto: "311 717 9148"
+    },
+    { 
+        id: 7, 
+        nombre: "Mirador Café del río", 
+        coords: [2565.1, 2574.1],
+        foto: null,
+        ubicacion: "Variante Chaguala, Km 2, Vereda Buenos Aires Bajo, Calarcá",
+        contacto: "315 291 79 14"
+    },
+    { 
+        id: 8, 
+        nombre: "Jardín Botánico del Quindío y Mariposario", 
+        coords: [791.9, 1704.5],
+        foto: null,
+        ubicacion: "Av. Centenario No. 15-190, Km 3, vía al Valle, Calarcá",
+        contacto: "317 44 260 44"
+    },
+    { 
+        id: 9, 
+        nombre: "Fiesta Nacional del Café", 
+        coords: [2085.3, 2705.3],
+        foto: null,
+        ubicacion: "Calarcá",
+        contacto: "57 (606) 7430300"
+    },
+    { 
+        id: 10, 
+        nombre: "Festivada del maíz en Barcelona", 
+        coords: [4869.9, 1826.7],
+        foto: null,
+        ubicacion: "Barcelona",
+        contacto: null
+    },
+    { 
+        id: 11, 
+        nombre: "Parapente", 
+        coords: [1986.8, 3868.5],
+        foto: null,
+        ubicacion: "Calarcá",
+        contacto: "317 4426044"
+    },
+    { 
+        id: 12, 
+        nombre: "Ciudad Sobre Letras", 
+        coords: [2017.5, 2827.5],
+        foto: null,
+        ubicacion: "Calarcá",
+        contacto: null
+    }
 ];
 
 const selectedInfo = document.getElementById('selected-info');
@@ -173,10 +257,37 @@ function abrirBottomSheet(point) {
     const queryUbicacion = encodeURIComponent(`${point.nombre || 'Punto ' + point.id}, Calarcá, Quindío, Colombia`);
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${queryUbicacion}`;
     
-    bottomSheetContent.innerHTML = `
-        <div style="text-align: center;">
-            <h2 style="color: #27ae60; font-size: 1.8rem; font-weight: 800; margin-bottom: 20px;">${point.nombre || 'Punto ' + point.id}</h2>
-            <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Información del atractivo turístico.</p>
+    let contenidoHTML = `
+        <div style="text-align: left;">
+            <h2 style="color: #27ae60; font-size: 1.6rem; font-weight: 800; margin-bottom: 20px; text-align: center;">${point.nombre || 'Punto ' + point.id}</h2>
+    `;
+    
+    if (point.foto) {
+        contenidoHTML += `
+            <div style="margin-bottom: 20px; text-align: center;">
+                <img src="${point.foto}" alt="${point.nombre}" style="width: 100%; max-height: 250px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+            </div>
+        `;
+    }
+    
+    if (point.ubicacion) {
+        contenidoHTML += `
+            <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 15px;">
+                <strong>📍 Ubicación:</strong> ${point.ubicacion}
+            </p>
+        `;
+    }
+    
+    if (point.contacto) {
+        contenidoHTML += `
+            <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 20px;">
+                <strong>📞 Contacto:</strong> <a href="tel:${point.contacto}" style="color: #27ae60; text-decoration: none; font-weight: 700;">${point.contacto}</a>
+            </p>
+        `;
+    }
+    
+    contenidoHTML += `
+        <div style="text-align: center; margin-top: 20px;">
             <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="
                 display: inline-block;
                 background: #4285F4;
@@ -205,6 +316,8 @@ function abrirBottomSheet(point) {
             ">Cerrar</button>
         </div>
     `;
+    
+    bottomSheetContent.innerHTML = contenidoHTML;
     
     bottomSheet.classList.add('open');
     overlay.classList.add('active');
