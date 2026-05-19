@@ -62,12 +62,12 @@ mapImage.onload = function() {
     setTimeout(() => {
         map.invalidateSize();
         displayMarkers();
-        // Ajustar el zoom para que se vean todos los puntos
+        // Ajustar zoom para que se vean los primeros 5 puntos
         const group = L.featureGroup(markers);
         if (markers.length > 0) {
-            map.fitBounds(group.getBounds().pad(0.1));
+            map.fitBounds(group.getBounds().pad(0.2));
         }
-    }, 200);
+    }, 100);
 };
 mapImage.src = mapImagePath;
 
@@ -124,7 +124,7 @@ const translations = {
     }
 };
 
-// Points of interest - 12 Atractivos Turísticos (de la imagen)
+// Points of interest - PRIMEROS 5 PUNTOS (tarea 1)
 const pointsOfInterest = [
     { 
         id: 1, 
@@ -165,62 +165,6 @@ const pointsOfInterest = [
         foto: null,
         ubicacion: "La Bella, Calarcá",
         contacto: "323 4086 675"
-    },
-    { 
-        id: 6, 
-        nombre: "Centro Recreacional la Nueva Albania", 
-        coords: [538.0, 1696.1],
-        foto: null,
-        ubicacion: "km 6 vía Calarcá -Barcelona",
-        contacto: "311 717 9148"
-    },
-    { 
-        id: 7, 
-        nombre: "Mirador Café del río", 
-        coords: [2565.1, 2574.1],
-        foto: null,
-        ubicacion: "Variante Chaguala, Km 2, Vereda Buenos Aires Bajo, Calarcá",
-        contacto: "315 291 79 14"
-    },
-    { 
-        id: 8, 
-        nombre: "Jardín Botánico del Quindío y Mariposario", 
-        coords: [791.9, 1704.5],
-        foto: null,
-        ubicacion: "Av. Centenario No. 15-190, Km 3, vía al Valle, Calarcá",
-        contacto: "317 44 260 44"
-    },
-    { 
-        id: 9, 
-        nombre: "Fiesta Nacional del Café", 
-        coords: [2085.3, 2705.3],
-        foto: null,
-        ubicacion: "Calarcá",
-        contacto: "57 (606) 7430300"
-    },
-    { 
-        id: 10, 
-        nombre: "Festivada del maíz en Barcelona", 
-        coords: [4869.9, 1826.7],
-        foto: null,
-        ubicacion: "Barcelona",
-        contacto: null
-    },
-    { 
-        id: 11, 
-        nombre: "Parapente", 
-        coords: [1986.8, 3868.5],
-        foto: null,
-        ubicacion: "Calarcá",
-        contacto: "317 4426044"
-    },
-    { 
-        id: 12, 
-        nombre: "Ciudad Sobre Letras", 
-        coords: [2017.5, 2827.5],
-        foto: null,
-        ubicacion: "Calarcá",
-        contacto: null
     }
 ];
 
