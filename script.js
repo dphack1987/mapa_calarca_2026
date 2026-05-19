@@ -237,6 +237,38 @@ const pointsOfInterest = [
         foto: "imagenes/pautas/pauta_ticlan.jpg",
         ubicacion: "Calarcá",
         contacto: null
+    },
+    { 
+        id: 29, 
+        nombre: "La Tertulia Café", 
+        coords: [2277.0, 3027.1],
+        foto: "imagenes/pautas/pauta_tertulia.jpg",
+        ubicacion: "Calarcá",
+        contacto: null
+    },
+    { 
+        id: 24, 
+        nombre: "Amaranta Libros", 
+        coords: [2201.3, 3106.3],
+        foto: "imagenes/pautas/pauta_amaranta.jpg",
+        ubicacion: "Calarcá",
+        contacto: null
+    },
+    { 
+        id: 21, 
+        nombre: "Bendito Pekado", 
+        coords: [2255.3, 3019.0],
+        foto: "imagenes/pautas/pauta_bendito.jpg",
+        ubicacion: "Calarcá",
+        contacto: null
+    },
+    { 
+        id: 40, 
+        nombre: "Coomocal", 
+        coords: [2233.6, 2930.2],
+        foto: "imagenes/pautas/pauta_coomocal.jpg",
+        ubicacion: "Calarcá",
+        contacto: null
     }
 ];
 
