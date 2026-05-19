@@ -1,4 +1,4 @@
-const CACHE_NAME = 'calarca-2026-v49'; // Nueva versión
+const CACHE_NAME = 'calarca-2026-v50'; // Nueva versión
 const assets = [
   './',
   './index.html',
