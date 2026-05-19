@@ -124,7 +124,7 @@ const translations = {
     }
 };
 
-// Points of interest - PRIMEROS 5 PUNTOS (tarea 1)
+// Points of interest - PRIMEROS 5 PUNTOS (tarea 1) - COORDENADAS ORIGINALES COMO LAS COMPARTISTE
 const pointsOfInterest = [
     { 
         id: 1, 
