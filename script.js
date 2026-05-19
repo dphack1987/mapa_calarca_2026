@@ -195,88 +195,59 @@ if (selectedInfo) {
     `;
 }
 
-// Funciones para el Bottom Sheet
-function abrirBottomSheet(point) {
-    const bottomSheet = document.getElementById('bottom-sheet');
-    const bottomSheetContent = document.getElementById('bottom-sheet-content');
-    const overlay = document.getElementById('bottom-sheet-overlay');
+// Funciones para abrir el modal de los puntos (igual que las pautas)
+function abrirModalPunto(point) {
+    console.log('🪟 Abriendo modal para punto:', point);
     
-    if (!bottomSheet || !bottomSheetContent || !overlay) return;
+    const modal = document.getElementById('modal-nuevo');
+    const contenido = document.getElementById('contenido-modal');
+    
+    if (!modal || !contenido) {
+        console.log('❌ ERROR: No se encontró el modal NUEVO');
+        alert('ERROR: Por favor actualiza la página completamente!');
+        return;
+    }
     
     const queryUbicacion = encodeURIComponent(`${point.nombre || 'Punto ' + point.id}, Calarcá, Quindío, Colombia`);
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${queryUbicacion}`;
     
-    let contenidoHTML = `
-        <div style="text-align: left;">
-            <h2 style="color: #27ae60; font-size: 1.6rem; font-weight: 800; margin-bottom: 20px; text-align: center;">${point.nombre || 'Punto ' + point.id}</h2>
-    `;
+    let html = '';
     
     if (point.foto) {
-        contenidoHTML += `
-            <div style="margin-bottom: 20px; text-align: center;">
-                <img src="${point.foto}" alt="${point.nombre}" style="width: 100%; max-height: 250px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
-            </div>
-        `;
+        html += `<img src="${point.foto}" style="width: 100%; border-radius: 15px; margin-bottom: 20px;">`;
     }
     
+    html += `<h2 style="font-size: 1.6rem; font-weight: 800; color: #27ae60; margin-bottom: 15px; margin-top: 10px;">${point.nombre || 'Punto ' + point.id}</h2>`;
+    
     if (point.ubicacion) {
-        contenidoHTML += `
-            <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 15px;">
-                <strong>📍 Ubicación:</strong> ${point.ubicacion}
-            </p>
-        `;
+        html += `<div style="margin-bottom: 12px; font-size: 1rem;"><strong>📍 Ubicación:</strong> ${point.ubicacion}</div>`;
     }
     
     if (point.contacto) {
-        contenidoHTML += `
-            <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 20px;">
-                <strong>📞 Contacto:</strong> <a href="tel:${point.contacto}" style="color: #27ae60; text-decoration: none; font-weight: 700;">${point.contacto}</a>
-            </p>
-        `;
+        html += `<div style="margin-bottom: 12px; font-size: 1rem;"><strong>📞 Contacto:</strong> <a href="tel:${point.contacto}" style="color: #27ae60; text-decoration: none; font-weight: 700;">${point.contacto}</a></div>`;
     }
     
-    contenidoHTML += `
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="
-                display: inline-block;
-                background: #4285F4;
-                color: white;
-                border: none;
-                padding: 12px 30px;
-                border-radius: 25px;
-                font-size: 1rem;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                text-decoration: none;
-                margin-bottom: 15px;
-            ">🚗 Cómo llegar (Google Maps)</a>
-            <br>
-            <button onclick="cerrarBottomSheet()" style="
-                background: #27ae60;
-                color: white;
-                border: none;
-                padding: 12px 30px;
-                border-radius: 25px;
-                font-size: 1rem;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            ">Cerrar</button>
-        </div>
-    `;
+    html += `<a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="
+        display: block;
+        background: #4285F4;
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        border-radius: 15px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        text-align: center;
+        margin-top: 20px;
+        box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+    ">🚗 Cómo llegar (Google Maps)</a>`;
     
-    bottomSheetContent.innerHTML = contenidoHTML;
-    
-    bottomSheet.classList.add('open');
-    overlay.classList.add('active');
+    contenido.innerHTML = html;
+    modal.style.display = 'block';
+    console.log('✅ Modal de punto abierto exitosamente!');
 }
-
-function cerrarBottomSheet() {
-    const bottomSheet = document.getElementById('bottom-sheet');
-    const overlay = document.getElementById('bottom-sheet-overlay');
-    
-    if (bottomSheet) bottomSheet.classList.remove('open');
     if (overlay) overlay.classList.remove('active');
 }
 
@@ -311,7 +282,7 @@ function displayMarkers() {
 
         marker.on('click', (e) => {
             e.originalEvent.stopPropagation();
-            abrirBottomSheet(point);
+            abrirModalPunto(point);
             
             if (selectedInfo) {
                 selectedInfo.innerHTML = `
