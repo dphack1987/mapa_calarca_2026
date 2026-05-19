@@ -336,21 +336,10 @@ function cerrarBottomSheet() {
     if (overlay) overlay.classList.remove('active');
 }
 
-// Function to add markers with numbers to map (con Marker Clustering)
+// Function to add markers with numbers to map (sin Marker Clustering para probar)
 function displayMarkers() {
     markers.forEach(m => map.removeLayer(m));
     markers = [];
-
-    // Crear grupo de clustering
-    const markerClusterGroup = L.markerClusterGroup({
-        showCoverageOnHover: false,
-        maxClusterRadius: 50,
-        animate: true,
-        animateAddingMarkers: true,
-        spiderfyOnMaxZoom: true,
-        disableClusteringAtZoom: 2,
-        chunkedLoading: true
-    });
 
     pointsOfInterest.forEach(point => {
         // Create custom icon with number
@@ -395,11 +384,9 @@ function displayMarkers() {
             }
         });
 
-        markerClusterGroup.addLayer(marker);
+        marker.addTo(map);
         markers.push(marker);
     });
-
-    map.addLayer(markerClusterGroup);
 }
 
 // Función para abrir modal con imagen grande
