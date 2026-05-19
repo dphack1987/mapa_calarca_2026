@@ -175,6 +175,30 @@ const pointsOfInterest = [
         contacto: null
     },
     { 
+        id: 7, 
+        nombre: "Mirador Café del Río", 
+        coords: [2827.7, 2832.7],
+        foto: "imagenes/pautas/pauta_rio.jpg",
+        ubicacion: "Variante Chaguala, Km 2, Vereda Buenos Aires Bajo, Calarcá",
+        contacto: null
+    },
+    { 
+        id: 8, 
+        nombre: "Jardín Botánico", 
+        coords: [1085.8, 2178.7],
+        foto: null,
+        ubicacion: "Av. Centenario No. 15-190, Km 3, vía al Valle, Calarcá",
+        contacto: null
+    },
+    { 
+        id: 10, 
+        nombre: "Festividad del Maíz", 
+        coords: [500.0, 2014.5],
+        foto: null,
+        ubicacion: "Barcelona",
+        contacto: null
+    },
+    { 
         id: 30, 
         nombre: "Alcaldía de Calarcá", 
         coords: [2161.8, 2988.0],
