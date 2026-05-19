@@ -167,6 +167,14 @@ const pointsOfInterest = [
         contacto: "323 4086 675"
     },
     { 
+        id: 6, 
+        nombre: "La Albania", 
+        coords: [579.7, 1839.4],
+        foto: "imagenes/pautas/pauta_albania.jpg",
+        ubicacion: "Km 6 vía Calarcá - Barcelona",
+        contacto: null
+    },
+    { 
         id: 30, 
         nombre: "Alcaldía de Calarcá", 
         coords: [2161.8, 2988.0],
