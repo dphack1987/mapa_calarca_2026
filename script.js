@@ -47,6 +47,14 @@ mapImage.onload = function() {
 };
 mapImage.src = mapImagePath;
 
+// Evento para mostrar coordenadas al hacer clic en el mapa
+map.on('click', function(e) {
+    const x = e.latlng.lng.toFixed(1);
+    const y = e.latlng.lat.toFixed(1);
+    console.log(`Coordenadas: [${x}, ${y}]`);
+    alert(`Coordenadas (x, y): [${x}, ${y}]`);
+});
+
 // Language and Favorites State
 let currentLang = 'es';
 let favorites = JSON.parse(localStorage.getItem('calarca_favs')) || [];
