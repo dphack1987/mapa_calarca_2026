@@ -353,6 +353,25 @@ function abrirModalPunto(point) {
     
     if (point.contacto) {
         html += `<div style="margin-bottom: 12px; font-size: 1rem;"><strong>📞 Contacto:</strong> <a href="tel:${point.contacto}" style="color: #27ae60; text-decoration: none; font-weight: 700;">${point.contacto}</a></div>`;
+        
+        const whatsappNum = point.contacto.replace(/\D/g, '');
+        const whatsappUrl = `https://wa.me/57${whatsappNum}?text=Hola!%20Estoy%20interesado%20en%20${encodeURIComponent(point.nombre || 'tus servicios')}`;
+        html += `<a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" style="
+            display: block;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        ">💬 Contactar por WhatsApp</a>`;
     }
     
     html += `<a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="
@@ -368,7 +387,7 @@ function abrirModalPunto(point) {
         transition: all 0.3s ease;
         text-decoration: none;
         text-align: center;
-        margin-top: 20px;
+        margin-top: 15px;
         box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
     ">🚗 Cómo llegar (Google Maps)</a>`;
     
@@ -859,6 +878,25 @@ function abrirModalNuevo(pauta) {
     
     if (pauta.contacto) {
         html += `<div style="margin-bottom: 12px; font-size: 1rem;"><strong>📞 Contacto:</strong> ${pauta.contacto}</div>`;
+        
+        const whatsappNum = pauta.contacto.replace(/\D/g, '');
+        const whatsappUrl = `https://wa.me/57${whatsappNum}?text=Hola!%20Estoy%20interesado%20en%20${encodeURIComponent(pauta.nombre || 'tus servicios')}`;
+        html += `<a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" style="
+            display: block;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        ">💬 Contactar por WhatsApp</a>`;
     }
     
     if (pauta.horario) {
@@ -879,7 +917,7 @@ function abrirModalNuevo(pauta) {
         transition: all 0.3s ease;
         text-decoration: none;
         text-align: center;
-        margin-top: 20px;
+        margin-top: 15px;
         box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
     ">🚗 Cómo llegar (Google Maps)</a>`;
     
